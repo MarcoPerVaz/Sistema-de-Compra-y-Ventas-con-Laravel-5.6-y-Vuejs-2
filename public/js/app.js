@@ -989,7 +989,10 @@ window.Vue = __webpack_require__(46);
 Vue.component('example-component', __webpack_require__(50));
 
 var app = new Vue({
-  el: '#app'
+  el: '#app',
+  data: {
+    menu: 0
+  }
 });
 
 /***/ }),

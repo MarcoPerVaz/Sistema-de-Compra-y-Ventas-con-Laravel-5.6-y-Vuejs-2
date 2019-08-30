@@ -43,3 +43,11 @@ Commit - Implementación de Vuejs
   -Edición de la vista principal.blade.php
   -Edición de la vista contenido/contenido.blade.php
   -Edición del componente resources/assets/js/componets/ExampleComponent.vue
+Commit - Menú principal de la plantilla
+  -Edición de la vista principal.blade.php
+  -Creación y edición de la carpeta resources/views/plantilla y dentro la vista sidebar.blade.php
+  -Edición del archivo resources/assets/js/app.js
+  -Edición de la vista contenido/contenido.blade.php
+  -Comando para compilar
+    -npm run dev
+  
