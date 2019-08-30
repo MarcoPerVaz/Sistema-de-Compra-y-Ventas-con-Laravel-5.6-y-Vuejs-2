@@ -67,4 +67,7 @@ Commit - Migraciones con Laravel
         Nota: Importar el Facade Schema
           -use Illuminate\Support\Facades\Schema;
     -Usar el comando php artisan migrate:fresh por si muestra el error de que la tablas ya existen
+Commit - Modelos en Laravel
+  -Creación y edición del modelo Categoria
+    -php artisan make:model Categoria
   
