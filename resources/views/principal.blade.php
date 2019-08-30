@@ -9,11 +9,8 @@
     <meta name="keyword" content="Sistema ventas Laravel Vue Js, Sistema compras Laravel Vue Js">
     <link rel="shortcut icon" href="img/favicon.png">
     <title>Sistema Compra y Ventas</title>
-    <!-- Icons -->
-    <link href="css/font-awesome.min.css" rel="stylesheet">
-    <link href="css/simple-line-icons.min.css" rel="stylesheet">
-    <!-- Main styles for this application -->
-    <link href="css/style.css" rel="stylesheet">
+    <!-- Estilos Compilados -->
+    <link href="css/plantilla.css" rel="stylesheet">
 </head>
 
 <body class="app header-fixed sidebar-fixed aside-menu-fixed aside-menu-hidden">
@@ -156,15 +153,8 @@
         <span> &copy; Sistema de Compra y Ventas 2017</span>
     </footer>
 
-    <!-- Bootstrap and necessary plugins -->
-    <script src="js/jquery.min.js"></script>
-    <script src="js/popper.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/pace.min.js"></script>
-    <!-- Plugins and scripts required by all views -->
-    <script src="js/Chart.min.js"></script>
-    <!-- GenesisUI main scripts -->
-    <script src="js/template.js"></script>
+    <!-- Plugins Compilados -->
+    <script src="js/plantilla.js"></script>
 </body>
 
 </html>

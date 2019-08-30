@@ -18,3 +18,22 @@ Commit - Integrando la plantilla CoreUi
       -template.js
     -Se agregan las carpetas fonts e images sacadas de la plantilla personalizada de CoreUi
   -Creación y edición de la carpeta resources/views/contenido y dentro la vista contenido.blade.php
+Commit - Implementando Laravel-Mix
+  -Se mueven los archivos de la carpeta public/css/ a la carpeta resources/assets/plantilla/css/
+    -font-awesome.min.css 
+    -simple-line-icons.min.css
+    -style.css
+  -Se mueven los archivos de la carpeta public/js/ a la carpeta resources/assets/plantilla/js/
+    -bootstrap.min.js
+    -Chart.min.js
+    -jquery.min.js
+    -pace.min.js
+    -popper.min.js
+    -template.js
+  -Edición del archivo webpack.mix.js para compilar los css y js y generarlos en la carpeta public
+  -Edición del archivo package.json porque en el curso se usan otras dependencias 
+  -Se instalan las dependencias de Javascript con el comando 
+    -npm install
+  -Compilar archivos con el comando
+    -npm run dev o npm run watch
+  -Edición de la vista principal.blade.php para agregar los archivos plantilla.css y plantilla.js compilados
