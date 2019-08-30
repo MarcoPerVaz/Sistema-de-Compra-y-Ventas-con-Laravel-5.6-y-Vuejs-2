@@ -50,4 +50,21 @@ Commit - Menú principal de la plantilla
   -Edición de la vista contenido/contenido.blade.php
   -Comando para compilar
     -npm run dev
+Commit - Migraciones con Laravel
+  -Creación y edición de la migración create_categorias_table
+    -php artisan make:migration create_categorias_table
+  -Edición del archivo .env
+    DB_DATABASE=sistemacompraventas
+    DB_USERNAME=root
+    DB_PASSWORD=
+  -Crear las migraciones en la BD 
+    -php artisan migrate
+    Nota: Error: Syntax error or access violation: 1071 Specified key was too long; max key length is 767 bytes
+    Solución: 
+      -En el archivo app/Providers/AppServiceProvider.php
+        -En la función boot() agregar
+          -Schema::defaultStringLength(191);
+        Nota: Importar el Facade Schema
+          -use Illuminate\Support\Facades\Schema;
+    -Usar el comando php artisan migrate:fresh por si muestra el error de que la tablas ya existen
   
