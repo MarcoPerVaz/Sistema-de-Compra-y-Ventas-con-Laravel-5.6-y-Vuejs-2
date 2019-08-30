@@ -70,4 +70,16 @@ Commit - Migraciones con Laravel
 Commit - Modelos en Laravel
   -Creación y edición del modelo Categoria
     -php artisan make:model Categoria
+Commit - Controladores en Laravel
+  -Creación y edición del controlador 
+    -php artisan make:controller CategoriaController --resource
+    -Edición de la función index, store, update, desactivar
+  -Edición del archivo routes/web.php
+    -Creación de las rutas para el controlador CategoriaController
+      -Route::get('/categoria', 'CategoriaController@index');
+      -Route::post('/categoria/registrar', 'CategoriaController@store');
+      -Route::put('/categoria/actualizar', 'CategoriaController@update');
+      -Route::put('/categoria/desactivar', 'CategoriaController@desactivar');
+      -Route::put('/categoria/activar', 'CategoriaController@activar');
+
   
