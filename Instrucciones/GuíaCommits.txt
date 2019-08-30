@@ -37,3 +37,9 @@ Commit - Implementando Laravel-Mix
   -Compilar archivos con el comando
     -npm run dev o npm run watch
   -Edición de la vista principal.blade.php para agregar los archivos plantilla.css y plantilla.js compilados
+Commit - Implementación de Vuejs
+  -Edición del archivo resources/assets/js/bootstrap.js
+  -Edición del archivo webpack.mix.js
+  -Edición de la vista principal.blade.php
+  -Edición de la vista contenido/contenido.blade.php
+  -Edición del componente resources/assets/js/componets/ExampleComponent.vue
