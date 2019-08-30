@@ -1,2 +1,20 @@
 Commit - Creación del proyecto
 Commit - Edición de readme.md
+Commit - Integrando la plantilla CoreUi
+  -Edición de la vista welcome.blade.php
+  -Creación y edición de la vista principal.blade.php
+  -Edición del archivo en routes/web.php
+  -Se agregan los archivos necesarios para el funcionamiento de la vista principal.blade.php
+    -En la carpeta public/css se agregan los archivos sacados de la plantilla personalizada de CoreUi
+      -font-awesome.min.css 
+      -simple-line-icons.min.css
+      -style.css
+    -En la carpeta public/js se agregan
+      -bootstrap.min.js
+      -Chart.min.js
+      -jquery.min.js
+      -pace.min.js
+      -popper.min.js
+      -template.js
+    -Se agregan las carpetas fonts e images sacadas de la plantilla personalizada de CoreUi
+  -Creación y edición de la carpeta resources/views/contenido y dentro la vista contenido.blade.php
