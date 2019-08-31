@@ -92,4 +92,10 @@ Commit - Modal para crear categorías
   -Edición del componente components/Categoria.vue
   -Compilar
     -npm run dev
+Commit - Registrar categoría
+  -Edición del componente components/Categoria.vue
+  Error:
+    -Edición de la función store y update del controlador CategoriaController
+      -Esto: categoria->description = $request->descripcion;
+      -Por esto: categoria->descripcion = $request->descripcion;
   

@@ -34,7 +34,7 @@ class CategoriaController extends Controller
         $categoria = new Categoria();
 
         $categoria->nombre = $request->nombre;
-        $categoria->description = $request->descripcion;
+        $categoria->descripcion = $request->descripcion;
         $categoria->condicion = "1";
 
         $categoria->save();
@@ -54,7 +54,7 @@ class CategoriaController extends Controller
         $categoria = Categoria::findOrfail($request->id);
 
         $categoria->nombre = $request->nombre;
-        $categoria->description = $request->descripcion;
+        $categoria->descripcion = $request->descripcion;
         $categoria->condicion = "1";
 
         $categoria->save();
