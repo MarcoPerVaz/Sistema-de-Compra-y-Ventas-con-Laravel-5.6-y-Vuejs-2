@@ -88,4 +88,8 @@ Commit - Listado de categorías
   -Creación y edición del componente resources/assets/js/components/Categoria.vue
   -Compilar 
     -npm run dev
+Commit - Modal para crear categorías
+  -Edición del componente components/Categoria.vue
+  -Compilar
+    -npm run dev
   
