@@ -81,5 +81,11 @@ Commit - Controladores en Laravel
       -Route::put('/categoria/actualizar', 'CategoriaController@update');
       -Route::put('/categoria/desactivar', 'CategoriaController@desactivar');
       -Route::put('/categoria/activar', 'CategoriaController@activar');
-
+Commit - Listado de categorías
+  Nota: Todo el contenido del componente resources/assets/js/components/ExampleComponent.vue fue pasado al componente Categoria,
+        el componente Categoria solo fue usado como ejemplo
+  -Edición de la vista contenido/contenido.blade.php
+  -Creación y edición del componente resources/assets/js/components/Categoria.vue
+  -Compilar 
+    -npm run dev
   
