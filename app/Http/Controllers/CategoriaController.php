@@ -62,7 +62,7 @@ class CategoriaController extends Controller
     }
 
     /**
-     * Función para determinar si la categoría está inactiva - Cambia el campo condición de la tambla categorias
+     * Función para determinar si la categoría está inactiva - Cambia el campo condición de la tabla categorias
     */
     public function desactivar(Request $request)
     {
@@ -76,7 +76,7 @@ class CategoriaController extends Controller
     }
 
     /**
-     * Función para determinar si la categoría está activa - Cambia el campo condición de la tambla categorias
+     * Función para determinar si la categoría está activa - Cambia el campo condición de la tabla categorias
     */
     public function activar(Request $request)
     {

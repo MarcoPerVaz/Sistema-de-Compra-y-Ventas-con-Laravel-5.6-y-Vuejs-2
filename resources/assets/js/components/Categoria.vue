@@ -48,9 +48,21 @@
                                              @click="abrirModal('categoria', 'actualizar', categoria)">
                                       <i class="icon-pencil"></i>
                                       </button> &nbsp;
-                                      <button type="button" class="btn btn-danger btn-sm">
-                                      <i class="icon-trash"></i>
-                                      </button>
+
+                                     <!-- Borrado lógico - activado/desactivado -->
+                                        <template v-if="categoria.condicion">
+                                            <button type="button" class="btn btn-danger btn-sm" @click="desactivarCategoria(categoria.id)">
+                                                <i class="icon-trash"></i>
+                                            </button>
+                                        </template>
+
+                                        <template v-else>
+                                            <button type="button" class="btn btn-info btn-sm" @click="activarCategoria(categoria.id)">
+                                                <i class="icon-check"></i>
+                                            </button>
+                                        </template>
+                                     <!-- Borrado lógico - activado/desactivado -->
+
                                   </td>
 
                                   <!-- Mostrando información de la BD -->
@@ -153,29 +165,6 @@
             <!-- /.modal-dialog -->
         </div>
         <!--Fin del modal-->
-        <!-- Inicio del modal Eliminar -->
-        <div class="modal fade" id="modalEliminar" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" style="display: none;" aria-hidden="true">
-            <div class="modal-dialog modal-danger" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h4 class="modal-title">Eliminar Categoría</h4>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <p>Estas seguro de eliminar la categoría?</p>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                        <button type="button" class="btn btn-danger">Eliminar</button>
-                    </div>
-                </div>
-                <!-- /.modal-content -->
-            </div>
-            <!-- /.modal-dialog -->
-        </div>
-        <!-- Fin del modal Eliminar -->
     </main>
 </template>
 
@@ -268,6 +257,92 @@
                   console.log(error);
                   
               });
+
+          },
+
+          desactivarCategoria (id) { /* Borrado lógico de la categoría */
+            
+            swal({
+                title: '¿Estás seguro de desactivar esta categoría?',
+                type: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Aceptar',
+                cancelButtonText: 'Cancelar'
+                }).then((result) => {
+
+                    if (result.value) {
+
+                        let me = this;
+
+                        axios.put('/categoria/desactivar', {
+
+                            'id': id,
+
+                        }).then(function(response) {
+
+                            me.listarCategoria(); /* Esto es igual a poner this.listarCategoria(); */
+
+                            swal(
+                                'Desactivado!',
+                                'La categoría ha sido desactivada con éxito.',
+                                'success'
+                            )
+
+                        }).catch(function (error) {
+
+                            console.log(error);
+                            
+                        });
+                        
+                    } else if (result.dismiss === swal.DismissReason.cancel) {
+                        /* No se muestra nada si se da en cancelar */
+                    }
+                })
+
+          },
+
+          activarCategoria (id) { /* Borrado lógico de la categoría */
+            
+            swal({
+                title: '¿Estás seguro de activar esta categoría?',
+                type: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Aceptar',
+                cancelButtonText: 'Cancelar'
+                }).then((result) => {
+
+                    if (result.value) {
+
+                        let me = this;
+
+                        axios.put('/categoria/activar', {
+
+                            'id': id,
+
+                        }).then(function(response) {
+
+                            me.listarCategoria(); /* Esto es igual a poner this.listarCategoria(); */
+
+                            swal(
+                                'Activado!',
+                                'La categoría ha sido activada con éxito.',
+                                'success'
+                            )
+
+                        }).catch(function (error) {
+
+                            console.log(error);
+                            
+                        });
+                        
+                    } else if (result.dismiss === swal.DismissReason.cancel) {
+                        /* No se muestra nada si se da en cancelar */
+                    }
+                })
 
           },
 

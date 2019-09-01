@@ -102,4 +102,18 @@ Commit - Validación de datos - categorías
   -Edición del componente componets/Categoria.vue
 Commit - Actualizar categoría
   -Edición del componente components/Categoria.vue
-  
+Commit - Eliminar de forma lógica las categorías
+  -Implementación de la librería SweetAlert2 versión 7.11.0 
+    Nota: Hay versiones posteriores pero se uso la misma que en el curso
+    -Se descargó el archivo del sitio web
+      -https://cdn.jsdelivr.net/npm/sweetalert2@7.11.0/dist/sweetalert2.all.min.js
+      -Sitio para ver los ejemplos
+        -https://www.npmjs.com/package/sweetalert2/v/7.11.0 
+    -Se guardo en resources/assets/plantilla/js/sweetalert2.all.js
+  -Edición del archivo webpack.mix.js
+    -Se agrego SweetAlert2 en los scripts
+  -Compilar
+    -npm run dev
+  -Edición del componente components/Categoria.vue
+  -Edición del controlador CategoriaController
+    -Se arregló un error en el comentario
