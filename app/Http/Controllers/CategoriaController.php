@@ -13,8 +13,10 @@ class CategoriaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+
+        if ( !$request->ajax() )  return redirect('/'); /* Condicional para solo aceptar peticiones ajax */
 
         $categorias = Categoria::all();
 
@@ -30,6 +32,8 @@ class CategoriaController extends Controller
      */
     public function store(Request $request)
     {
+
+        if ( !$request->ajax() )  return redirect('/'); /* Condicional para solo aceptar peticiones ajax */
 
         $categoria = new Categoria();
 
@@ -50,7 +54,8 @@ class CategoriaController extends Controller
      */
     public function update(Request $request)
     {
-        
+        if ( !$request->ajax() )  return redirect('/'); /* Condicional para solo aceptar peticiones ajax */
+
         $categoria = Categoria::findOrfail($request->id);
 
         $categoria->nombre = $request->nombre;
@@ -67,6 +72,8 @@ class CategoriaController extends Controller
     public function desactivar(Request $request)
     {
 
+        if ( !$request->ajax() )  return redirect('/'); /* Condicional para solo aceptar peticiones ajax */
+
         $categoria = Categoria::findOrfail($request->id);
 
         $categoria->condicion = "0";
@@ -80,6 +87,8 @@ class CategoriaController extends Controller
     */
     public function activar(Request $request)
     {
+
+        if ( !$request->ajax() )  return redirect('/'); /* Condicional para solo aceptar peticiones ajax */
 
         $categoria = Categoria::findOrfail($request->id);
 

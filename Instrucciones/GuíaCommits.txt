@@ -117,3 +117,7 @@ Commit - Eliminar de forma lógica las categorías
   -Edición del componente components/Categoria.vue
   -Edición del controlador CategoriaController
     -Se arregló un error en el comentario
+Commit - Seguridad en las peticiones Http
+  -Edición del controlador CategoriaController
+    -Se agrega el condicional para aceptar solo peticiones ajax 
+      -Función index, store, update, desactivar y activar
