@@ -122,7 +122,6 @@
                                 <label class="col-md-3 form-control-label" for="text-input">Nombre</label>
                                 <div class="col-md-9">
                                     <input type="text" class="form-control" placeholder="Nombre de categoría" v-model="nombre">
-                                    <span class="help-block">(*) Ingrese el nombre de la categoría</span>
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -131,6 +130,16 @@
                                     <input type="email" class="form-control" placeholder="Ingrese descripción" v-model="descripcion">
                                 </div>
                             </div>
+                            <!-- Mostrar errores en el modal --> <!-- Visualizar los errores si errorCategoria tiene el valor 1 -->
+                                <div class="form-group row div-error" v-show="errorCategoria">
+                                    <div class="text-center text-error">
+                                        <div v-for="error in errorMostrarMsjCategoria" :key="error" v-text="error">
+
+                                        </div>
+                                    </div>
+                                </div>
+                            <!-- Fin Mostrar errores en el modal -->
+
                         </form>
                     </div>
                     <div class="modal-footer">
@@ -181,7 +190,9 @@
             arrayCategoria: [],
             modal: 0, /* Variable para mostrar u ocultar el modal */
             tituloModal: '', /* Variable para definir si se crea o se actualiza la categoría */
-            tipoAccion: 0 /* Variable para definir la cadena de texto del botón guardar del modal, dónde 1 es Guardar y 2 Actualizar */
+            tipoAccion: 0, /* Variable para definir la cadena de texto del botón guardar del modal, dónde 1 es Guardar y 2 Actualizar */
+            errorCategoria: 0,
+            errorMostrarMsjCategoria: [],
 
           }
 
@@ -208,6 +219,10 @@
 
           registrarCategoria () {
 
+              if ( this.validarCategoria() ) {
+                  return;
+              }
+
               let me = this;
 
               axios.post('/categoria/registrar', {
@@ -225,6 +240,19 @@
                   console.log(error);
                   
               });
+
+          },
+
+          validarCategoria () {
+
+              this.errorCategoria = 0;
+              this.errorMostrarMsjCategoria = [];
+
+              if ( !this.nombre ) this.errorMostrarMsjCategoria.push("El nombre de la categoría no puede estar vacío.");
+
+              if ( this.errorMostrarMsjCategoria.length ) this.errorCategoria = 1; 
+
+              return this.errorCategoria;
 
           },
 
@@ -289,5 +317,18 @@
         position: absolute !important;
         background-color: #3c29297a !important;
 
+    }
+
+    .div-error {
+
+        display: flex;
+        justify-content: center;
+
+    }
+
+    .text-error {
+
+        color: red !important;
+        font-weight: bold;
     }
 </style>

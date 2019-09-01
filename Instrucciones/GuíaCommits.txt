@@ -98,4 +98,6 @@ Commit - Registrar categoría
     -Edición de la función store y update del controlador CategoriaController
       -Esto: categoria->description = $request->descripcion;
       -Por esto: categoria->descripcion = $request->descripcion;
+Commit - Validación de datos - categorías
+  -Edición del componente componets/Categoria.vue
   
