@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 // Importado
 use App\Categoria;
+use Illuminate\Support\Facades\DB;
 
 class CategoriaController extends Controller
 {
@@ -18,9 +19,25 @@ class CategoriaController extends Controller
 
         if ( !$request->ajax() )  return redirect('/'); /* Condicional para solo aceptar peticiones ajax */
 
-        $categorias = Categoria::all();
+        // $categorias = DB::table('categorias')->paginate(15); /* Query builder para paginar de 15 en 15 */
+        $categorias = Categoria::paginate(15); /* Eloquent para paginar de 15 en 15 */
 
-        return $categorias;
+        return [
+
+            'pagination' => [
+
+                'total'         => $categorias->total(),
+                'current_page'  => $categorias->currentPage(),
+                'per_page'      => $categorias->perPage(),
+                'last_page'     => $categorias->lastPage(),
+                'from'          => $categorias->firstItem(),
+                'to'            => $categorias->lastItem(),
+
+            ],
+
+            'categorias' => $categorias
+
+        ];
 
     }
 

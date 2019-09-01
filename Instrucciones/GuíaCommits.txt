@@ -121,3 +121,12 @@ Commit - Seguridad en las peticiones Http
   -Edición del controlador CategoriaController
     -Se agrega el condicional para aceptar solo peticiones ajax 
       -Función index, store, update, desactivar y activar
+Commit - Paginación de registros de categorías
+  -Edición del controlador CategoriaController
+    -Edición de la función index
+  -Edición del componente components/Categoria.vue
+    -Creación de 2 funciones computadas
+      -isActived
+      -pagesNumber
+    -Creación del método cambiarPagina()
+    -Edición de la función listarCategoria()
