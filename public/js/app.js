@@ -34699,7 +34699,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             tituloModal: '', /* Variable para definir si se crea o se actualiza la categoría */
             tipoAccion: 0, /* Variable para definir la cadena de texto del botón guardar del modal, dónde 1 es Guardar y 2 Actualizar */
             errorCategoria: 0,
-            errorMostrarMsjCategoria: []
+            errorMostrarMsjCategoria: [],
+            categoria_id: 0
 
         };
     },
@@ -34740,6 +34741,29 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 console.log(error);
             });
         },
+        actualizarCategoria: function actualizarCategoria() {
+
+            if (this.validarCategoria()) {
+                return;
+            }
+
+            var me = this;
+
+            axios.put('/categoria/actualizar', {
+
+                'nombre': this.nombre,
+                'descripcion': this.descripcion,
+                'id': this.categoria_id
+
+            }).then(function (response) {
+
+                me.cerrarModal(); /* Esto es igual a poner this.cerrarModal(); */
+                me.listarCategoria(); /* Esto es igual a poner this.listarCategoria(); */
+            }).catch(function (error) {
+
+                console.log(error);
+            });
+        },
         validarCategoria: function validarCategoria() {
 
             this.errorCategoria = 0;
@@ -34769,7 +34793,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                                     break;
                                 }
                             case "actualizar":
-                                {}
+                                {
+                                    // console.log(data);
+                                    this.modal = 1; /* Para abrir el modal */
+                                    this.tituloModal = "Actualizar categoría";
+                                    this.tipoAccion = 2; /* Para que el modal sepa que es actualizar */
+                                    this.categoria_id = data['id']; /* data[] son los datos que vienen de la vista pasados por parámetro */
+                                    this.nombre = data['nombre']; /* data[] son los datos que vienen de la vista pasados por parámetro */
+                                    this.descripcion = data['descripcion']; /* data[] son los datos que vienen de la vista pasados por parámetro */
+                                    break;
+                                }
                         }
                     }
 
@@ -35094,7 +35127,12 @@ var render = function() {
                       "button",
                       {
                         staticClass: "btn btn-primary",
-                        attrs: { type: "button" }
+                        attrs: { type: "button" },
+                        on: {
+                          click: function($event) {
+                            return _vm.actualizarCategoria()
+                          }
+                        }
                       },
                       [_vm._v("Actualizar")]
                     )

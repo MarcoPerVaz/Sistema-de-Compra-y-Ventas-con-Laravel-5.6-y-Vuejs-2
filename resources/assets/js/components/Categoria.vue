@@ -145,7 +145,7 @@
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" @click="cerrarModal()">Cerrar</button>
                         <button type="button" class="btn btn-primary" v-if="tipoAccion == 1" @click="registrarCategoria()">Guardar</button>
-                        <button type="button" class="btn btn-primary" v-if="tipoAccion == 2">Actualizar</button>
+                        <button type="button" class="btn btn-primary" v-if="tipoAccion == 2" @click="actualizarCategoria()">Actualizar</button>
                     </div>
                 </div>
                 <!-- /.modal-content -->
@@ -193,6 +193,7 @@
             tipoAccion: 0, /* Variable para definir la cadena de texto del botón guardar del modal, dónde 1 es Guardar y 2 Actualizar */
             errorCategoria: 0,
             errorMostrarMsjCategoria: [],
+            categoria_id: 0,
 
           }
 
@@ -243,6 +244,33 @@
 
           },
 
+          actualizarCategoria () {
+
+              if ( this.validarCategoria() ) {
+                  return;
+              }
+
+              let me = this;
+
+              axios.put('/categoria/actualizar', {
+
+                  'nombre': this.nombre,
+                  'descripcion': this.descripcion,
+                  'id': this.categoria_id,
+
+              }).then(function(response) {
+
+                  me.cerrarModal(); /* Esto es igual a poner this.cerrarModal(); */
+                  me.listarCategoria(); /* Esto es igual a poner this.listarCategoria(); */
+
+              }).catch(function (error) {
+
+                  console.log(error);
+                  
+              });
+
+          },
+
           validarCategoria () {
 
               this.errorCategoria = 0;
@@ -273,7 +301,15 @@
                             }
                           case "actualizar":
                             {
-
+                                // console.log(data);
+                                this.modal = 1; /* Para abrir el modal */
+                                this.tituloModal = "Actualizar categoría"
+                                this.tipoAccion = 2; /* Para que el modal sepa que es actualizar */
+                                this.categoria_id = data['id']; /* data[] son los datos que vienen de la vista pasados por parámetro */
+                                this.nombre = data['nombre']; /* data[] son los datos que vienen de la vista pasados por parámetro */
+                                this.descripcion = data['descripcion']; /* data[] son los datos que vienen de la vista pasados por parámetro */
+                                break;
+                                
                             }  
                       }
                   }    

@@ -100,4 +100,6 @@ Commit - Registrar categoría
       -Por esto: categoria->descripcion = $request->descripcion;
 Commit - Validación de datos - categorías
   -Edición del componente componets/Categoria.vue
+Commit - Actualizar categoría
+  -Edición del componente components/Categoria.vue
   
