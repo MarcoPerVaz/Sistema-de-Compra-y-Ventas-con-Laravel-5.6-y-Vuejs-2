@@ -174,3 +174,10 @@ Commit - Mostrar categorías para crear artículos
   -Edición del archivo routes/web.php
     -Creacion de la ruta selectCategoria
   -Edición del componente componets/Articulo.vue
+  -Compilar
+    -nom run dev
+Commit - Crear y validar artículos
+  -Edición del componente components/Articulo.vue
+  -Compilar
+    -npm run watch
+  
