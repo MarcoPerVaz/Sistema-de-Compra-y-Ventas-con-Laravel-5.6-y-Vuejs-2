@@ -155,3 +155,8 @@ Commit - Modelo para artículos
   -Creación y edición del modelo Articulo
     -php artisan make:model Articulo
   -Edición del modelo Categoria
+Commit - Controlador y rutas para artículos
+  -Creación y edición del controlador ArticuloController
+    -php artisan make:controller ArticuloController
+    -Edición de la función index, store, update, desactivar y activar
+  -Creación de las rutas para artículos en routes/web.php

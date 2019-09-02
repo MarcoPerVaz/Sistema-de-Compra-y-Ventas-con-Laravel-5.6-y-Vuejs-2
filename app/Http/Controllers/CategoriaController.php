@@ -25,7 +25,7 @@ class CategoriaController extends Controller
         if ( $buscar == '' ) {
 
             // $categorias = DB::table('categorias')->paginate(15); /* Query builder para paginar de 15 en 15 */
-            $categorias = Categoria::orderBy( 'id', 'DESC' )->paginate( 3 ); /* Eloquent para paginar de 15 en 15 */
+            $categorias = Categoria::orderBy( 'id', 'DESC' )->paginate( 3 ); /* Eloquent para paginar de 3 en 3 */
         
         }
         else {
