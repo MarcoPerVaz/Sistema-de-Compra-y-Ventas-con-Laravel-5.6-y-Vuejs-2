@@ -36041,13 +36041,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 console.log(error);
             });
         },
-        desactivarCategoria: function desactivarCategoria(id) {
+        desactivarArticulo: function desactivarArticulo(id) {
             var _this = this;
 
             /* Borrado lógico de la categoría */
 
             swal({
-                title: '¿Estás seguro de desactivar esta categoría?',
+                title: '¿Estás seguro de desactivar este artículo?',
                 type: 'warning',
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',
@@ -36060,15 +36060,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
                     var me = _this;
 
-                    axios.put('/categoria/desactivar', {
+                    axios.put('/articulo/desactivar', {
 
                         'id': id
 
                     }).then(function (response) {
 
-                        me.listarCategoria(1, '', 'nombre'); /* Esto es igual a poner this.listarCategoria( 1, '', 'nombre' ); */
+                        me.listarArticulo(1, '', 'nombre'); /* Esto es igual a poner this.listarArticulo( 1, '', 'nombre' ); */
 
-                        swal('Desactivado!', 'La categoría ha sido desactivada con éxito.', 'success');
+                        swal('Desactivado!', 'El artículo ha sido desactivado con éxito.', 'success');
                     }).catch(function (error) {
 
                         console.log(error);
@@ -36078,13 +36078,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 }
             });
         },
-        activarCategoria: function activarCategoria(id) {
+        activarArticulo: function activarArticulo(id) {
             var _this2 = this;
 
             /* Borrado lógico de la categoría */
 
             swal({
-                title: '¿Estás seguro de activar esta categoría?',
+                title: '¿Estás seguro de activar este artículo?',
                 type: 'warning',
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',
@@ -36097,15 +36097,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
                     var me = _this2;
 
-                    axios.put('/categoria/activar', {
+                    axios.put('/articulo/activar', {
 
                         'id': id
 
                     }).then(function (response) {
 
-                        me.listarCategoria(1, '', 'nombre'); /* Esto es igual a poner this.listarCategoria( 1, '', 'nombre' ); */
+                        me.listarArticulo(1, '', 'nombre'); /* Esto es igual a poner this.listarArticulo( 1, '', 'nombre' ); */
 
-                        swal('Activado!', 'La categoría ha sido activada con éxito.', 'success');
+                        swal('Activado!', 'El artículo ha sido activado con éxito.', 'success');
                     }).catch(function (error) {
 
                         console.log(error);
@@ -36364,9 +36364,7 @@ var render = function() {
                                   attrs: { type: "button" },
                                   on: {
                                     click: function($event) {
-                                      return _vm.desactivarCategoria(
-                                        articulo.id
-                                      )
+                                      return _vm.desactivarArticulo(articulo.id)
                                     }
                                   }
                                 },
@@ -36381,7 +36379,7 @@ var render = function() {
                                   attrs: { type: "button" },
                                   on: {
                                     click: function($event) {
-                                      return _vm.activarCategoria(articulo.id)
+                                      return _vm.activarArticulo(articulo.id)
                                     }
                                   }
                                 },

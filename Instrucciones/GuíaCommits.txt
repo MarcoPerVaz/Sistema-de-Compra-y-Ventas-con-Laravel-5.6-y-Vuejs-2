@@ -182,4 +182,6 @@ Commit - Crear y validar artículos
     -npm run watch
 Commit - Actualizar artículos
   -Edición del componente components/Articulo.vue
+Commit - Habilitar y deshabilitar artículos
+  -Edición del componente components/Articulo.vue
   

@@ -57,13 +57,13 @@
 
                                      <!-- Borrado lógico - activado/desactivado -->
                                         <template v-if="articulo.condicion">
-                                            <button type="button" class="btn btn-danger btn-sm" @click="desactivarCategoria(articulo.id)">
+                                            <button type="button" class="btn btn-danger btn-sm" @click="desactivarArticulo(articulo.id)">
                                                 <i class="icon-trash"></i>
                                             </button>
                                         </template>
 
                                         <template v-else>
-                                            <button type="button" class="btn btn-info btn-sm" @click="activarCategoria(articulo.id)">
+                                            <button type="button" class="btn btn-info btn-sm" @click="activarArticulo(articulo.id)">
                                                 <i class="icon-check"></i>
                                             </button>
                                         </template>
@@ -422,10 +422,10 @@
 
           },
 
-          desactivarCategoria ( id ) { /* Borrado lógico de la categoría */
+          desactivarArticulo ( id ) { /* Borrado lógico de la categoría */
             
             swal({
-                title: '¿Estás seguro de desactivar esta categoría?',
+                title: '¿Estás seguro de desactivar este artículo?',
                 type: 'warning',
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',
@@ -438,17 +438,17 @@
 
                         let me = this;
 
-                        axios.put('/categoria/desactivar', {
+                        axios.put('/articulo/desactivar', {
 
                             'id': id,
 
                         }).then(function(response) {
 
-                            me.listarCategoria( 1, '', 'nombre' ); /* Esto es igual a poner this.listarCategoria( 1, '', 'nombre' ); */
+                            me.listarArticulo( 1, '', 'nombre' ); /* Esto es igual a poner this.listarArticulo( 1, '', 'nombre' ); */
 
                             swal(
                                 'Desactivado!',
-                                'La categoría ha sido desactivada con éxito.',
+                                'El artículo ha sido desactivado con éxito.',
                                 'success'
                             )
 
@@ -465,10 +465,10 @@
 
           },
 
-          activarCategoria (id) { /* Borrado lógico de la categoría */
+          activarArticulo (id) { /* Borrado lógico de la categoría */
             
             swal({
-                title: '¿Estás seguro de activar esta categoría?',
+                title: '¿Estás seguro de activar este artículo?',
                 type: 'warning',
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',
@@ -481,17 +481,17 @@
 
                         let me = this;
 
-                        axios.put('/categoria/activar', {
+                        axios.put('/articulo/activar', {
 
                             'id': id,
 
                         }).then(function(response) {
 
-                            me.listarCategoria( 1, '', 'nombre' ); /* Esto es igual a poner this.listarCategoria( 1, '', 'nombre' ); */
+                            me.listarArticulo( 1, '', 'nombre' ); /* Esto es igual a poner this.listarArticulo( 1, '', 'nombre' ); */
 
                             swal(
                                 'Activado!',
-                                'La categoría ha sido activada con éxito.',
+                                'El artículo ha sido activado con éxito.',
                                 'success'
                             )
 
