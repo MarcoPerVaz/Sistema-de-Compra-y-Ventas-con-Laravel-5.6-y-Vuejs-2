@@ -160,3 +160,11 @@ Commit - Controlador y rutas para artículos
     -php artisan make:controller ArticuloController
     -Edición de la función index, store, update, desactivar y activar
   -Creación de las rutas para artículos en routes/web.php
+Commit - Listado, paginación y búsqueda de artículos
+  -Creación y edición del componente components/Articulo.vue
+  -Edición del componente components/Categoria.vue
+  -Edición del archivo resources/assets/js/app.js
+    -Registro del componente components/Articulo.vue
+  -Edición de la vista contenido/contenido.blade.php
+  -Compilar
+    -npm run dev

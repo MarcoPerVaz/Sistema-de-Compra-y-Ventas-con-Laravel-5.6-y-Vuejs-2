@@ -2,14 +2,14 @@
     <main class="main">
         <!-- Breadcrumb -->
         <ol class="breadcrumb">
-           <li class="breadcrumb-item"><a href="/">Escritorio</a></li>
+            <li class="breadcrumb-item"><a href="/">Escritorio</a></li>
         </ol>
         <div class="container-fluid">
             <!-- Ejemplo de tabla Listado -->
             <div class="card">
                 <div class="card-header">
-                    <i class="fa fa-align-justify"></i> Categorías
-                    <button type="button" class="btn btn-secondary" @click="abrirModal('categoria', 'registrar')">
+                    <i class="fa fa-align-justify"></i> Artículos
+                    <button type="button" class="btn btn-secondary" @click="abrirModal('articulo', 'registrar')">
                         <i class="icon-plus"></i>&nbsp;Nuevo
                     </button>
                 </div>
@@ -22,8 +22,8 @@
                                     <option value="descripcion">Descripción</option>
                                 </select>
                                 <input type="text" class="form-control" placeholder="Texto a buscar" 
-                                       v-model="buscar" @keyup.enter="listarCategoria( 1, buscar, criterio )">
-                                <button type="submit" class="btn btn-primary" @click="listarCategoria( 1, buscar, criterio )">
+                                       v-model="buscar" @keyup.enter="listarArticulo( 1, buscar, criterio )">
+                                <button type="submit" class="btn btn-primary" @click="listarArticulo( 1, buscar, criterio )">
                                     <i class="fa fa-search"></i> 
                                     Buscar
                                 </button>
@@ -34,7 +34,11 @@
                         <thead>
                             <tr>
                                 <th>Opciones</th>
+                                <th>Código de barras</th>
                                 <th>Nombre</th>
+                                <th>Categoría</th>
+                                <th>Precio Venta</th>
+                                <th>Stock</th>
                                 <th>Descripción</th>
                                 <th>Estado</th>
                             </tr>
@@ -42,24 +46,24 @@
                         <tbody>
 
                             <!-- Renderizando el array arrayCategoria -->
-                              <tr v-for="categoria in arrayCategoria" :key="categoria.id">
+                              <tr v-for="articulo in arrayArticulo" :key="articulo.id">
 
                                   <td>
                                       <button type="button" 
                                              class="btn btn-warning btn-sm" 
-                                             @click="abrirModal('categoria', 'actualizar', categoria)">
+                                             @click="abrirModal('articulo', 'actualizar', articulo)">
                                       <i class="icon-pencil"></i>
                                       </button> &nbsp;
 
                                      <!-- Borrado lógico - activado/desactivado -->
-                                        <template v-if="categoria.condicion">
-                                            <button type="button" class="btn btn-danger btn-sm" @click="desactivarCategoria(categoria.id)">
+                                        <template v-if="articulo.condicion">
+                                            <button type="button" class="btn btn-danger btn-sm" @click="desactivarCategoria(articulo.id)">
                                                 <i class="icon-trash"></i>
                                             </button>
                                         </template>
 
                                         <template v-else>
-                                            <button type="button" class="btn btn-info btn-sm" @click="activarCategoria(categoria.id)">
+                                            <button type="button" class="btn btn-info btn-sm" @click="activarCategoria(articulo.id)">
                                                 <i class="icon-check"></i>
                                             </button>
                                         </template>
@@ -68,11 +72,15 @@
                                   </td>
 
                                   <!-- Mostrando información de la BD -->
-                                    <td v-text="categoria.nombre"></td>
-                                    <td v-text="categoria.descripcion"></td>
+                                    <td v-text="articulo.codigo"></td>
+                                    <td v-text="articulo.nombre"></td>
+                                    <td v-text="articulo.nombre_categoria"></td>
+                                    <td v-text="articulo.precio_venta"></td>
+                                    <td v-text="articulo.stock"></td>
+                                    <td v-text="articulo.descripcion"></td>
                                     <td>
                                       <!-- Condicional para mostrar si la categoría está activa o inactiva -->
-                                        <div v-if="categoria.condicion == 1">
+                                        <div v-if="articulo.condicion == 1">
 
                                           <span class="badge badge-success">Activo</span>
 
@@ -175,15 +183,20 @@
 
           return {
 
+            articulo_id: 0,
+            idcategoria: 0,
+            nombre_categoria: '',
+            codigo: '',
             nombre: '',
+            precio_venta: 0,
+            stock: 0,
             descripcion: '',
-            arrayCategoria: [],
+            arrayArticulo: [],
             modal: 0, /* Variable para mostrar u ocultar el modal */
             tituloModal: '', /* Variable para definir si se crea o se actualiza la categoría */
             tipoAccion: 0, /* Variable para definir la cadena de texto del botón guardar del modal, dónde 1 es Guardar y 2 Actualizar */
-            errorCategoria: 0,
-            errorMostrarMsjCategoria: [],
-            categoria_id: 0,
+            errorArticulo: 0,
+            errorMostrarMsjArticulo: [],
             pagination: {
 
                 'total': 0, 
@@ -196,7 +209,7 @@
             },
             offset: 3,
             criterio: 'nombre',
-            buscar: '',
+            buscar: '', 
 
           }
 
@@ -254,17 +267,17 @@
 
         methods: {
 
-          listarCategoria(page, buscar, criterio) {
+          listarArticulo( page, buscar, criterio ) {
 
             let me = this; 
 
-            var url = '/categoria?page=' + page + '&buscar=' + buscar + '&criterio=' + criterio;
+            var url = '/articulo?page=' + page + '&buscar=' + buscar + '&criterio=' + criterio;
 
             axios.get( url ).then(function (response){
 
                 var respuesta = response.data;
                 
-                me.arrayCategoria = respuesta.categorias.data; /* Esto es igual a poner this.arrayCategoria = respuesta.categorias.data */
+                me.arrayArticulo = respuesta.articulos.data; /* Esto es igual a poner this.arrayCategoria = respuesta.categorias.data */
 
                 me.pagination = respuesta.pagination; /* Esto es igual a poner this.pagination = respuesta.pagination */
 
@@ -285,7 +298,7 @@
             me.pagination.current_page = page;
             
             // Envia la petición para visualizar la data de esa página
-            me.listarCategoria( page, buscar, criterio );
+            me.listarArticulo( page, buscar, criterio );
 
           },
 
@@ -488,7 +501,7 @@
         
         mounted() {
 
-            this.listarCategoria(1, this.buscar, this.criterio);
+            this.listarArticulo( 1, this.buscar, this.criterio );
 
         }
     }
