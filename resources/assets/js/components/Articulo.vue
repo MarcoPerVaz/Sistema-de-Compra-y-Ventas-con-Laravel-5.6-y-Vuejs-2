@@ -45,7 +45,7 @@
                         </thead>
                         <tbody>
 
-                            <!-- Renderizando el array arrayCategoria -->
+                            <!-- Renderizando el array arrayArticulo -->
                               <tr v-for="articulo in arrayArticulo" :key="articulo.id">
 
                                   <td>
@@ -139,22 +139,57 @@
                     </div>
                     <div class="modal-body">
                         <form action="" method="post" enctype="multipart/form-data" class="form-horizontal">
+
+                          <div class="form-group row">
+                                <label class="col-md-3 form-control-label" for="text-input">Categoría</label>
+                                <div class="col-md-9">
+                                  <select name="" id="" class="form-control" v-model="idcategoria">
+                                    <option value="0" disabled>Seleccione</option>
+                                    <option v-for="categoria in arrayCategoria" 
+                                            :key="categoria.id" :value="categoria.id" v-text="categoria.nombre"></option>
+                                  </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label class="col-md-3 form-control-label" for="text-input">Código de barras</label>
+                                <div class="col-md-9">
+                                    <input type="text" class="form-control" placeholder="Código de barras" v-model="codigo">
+                                </div>
+                            </div>
+
                             <div class="form-group row">
                                 <label class="col-md-3 form-control-label" for="text-input">Nombre</label>
                                 <div class="col-md-9">
-                                    <input type="text" class="form-control" placeholder="Nombre de categoría" v-model="nombre">
+                                    <input type="text" class="form-control" placeholder="Nombre de artículo" v-model="nombre">
                                 </div>
                             </div>
+
+                            <div class="form-group row">
+                                <label class="col-md-3 form-control-label" for="text-input">Precio venta</label>
+                                <div class="col-md-9">
+                                    <input type="number" class="form-control" placeholder="" v-model="precio_venta">
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label class="col-md-3 form-control-label" for="text-input">Stock</label>
+                                <div class="col-md-9">
+                                    <input type="number" class="form-control" placeholder="" v-model="stock">
+                                </div>
+                            </div>
+
                             <div class="form-group row">
                                 <label class="col-md-3 form-control-label" for="email-input">Descripción</label>
                                 <div class="col-md-9">
                                     <input type="email" class="form-control" placeholder="Ingrese descripción" v-model="descripcion">
                                 </div>
                             </div>
+
                             <!-- Mostrar errores en el modal --> <!-- Visualizar los errores si errorCategoria tiene el valor 1 -->
-                                <div class="form-group row div-error" v-show="errorCategoria">
+                                <div class="form-group row div-error" v-show="errorArticulo">
                                     <div class="text-center text-error">
-                                        <div v-for="error in errorMostrarMsjCategoria" :key="error" v-text="error">
+                                        <div v-for="error in errorMostrarMsjArticulo" :key="error" v-text="error">
 
                                         </div>
                                     </div>
@@ -210,6 +245,7 @@
             offset: 3,
             criterio: 'nombre',
             buscar: '', 
+            arrayCategoria: [],
 
           }
 
@@ -280,6 +316,29 @@
                 me.arrayArticulo = respuesta.articulos.data; /* Esto es igual a poner this.arrayCategoria = respuesta.categorias.data */
 
                 me.pagination = respuesta.pagination; /* Esto es igual a poner this.pagination = respuesta.pagination */
+
+            })
+            .catch(function(error) {
+
+              console.log(error);
+
+            });
+
+          },
+
+          selectCategoria (  ) {
+
+             let me = this; 
+
+            var url = '/categoria/selectCategoria';
+
+            axios.get( url ).then(function (response){
+              
+              // console.log(response);
+
+                var respuesta = response.data;
+                
+                me.arrayCategoria = respuesta.categorias; /* Esto es igual a poner this.arrayCategoria = respuesta.categorias */
 
             })
             .catch(function(error) {
@@ -457,7 +516,7 @@
           abrirModal ( modelo, accion, data = [] )  {
 
               switch (modelo) {
-                  case "categoria":
+                  case "articulo":
                   {
                       switch (accion) {
                           case "registrar":
@@ -465,7 +524,7 @@
                                 this.modal = 1;
                                 this.nombre = '';
                                 this.descripcion = '';
-                                this.tituloModal = 'Registrar categoría'
+                                this.tituloModal = 'Registrar artículo'
                                 this.tipoAccion = 1; 
                                 break;
                             }
@@ -473,7 +532,7 @@
                             {
                                 // console.log(data);
                                 this.modal = 1; /* Para abrir el modal */
-                                this.tituloModal = "Actualizar categoría"
+                                this.tituloModal = "Actualizar artículo"
                                 this.tipoAccion = 2; /* Para que el modal sepa que es actualizar */
                                 this.categoria_id = data['id']; /* data[] son los datos que vienen de la vista pasados por parámetro */
                                 this.nombre = data['nombre']; /* data[] son los datos que vienen de la vista pasados por parámetro */
@@ -485,6 +544,8 @@
                   }    
                     
               }
+
+              this.selectCategoria();
 
           },
 

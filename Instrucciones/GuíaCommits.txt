@@ -168,3 +168,9 @@ Commit - Listado, paginación y búsqueda de artículos
   -Edición de la vista contenido/contenido.blade.php
   -Compilar
     -npm run dev
+Commit - Mostrar categorías para crear artículos
+  -Edición controlador CategoriaController
+    -Creación de la función selectCategoria
+  -Edición del archivo routes/web.php
+    -Creacion de la ruta selectCategoria
+  -Edición del componente componets/Articulo.vue

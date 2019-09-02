@@ -54,6 +54,18 @@ class CategoriaController extends Controller
 
     }
 
+    public function selectCategoria(Request $request)
+    {
+
+         if ( !$request->ajax() )  return redirect('/'); /* Condicional para solo aceptar peticiones ajax */
+
+         /* Obtiene el id y nombre de todas las categorías dónde condición es igual 1 y ordenadas de forma ascendente a tráves del nombre */
+         $categorias = Categoria::where('condicion', '=', '1')
+            ->select('id', 'nombre')->orderBy('nombre', 'asc')->get(); 
+
+        return ['categorias' => $categorias];
+    }
+
     /**
      * Store a newly created resource in storage.
      *
