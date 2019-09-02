@@ -1,5 +1,7 @@
+
 Commit - Creación del proyecto
 Commit - Edición de readme.md
+<----------Modulo Categoría---------->
 Commit - Integrando la plantilla CoreUi
   -Edición de la vista welcome.blade.php
   -Creación y edición de la vista principal.blade.php
@@ -143,3 +145,9 @@ Commit - Búsqueda de categorías por nombre o descripción
     -Edición de la función index
   -Compilar
     -npm run dev
+<----------Modulo Artículo---------->
+Commit - Migraciones para artículos
+  -Creación y edición de la migración create_articulos_table
+    -php artisan make:migration create_articulos_table
+  -Crear la migración en la BD 
+    -php artisan migrate
