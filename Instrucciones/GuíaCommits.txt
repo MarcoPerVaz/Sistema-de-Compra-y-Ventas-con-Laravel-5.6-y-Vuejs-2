@@ -184,4 +184,10 @@ Commit - Actualizar artículos
   -Edición del componente components/Articulo.vue
 Commit - Habilitar y deshabilitar artículos
   -Edición del componente components/Articulo.vue
+Commit - Código de barras utilizando Vue-BarCode
+  -Se instala Vue-Barcode desde le sitio web
+    -https://github.com/lindell/vue-barcode
+    -npm install vue-barcode
+  -Se importa Vue-Barcode en el componente components/Articulo.vue
+    -import VueBarcode from 'vue-barcode';
   
