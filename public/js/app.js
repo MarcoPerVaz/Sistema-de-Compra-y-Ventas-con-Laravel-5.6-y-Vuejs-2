@@ -36014,24 +36014,28 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 console.log(error);
             });
         },
-        actualizarCategoria: function actualizarCategoria() {
+        actualizarArticulo: function actualizarArticulo() {
 
-            if (this.validarCategoria()) {
+            if (this.validarArticulo()) {
                 return;
             }
 
             var me = this;
 
-            axios.put('/categoria/actualizar', {
+            axios.put('/articulo/actualizar', {
 
+                'idcategoria': this.idcategoria,
+                'codigo': this.codigo,
                 'nombre': this.nombre,
+                'stock': this.stock,
+                'precio_venta': this.precio_venta,
                 'descripcion': this.descripcion,
-                'id': this.categoria_id
+                'id': this.articulo_id
 
             }).then(function (response) {
 
                 me.cerrarModal(); /* Esto es igual a poner this.cerrarModal(); */
-                me.listarCategoria(1, '', 'nombre'); /* Esto es igual a poner this.listarCategoria( 1, '', 'nombre' ); */
+                me.listarArticulo(1, '', 'nombre'); /* Esto es igual a poner this.listarCategoria( 1, '', 'nombre' ); */
             }).catch(function (error) {
 
                 console.log(error);
@@ -36903,7 +36907,7 @@ var render = function() {
                         attrs: { type: "button" },
                         on: {
                           click: function($event) {
-                            _vm.actualizarArtículo()
+                            return _vm.actualizarArticulo()
                           }
                         }
                       },

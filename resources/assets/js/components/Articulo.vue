@@ -201,7 +201,7 @@
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" @click="cerrarModal()">Cerrar</button>
                         <button type="button" class="btn btn-primary" v-if="tipoAccion == 1" @click="registrarArticulo()">Guardar</button>
-                        <button type="button" class="btn btn-primary" v-if="tipoAccion == 2" @click="actualizarArtículo()">Actualizar</button>
+                        <button type="button" class="btn btn-primary" v-if="tipoAccion == 2" @click="actualizarArticulo()">Actualizar</button>
                     </div>
                 </div>
                 <!-- /.modal-content -->
@@ -391,24 +391,28 @@
 
           },
 
-          actualizarCategoria () {
+          actualizarArticulo () {
 
-              if ( this.validarCategoria() ) {
+              if ( this.validarArticulo() ) {
                   return;
               }
 
               let me = this;
 
-              axios.put('/categoria/actualizar', {
+              axios.put('/articulo/actualizar', {
 
+                  'idcategoria': this.idcategoria,
+                  'codigo': this.codigo,
                   'nombre': this.nombre,
+                  'stock': this.stock,
+                  'precio_venta': this.precio_venta,
                   'descripcion': this.descripcion,
-                  'id': this.categoria_id,
+                  'id': this.articulo_id,
 
               }).then(function(response) {
 
                   me.cerrarModal(); /* Esto es igual a poner this.cerrarModal(); */
-                  me.listarCategoria( 1, '', 'nombre' ); /* Esto es igual a poner this.listarCategoria( 1, '', 'nombre' ); */
+                  me.listarArticulo( 1, '', 'nombre' ); /* Esto es igual a poner this.listarCategoria( 1, '', 'nombre' ); */
 
               }).catch(function (error) {
 

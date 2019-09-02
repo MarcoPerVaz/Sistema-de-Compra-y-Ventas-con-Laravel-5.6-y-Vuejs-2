@@ -180,4 +180,6 @@ Commit - Crear y validar artículos
   -Edición del componente components/Articulo.vue
   -Compilar
     -npm run watch
+Commit - Actualizar artículos
+  -Edición del componente components/Articulo.vue
   
