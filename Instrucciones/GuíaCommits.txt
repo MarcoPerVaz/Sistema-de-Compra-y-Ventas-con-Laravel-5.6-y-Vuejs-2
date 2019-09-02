@@ -130,3 +130,16 @@ Commit - Paginación de registros de categorías
       -pagesNumber
     -Creación del método cambiarPagina()
     -Edición de la función listarCategoria()
+Commit - Búsqueda de categorías por nombre o descripción
+  -Edición del componente components/Categoria.vue
+    -Edición de la función listarCategoria()
+    -Edición de la función cambiarPagina()
+    -Edición de la función registrarCategoria()
+    -Edición de la función actualizarCategoria()
+    -Edición de la función desactivarCategoria()
+    -Edición de la función activarCategoria()
+    -Edición de la propiedad mounted
+  -Edición del controlador CategoriaController
+    -Edición de la función index
+  -Compilar
+    -npm run dev

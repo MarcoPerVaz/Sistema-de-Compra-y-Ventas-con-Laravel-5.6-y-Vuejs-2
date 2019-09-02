@@ -34670,6 +34670,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -34695,7 +34703,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 'to': 0
 
             },
-            offset: 3
+            offset: 3,
+            criterio: 'nombre',
+            buscar: ''
 
         };
     },
@@ -34750,11 +34760,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
 
     methods: {
-        listarCategoria: function listarCategoria(page) {
+        listarCategoria: function listarCategoria(page, buscar, criterio) {
 
             var me = this;
 
-            var url = '/categoria?page=' + page;
+            var url = '/categoria?page=' + page + '&buscar=' + buscar + '&criterio=' + criterio;
 
             axios.get(url).then(function (response) {
 
@@ -34768,7 +34778,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 console.log(error);
             });
         },
-        cambiarPagina: function cambiarPagina(page) {
+        cambiarPagina: function cambiarPagina(page, buscar, criterio) {
 
             var me = this;
 
@@ -34776,7 +34786,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             me.pagination.current_page = page;
 
             // Envia la petición para visualizar la data de esa página
-            me.listarCategoria(page);
+            me.listarCategoria(page, buscar, criterio);
         },
         registrarCategoria: function registrarCategoria() {
 
@@ -34794,7 +34804,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             }).then(function (response) {
 
                 me.cerrarModal(); /* Esto es igual a poner this.cerrarModal(); */
-                me.listarCategoria(); /* Esto es igual a poner this.listarCategoria(); */
+                me.listarCategoria(1, '', 'nombre'); /* Esto es igual a poner this.listarCategoria( 1, '', 'nombre' ); */
             }).catch(function (error) {
 
                 console.log(error);
@@ -34817,7 +34827,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             }).then(function (response) {
 
                 me.cerrarModal(); /* Esto es igual a poner this.cerrarModal(); */
-                me.listarCategoria(); /* Esto es igual a poner this.listarCategoria(); */
+                me.listarCategoria(1, '', 'nombre'); /* Esto es igual a poner this.listarCategoria( 1, '', 'nombre' ); */
             }).catch(function (error) {
 
                 console.log(error);
@@ -34848,7 +34858,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
                     }).then(function (response) {
 
-                        me.listarCategoria(); /* Esto es igual a poner this.listarCategoria(); */
+                        me.listarCategoria(1, '', 'nombre'); /* Esto es igual a poner this.listarCategoria( 1, '', 'nombre' ); */
 
                         swal('Desactivado!', 'La categoría ha sido desactivada con éxito.', 'success');
                     }).catch(function (error) {
@@ -34885,7 +34895,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
                     }).then(function (response) {
 
-                        me.listarCategoria(); /* Esto es igual a poner this.listarCategoria(); */
+                        me.listarCategoria(1, '', 'nombre'); /* Esto es igual a poner this.listarCategoria( 1, '', 'nombre' ); */
 
                         swal('Activado!', 'La categoría ha sido activada con éxito.', 'success');
                     }).catch(function (error) {
@@ -34952,7 +34962,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     mounted: function mounted() {
 
-        this.listarCategoria();
+        this.listarCategoria(1, this.buscar, this.criterio);
     }
 });
 
@@ -34991,13 +35001,106 @@ var render = function() {
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "card-body" }, [
-          _vm._m(1),
+          _c("div", { staticClass: "form-group row" }, [
+            _c("div", { staticClass: "col-md-6" }, [
+              _c("div", { staticClass: "input-group" }, [
+                _c(
+                  "select",
+                  {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.criterio,
+                        expression: "criterio"
+                      }
+                    ],
+                    staticClass: "form-control col-md-3",
+                    on: {
+                      change: function($event) {
+                        var $$selectedVal = Array.prototype.filter
+                          .call($event.target.options, function(o) {
+                            return o.selected
+                          })
+                          .map(function(o) {
+                            var val = "_value" in o ? o._value : o.value
+                            return val
+                          })
+                        _vm.criterio = $event.target.multiple
+                          ? $$selectedVal
+                          : $$selectedVal[0]
+                      }
+                    }
+                  },
+                  [
+                    _c("option", { attrs: { value: "nombre" } }, [
+                      _vm._v("Nombre")
+                    ]),
+                    _vm._v(" "),
+                    _c("option", { attrs: { value: "descripcion" } }, [
+                      _vm._v("Descripción")
+                    ])
+                  ]
+                ),
+                _vm._v(" "),
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.buscar,
+                      expression: "buscar"
+                    }
+                  ],
+                  staticClass: "form-control",
+                  attrs: { type: "text", placeholder: "Texto a buscar" },
+                  domProps: { value: _vm.buscar },
+                  on: {
+                    keyup: function($event) {
+                      if (
+                        !$event.type.indexOf("key") &&
+                        _vm._k($event.keyCode, "enter", 13, $event.key, "Enter")
+                      ) {
+                        return null
+                      }
+                      return _vm.listarCategoria(1, _vm.buscar, _vm.criterio)
+                    },
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.buscar = $event.target.value
+                    }
+                  }
+                }),
+                _vm._v(" "),
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-primary",
+                    attrs: { type: "submit" },
+                    on: {
+                      click: function($event) {
+                        return _vm.listarCategoria(1, _vm.buscar, _vm.criterio)
+                      }
+                    }
+                  },
+                  [
+                    _c("i", { staticClass: "fa fa-search" }),
+                    _vm._v(
+                      " \n                                Buscar\n                            "
+                    )
+                  ]
+                )
+              ])
+            ])
+          ]),
           _vm._v(" "),
           _c(
             "table",
             { staticClass: "table table-bordered table-striped table-sm" },
             [
-              _vm._m(2),
+              _vm._m(1),
               _vm._v(" "),
               _c(
                 "tbody",
@@ -35106,12 +35209,18 @@ var render = function() {
                             click: function($event) {
                               $event.preventDefault()
                               return _vm.cambiarPagina(
-                                _vm.pagination.current_page - 1
+                                _vm.pagination.current_page - 1,
+                                _vm.buscar,
+                                _vm.criterio
                               )
                             }
                           }
                         },
-                        [_vm._v("Ant")]
+                        [
+                          _vm._v(
+                            "\n                                Ant\n                            "
+                          )
+                        ]
                       )
                     ])
                   : _vm._e(),
@@ -35132,7 +35241,11 @@ var render = function() {
                         on: {
                           click: function($event) {
                             $event.preventDefault()
-                            return _vm.cambiarPagina(page)
+                            return _vm.cambiarPagina(
+                              page,
+                              _vm.buscar,
+                              _vm.criterio
+                            )
                           }
                         }
                       })
@@ -35151,12 +35264,18 @@ var render = function() {
                             click: function($event) {
                               $event.preventDefault()
                               return _vm.cambiarPagina(
-                                _vm.pagination.current_page + 1
+                                _vm.pagination.current_page + 1,
+                                _vm.buscar,
+                                _vm.criterio
                               )
                             }
                           }
                         },
-                        [_vm._v("Sig")]
+                        [
+                          _vm._v(
+                            "\n                                Sig\n                            "
+                          )
+                        ]
                       )
                     ])
                   : _vm._e()
@@ -35401,47 +35520,6 @@ var staticRenderFns = [
       ]),
       _vm._v(" "),
       _c("li", { staticClass: "breadcrumb-item active" }, [_vm._v("Dashboard")])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "form-group row" }, [
-      _c("div", { staticClass: "col-md-6" }, [
-        _c("div", { staticClass: "input-group" }, [
-          _c(
-            "select",
-            {
-              staticClass: "form-control col-md-3",
-              attrs: { id: "opcion", name: "opcion" }
-            },
-            [
-              _c("option", { attrs: { value: "nombre" } }, [_vm._v("Nombre")]),
-              _vm._v(" "),
-              _c("option", { attrs: { value: "descripcion" } }, [
-                _vm._v("Descripción")
-              ])
-            ]
-          ),
-          _vm._v(" "),
-          _c("input", {
-            staticClass: "form-control",
-            attrs: {
-              type: "text",
-              id: "texto",
-              name: "texto",
-              placeholder: "Texto a buscar"
-            }
-          }),
-          _vm._v(" "),
-          _c(
-            "button",
-            { staticClass: "btn btn-primary", attrs: { type: "submit" } },
-            [_c("i", { staticClass: "fa fa-search" }), _vm._v(" Buscar")]
-          )
-        ])
-      ])
     ])
   },
   function() {

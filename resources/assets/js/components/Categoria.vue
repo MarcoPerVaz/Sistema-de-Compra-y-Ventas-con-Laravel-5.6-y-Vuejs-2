@@ -19,12 +19,16 @@
                     <div class="form-group row">
                         <div class="col-md-6">
                             <div class="input-group">
-                                <select class="form-control col-md-3" id="opcion" name="opcion">
-                                <option value="nombre">Nombre</option>
-                                <option value="descripcion">Descripción</option>
+                                <select class="form-control col-md-3" v-model="criterio">
+                                    <option value="nombre">Nombre</option>
+                                    <option value="descripcion">Descripción</option>
                                 </select>
-                                <input type="text" id="texto" name="texto" class="form-control" placeholder="Texto a buscar">
-                                <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i> Buscar</button>
+                                <input type="text" class="form-control" placeholder="Texto a buscar" 
+                                       v-model="buscar" @keyup.enter="listarCategoria( 1, buscar, criterio )">
+                                <button type="submit" class="btn btn-primary" @click="listarCategoria( 1, buscar, criterio )">
+                                    <i class="fa fa-search"></i> 
+                                    Buscar
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -95,15 +99,19 @@
                         <ul class="pagination">
 
                             <li class="page-item" v-if="pagination.current_page > 1">
-                                <a class="page-link" href="#" @click.prevent="cambiarPagina( pagination.current_page - 1 )">Ant</a>
+                                <a class="page-link" href="#" @click.prevent="cambiarPagina( pagination.current_page - 1, buscar, criterio )">
+                                    Ant
+                                </a>
                             </li>
                             <!-- li que usa las propiedades computadas -->
                                 <li class="page-item" v-for="page in pagesNumber" :key="page" :class="[page == isActived ? 'active' : '']">
-                                    <a class="page-link" href="#" @click.prevent="cambiarPagina( page )" v-text="page"></a>
+                                    <a class="page-link" href="#" @click.prevent="cambiarPagina( page, buscar, criterio )" v-text="page"></a>
                                 </li>
 
                             <li class="page-item" v-if="pagination.current_page < pagination.last_page ">
-                                <a class="page-link" href="#" @click.prevent="cambiarPagina( pagination.current_page + 1 )">Sig</a>
+                                <a class="page-link" href="#" @click.prevent="cambiarPagina( pagination.current_page + 1, buscar, criterio )">
+                                    Sig
+                                </a>
                             </li>
 
                         </ul>
@@ -189,6 +197,8 @@
 
             },
             offset: 3,
+            criterio: 'nombre',
+            buscar: '',
 
           }
 
@@ -246,11 +256,11 @@
 
         methods: {
 
-          listarCategoria(page) {
+          listarCategoria(page, buscar, criterio) {
 
             let me = this; 
 
-            var url = '/categoria?page=' + page;
+            var url = '/categoria?page=' + page + '&buscar=' + buscar + '&criterio=' + criterio;
 
             axios.get( url ).then(function (response){
 
@@ -269,7 +279,7 @@
 
           },
 
-          cambiarPagina( page ) {
+          cambiarPagina( page, buscar, criterio ) {
 
             let me = this;
               
@@ -277,7 +287,7 @@
             me.pagination.current_page = page;
             
             // Envia la petición para visualizar la data de esa página
-            me.listarCategoria( page );
+            me.listarCategoria( page, buscar, criterio );
 
           },
 
@@ -297,7 +307,7 @@
               }).then(function(response) {
 
                   me.cerrarModal(); /* Esto es igual a poner this.cerrarModal(); */
-                  me.listarCategoria(); /* Esto es igual a poner this.listarCategoria(); */
+                  me.listarCategoria( 1, '', 'nombre' ); /* Esto es igual a poner this.listarCategoria( 1, '', 'nombre' ); */
 
               }).catch(function (error) {
 
@@ -324,7 +334,7 @@
               }).then(function(response) {
 
                   me.cerrarModal(); /* Esto es igual a poner this.cerrarModal(); */
-                  me.listarCategoria(); /* Esto es igual a poner this.listarCategoria(); */
+                  me.listarCategoria( 1, '', 'nombre' ); /* Esto es igual a poner this.listarCategoria( 1, '', 'nombre' ); */
 
               }).catch(function (error) {
 
@@ -356,7 +366,7 @@
 
                         }).then(function(response) {
 
-                            me.listarCategoria(); /* Esto es igual a poner this.listarCategoria(); */
+                            me.listarCategoria( 1, '', 'nombre' ); /* Esto es igual a poner this.listarCategoria( 1, '', 'nombre' ); */
 
                             swal(
                                 'Desactivado!',
@@ -399,7 +409,7 @@
 
                         }).then(function(response) {
 
-                            me.listarCategoria(); /* Esto es igual a poner this.listarCategoria(); */
+                            me.listarCategoria( 1, '', 'nombre' ); /* Esto es igual a poner this.listarCategoria( 1, '', 'nombre' ); */
 
                             swal(
                                 'Activado!',
@@ -480,7 +490,7 @@
         
         mounted() {
 
-            this.listarCategoria();
+            this.listarCategoria(1, this.buscar, this.criterio);
 
         }
     }

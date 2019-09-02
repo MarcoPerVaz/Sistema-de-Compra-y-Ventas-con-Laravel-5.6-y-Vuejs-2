@@ -19,8 +19,21 @@ class CategoriaController extends Controller
 
         if ( !$request->ajax() )  return redirect('/'); /* Condicional para solo aceptar peticiones ajax */
 
-        // $categorias = DB::table('categorias')->paginate(15); /* Query builder para paginar de 15 en 15 */
-        $categorias = Categoria::paginate(15); /* Eloquent para paginar de 15 en 15 */
+        $buscar     = $request->buscar;
+        $criterio   = $request->criterio;
+
+        if ( $buscar == '' ) {
+
+            // $categorias = DB::table('categorias')->paginate(15); /* Query builder para paginar de 15 en 15 */
+            $categorias = Categoria::orderBy( 'id', 'DESC' )->paginate( 3 ); /* Eloquent para paginar de 15 en 15 */
+        
+        }
+        else {
+            /* Filtrar las categorías */
+            $categorias = Categoria::where( $criterio, 'LIKE', '%' . $buscar . '%' )
+                ->orderBy('id', 'DESC')->paginate( 3 ); 
+        }
+
 
         return [
 
