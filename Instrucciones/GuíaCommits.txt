@@ -151,3 +151,7 @@ Commit - Migraciones para artículos
     -php artisan make:migration create_articulos_table
   -Crear la migración en la BD 
     -php artisan migrate
+Commit - Modelo para artículos
+  -Creación y edición del modelo Articulo
+    -php artisan make:model Articulo
+  -Edición del modelo Categoria

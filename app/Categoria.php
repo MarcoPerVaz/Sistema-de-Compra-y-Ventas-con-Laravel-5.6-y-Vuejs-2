@@ -18,4 +18,10 @@ class Categoria extends Model
         'descripcion',
         'cndicion',
     ];
+
+    //Relación Tiene Muchos - hasMany
+    public function articulos()
+    {
+        return $this->hasMany('App\Articulo');
+    } 
 }
