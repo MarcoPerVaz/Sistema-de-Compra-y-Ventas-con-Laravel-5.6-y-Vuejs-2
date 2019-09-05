@@ -199,3 +199,8 @@ Commit - Migraciones para personas
 Commit - Modelo para personas
   -Creación y edición del modelo Persona
     -php artisan make:model Persona
+Commit - Controlador y rutas para personas
+  -Creación y edición del controlador ClienteController
+    -php artisan make:controller ClienteController
+    -Edición de la función index, store, update
+  -Creación de las rutas para personas en routes/web.php
