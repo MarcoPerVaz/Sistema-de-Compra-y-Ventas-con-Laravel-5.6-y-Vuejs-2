@@ -204,3 +204,10 @@ Commit - Controlador y rutas para personas
     -php artisan make:controller ClienteController
     -Edición de la función index, store, update
   -Creación de las rutas para personas en routes/web.php
+Commit - Listado, paginación y búsqueda de personas
+  -Creación y edición del componente components/Cliente.vue
+  -Edición del archivo resources/assets/js/app.js
+    -Registro del componente components/Cliente.vue
+  -Edición de la vista contenido/contenido.blade.php
+  -Compilar
+    -npm run dev
