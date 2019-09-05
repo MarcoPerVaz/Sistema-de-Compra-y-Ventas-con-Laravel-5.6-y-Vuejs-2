@@ -190,4 +190,9 @@ Commit - Código de barras utilizando Vue-BarCode
     -npm install vue-barcode
   -Se importa Vue-Barcode en el componente components/Articulo.vue
     -import VueBarcode from 'vue-barcode';
-  
+<----------Modulo Persona---------->
+Commit - Migraciones para personas
+  -Creación de la migración create_personas_table
+    -php artisan make:migration create_personas_table
+  -Integrar la nueva migración a la BD
+    -php artisan migrate
