@@ -151,6 +151,18 @@
                                     <input type="email" class="form-control" placeholder="Email" v-model="email">
                                 </div>
                             </div>
+                            <div class="form-group row">
+                                <label class="col-md-3 form-control-label" for="email-input">Contacto</label>
+                                <div class="col-md-9">
+                                    <input type="text" class="form-control" placeholder="Nombre del contacto" v-model="contacto">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-md-3 form-control-label" for="email-input">Teléfono de contacto</label>
+                                <div class="col-md-9">
+                                    <input type="text" class="form-control" placeholder="Teléfono del contacto" v-model="telefono_contacto">
+                                </div>
+                            </div>
                             <!-- Mostrar errores en el modal --> <!-- Visualizar los errores si errorPersona tiene el valor 1 -->
                                 <div class="form-group row div-error" v-show="errorPersona">
                                     <div class="text-center text-error">
@@ -311,7 +323,7 @@
 
               let me = this;
 
-              axios.post('/cliente/registrar', {
+              axios.post('/proveedor/registrar', {
 
                   'nombre': this.nombre,
                   'tipo_documento': this.tipo_documento,
@@ -319,6 +331,8 @@
                   'direccion': this.direccion,
                   'telefono': this.telefono,
                   'email': this.email,
+                  'contacto': this.contacto,
+                  'telefono_contacto': this.telefono_contacto,
 
               }).then(function(response) {
 
@@ -341,7 +355,7 @@
 
               let me = this;
 
-              axios.put('/cliente/actualizar', {
+              axios.put('/proveedor/actualizar', {
 
                   'nombre': this.nombre,
                   'tipo_documento': this.tipo_documento,
@@ -349,6 +363,8 @@
                   'direccion': this.direccion,
                   'telefono': this.telefono,
                   'email': this.email,
+                  'contacto': this.contacto,
+                  'telefono_contacto': this.telefono_contacto,
                   'id': this.persona_id,
 
               }).then(function(response) {
@@ -387,12 +403,14 @@
                             {
                                 this.modal = 1;
                                 this.nombre = '';
-                                this.tipo_documento = 'DNI';
+                                this.tipo_documento = 'RUC';
                                 this.num_documento = '';
                                 this.direccion = '';
                                 this.telefono = '';
                                 this.email = '';
-                                this.tituloModal = 'Registrar cliente'
+                                this.contacto = '';
+                                this.telefono_contacto = '';
+                                this.tituloModal = 'Registrar proveedor'
                                 this.tipoAccion = 1; 
                                 break;
                             }
@@ -400,7 +418,7 @@
                             {
                                 // console.log(data);
                                 this.modal = 1; /* Para abrir el modal */
-                                this.tituloModal = "Actualizar ciente"
+                                this.tituloModal = "Actualizar proveedor"
                                 this.tipoAccion = 2; /* Para que el modal sepa que es actualizar */
                                 this.persona_id = data['id']; /* data[] son los datos que vienen de la vista pasados por parámetro */
                                 this.nombre = data['nombre']; /* data[] son los datos que vienen de la vista pasados por parámetro */
@@ -409,6 +427,8 @@
                                 this.direccion = data['direccion']; /* data[] son los datos que vienen de la vista pasados por parámetro */
                                 this.telefono = data['telefono']; /* data[] son los datos que vienen de la vista pasados por parámetro */
                                 this.email = data['email']; /* data[] son los datos que vienen de la vista pasados por parámetro */
+                                this.contacto = data['contacto']; /* data[] son los datos que vienen de la vista pasados por parámetro */
+                                this.telefono_contacto = data['telefono_contacto']; /* data[] son los datos que vienen de la vista pasados por parámetro */
                                 break;
                                 
                             }  
@@ -424,11 +444,13 @@
             this.modal = 0;
             this.tituloModal = '';
             this.nombre = '';
-            this.tipo_documento = 'DNI';
+            this.tipo_documento = 'RUC';
             this.num_documento = '',
             this.direccion = '',
             this.telefono = '',
             this.email = '',
+            this.contacto = '',
+            this.telefono_contacto = '',
             this.errorPersona = 0;
 
           },

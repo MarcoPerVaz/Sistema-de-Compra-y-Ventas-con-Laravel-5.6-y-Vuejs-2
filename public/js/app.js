@@ -42179,6 +42179,18 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -42303,14 +42315,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
             var me = this;
 
-            axios.post('/cliente/registrar', {
+            axios.post('/proveedor/registrar', {
 
                 'nombre': this.nombre,
                 'tipo_documento': this.tipo_documento,
                 'num_documento': this.num_documento,
                 'direccion': this.direccion,
                 'telefono': this.telefono,
-                'email': this.email
+                'email': this.email,
+                'contacto': this.contacto,
+                'telefono_contacto': this.telefono_contacto
 
             }).then(function (response) {
 
@@ -42329,7 +42343,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
             var me = this;
 
-            axios.put('/cliente/actualizar', {
+            axios.put('/proveedor/actualizar', {
 
                 'nombre': this.nombre,
                 'tipo_documento': this.tipo_documento,
@@ -42337,6 +42351,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 'direccion': this.direccion,
                 'telefono': this.telefono,
                 'email': this.email,
+                'contacto': this.contacto,
+                'telefono_contacto': this.telefono_contacto,
                 'id': this.persona_id
 
             }).then(function (response) {
@@ -42371,12 +42387,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                                 {
                                     this.modal = 1;
                                     this.nombre = '';
-                                    this.tipo_documento = 'DNI';
+                                    this.tipo_documento = 'RUC';
                                     this.num_documento = '';
                                     this.direccion = '';
                                     this.telefono = '';
                                     this.email = '';
-                                    this.tituloModal = 'Registrar cliente';
+                                    this.contacto = '';
+                                    this.telefono_contacto = '';
+                                    this.tituloModal = 'Registrar proveedor';
                                     this.tipoAccion = 1;
                                     break;
                                 }
@@ -42384,7 +42402,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                                 {
                                     // console.log(data);
                                     this.modal = 1; /* Para abrir el modal */
-                                    this.tituloModal = "Actualizar ciente";
+                                    this.tituloModal = "Actualizar proveedor";
                                     this.tipoAccion = 2; /* Para que el modal sepa que es actualizar */
                                     this.persona_id = data['id']; /* data[] son los datos que vienen de la vista pasados por parámetro */
                                     this.nombre = data['nombre']; /* data[] son los datos que vienen de la vista pasados por parámetro */
@@ -42393,6 +42411,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                                     this.direccion = data['direccion']; /* data[] son los datos que vienen de la vista pasados por parámetro */
                                     this.telefono = data['telefono']; /* data[] son los datos que vienen de la vista pasados por parámetro */
                                     this.email = data['email']; /* data[] son los datos que vienen de la vista pasados por parámetro */
+                                    this.contacto = data['contacto']; /* data[] son los datos que vienen de la vista pasados por parámetro */
+                                    this.telefono_contacto = data['telefono_contacto']; /* data[] son los datos que vienen de la vista pasados por parámetro */
                                     break;
                                 }
                         }
@@ -42405,8 +42425,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             this.modal = 0;
             this.tituloModal = '';
             this.nombre = '';
-            this.tipo_documento = 'DNI';
-            this.num_documento = '', this.direccion = '', this.telefono = '', this.email = '', this.errorPersona = 0;
+            this.tipo_documento = 'RUC';
+            this.num_documento = '', this.direccion = '', this.telefono = '', this.email = '', this.contacto = '', this.telefono_contacto = '', this.errorPersona = 0;
         }
     },
 
@@ -43003,6 +43023,82 @@ var render = function() {
                                 return
                               }
                               _vm.email = $event.target.value
+                            }
+                          }
+                        })
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "form-group row" }, [
+                      _c(
+                        "label",
+                        {
+                          staticClass: "col-md-3 form-control-label",
+                          attrs: { for: "email-input" }
+                        },
+                        [_vm._v("Contacto")]
+                      ),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col-md-9" }, [
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.contacto,
+                              expression: "contacto"
+                            }
+                          ],
+                          staticClass: "form-control",
+                          attrs: {
+                            type: "text",
+                            placeholder: "Nombre del contacto"
+                          },
+                          domProps: { value: _vm.contacto },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.contacto = $event.target.value
+                            }
+                          }
+                        })
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "form-group row" }, [
+                      _c(
+                        "label",
+                        {
+                          staticClass: "col-md-3 form-control-label",
+                          attrs: { for: "email-input" }
+                        },
+                        [_vm._v("Teléfono de contacto")]
+                      ),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col-md-9" }, [
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.telefono_contacto,
+                              expression: "telefono_contacto"
+                            }
+                          ],
+                          staticClass: "form-control",
+                          attrs: {
+                            type: "text",
+                            placeholder: "Teléfono del contacto"
+                          },
+                          domProps: { value: _vm.telefono_contacto },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.telefono_contacto = $event.target.value
                             }
                           }
                         })
