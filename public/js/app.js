@@ -40922,6 +40922,34 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -41036,76 +41064,88 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             // Envia la petición para visualizar la data de esa página
             me.listarPesona(page, buscar, criterio);
         },
-        registrarCategoria: function registrarCategoria() {
+        registrarPersona: function registrarPersona() {
 
-            if (this.validarCategoria()) {
+            if (this.validarPersona()) {
                 return;
             }
 
             var me = this;
 
-            axios.post('/categoria/registrar', {
+            axios.post('/cliente/registrar', {
 
                 'nombre': this.nombre,
-                'descripcion': this.descripcion
+                'tipo_documento': this.tipo_documento,
+                'num_documento': this.num_documento,
+                'direccion': this.direccion,
+                'telefono': this.telefono,
+                'email': this.email
 
             }).then(function (response) {
 
                 me.cerrarModal(); /* Esto es igual a poner this.cerrarModal(); */
-                me.listarCategoria(1, '', 'nombre'); /* Esto es igual a poner this.listarCategoria( 1, '', 'nombre' ); */
+                me.listarPersona(1, '', 'nombre'); /* Esto es igual a poner this.listarCategoria( 1, '', 'nombre' ); */
             }).catch(function (error) {
 
                 console.log(error);
             });
         },
-        actualizarCategoria: function actualizarCategoria() {
+        actualizarPersona: function actualizarPersona() {
 
-            if (this.validarCategoria()) {
+            if (this.validarPersona()) {
                 return;
             }
 
             var me = this;
 
-            axios.put('/categoria/actualizar', {
+            axios.put('/cliente/actualizar', {
 
                 'nombre': this.nombre,
-                'descripcion': this.descripcion,
-                'id': this.categoria_id
+                'tipo_documento': this.tipo_documento,
+                'num_documento': this.num_documento,
+                'direccion': this.direccion,
+                'telefono': this.telefono,
+                'email': this.email,
+                'id': this.persona_id
 
             }).then(function (response) {
 
                 me.cerrarModal(); /* Esto es igual a poner this.cerrarModal(); */
-                me.listarCategoria(1, '', 'nombre'); /* Esto es igual a poner this.listarCategoria( 1, '', 'nombre' ); */
+                me.listarPersona(1, '', 'nombre'); /* Esto es igual a poner this.listarCategoria( 1, '', 'nombre' ); */
             }).catch(function (error) {
 
                 console.log(error);
             });
         },
-        validarCategoria: function validarCategoria() {
+        validarPersona: function validarPersona() {
 
-            this.errorCategoria = 0;
-            this.errorMostrarMsjCategoria = [];
+            this.errorPersona = 0;
+            this.errorMostrarMsjPersona = [];
 
-            if (!this.nombre) this.errorMostrarMsjCategoria.push("El nombre de la categoría no puede estar vacío.");
+            if (!this.nombre) this.errorMostrarMsjPersona.push("El nombre de la persona no puede estar vacío.");
 
-            if (this.errorMostrarMsjCategoria.length) this.errorCategoria = 1;
+            if (this.errorMostrarMsjPersona.length) this.errorPersona = 1;
 
-            return this.errorCategoria;
+            return this.errorPersona;
         },
         abrirModal: function abrirModal(modelo, accion) {
             var data = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : [];
 
 
             switch (modelo) {
-                case "categoria":
+                case "persona":
                     {
                         switch (accion) {
                             case "registrar":
                                 {
                                     this.modal = 1;
                                     this.nombre = '';
-                                    this.descripcion = '';
-                                    this.tituloModal = 'Registrar categoría';
+                                    this.tipo_documento = 'DNI';
+                                    this.num_documento = '';
+                                    this.direccion = '';
+                                    this.telefono = '';
+                                    this.email = '';
+                                    this.tituloModal = 'Registrar cliente';
                                     this.tipoAccion = 1;
                                     break;
                                 }
@@ -41113,11 +41153,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                                 {
                                     // console.log(data);
                                     this.modal = 1; /* Para abrir el modal */
-                                    this.tituloModal = "Actualizar categoría";
+                                    this.tituloModal = "Actualizar ciente";
                                     this.tipoAccion = 2; /* Para que el modal sepa que es actualizar */
-                                    this.categoria_id = data['id']; /* data[] son los datos que vienen de la vista pasados por parámetro */
+                                    this.persona_id = data['id']; /* data[] son los datos que vienen de la vista pasados por parámetro */
                                     this.nombre = data['nombre']; /* data[] son los datos que vienen de la vista pasados por parámetro */
-                                    this.descripcion = data['descripcion']; /* data[] son los datos que vienen de la vista pasados por parámetro */
+                                    this.tipo_documento = data['tipo_documento']; /*data[] son los datos que vienen de la vista pasados por parámetro*/
+                                    this.num_documento = data['num_documento']; /*data[] son los datos que vienen de la vista pasados por parámetro*/
+                                    this.direccion = data['direccion']; /* data[] son los datos que vienen de la vista pasados por parámetro */
+                                    this.telefono = data['telefono']; /* data[] son los datos que vienen de la vista pasados por parámetro */
+                                    this.email = data['email']; /* data[] son los datos que vienen de la vista pasados por parámetro */
                                     break;
                                 }
                         }
@@ -41130,7 +41174,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             this.modal = 0;
             this.tituloModal = '';
             this.nombre = '';
-            this.descripcion = '';
+            this.tipo_documento = 'DNI';
+            this.num_documento = '', this.direccion = '', this.telefono = '', this.email = '', this.errorPersona = 0;
         }
     },
 
@@ -41515,7 +41560,7 @@ var render = function() {
                           staticClass: "form-control",
                           attrs: {
                             type: "text",
-                            placeholder: "Nombre de categoría"
+                            placeholder: "Nombre de la persona"
                           },
                           domProps: { value: _vm.nombre },
                           on: {
@@ -41535,9 +41580,65 @@ var render = function() {
                         "label",
                         {
                           staticClass: "col-md-3 form-control-label",
-                          attrs: { for: "email-input" }
+                          attrs: { for: "text-input" }
                         },
-                        [_vm._v("Descripción")]
+                        [_vm._v("Tipo de documento")]
+                      ),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col-md-9" }, [
+                        _c(
+                          "select",
+                          {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.tipo_documento,
+                                expression: "tipo_documento"
+                              }
+                            ],
+                            staticClass: "form-control",
+                            on: {
+                              change: function($event) {
+                                var $$selectedVal = Array.prototype.filter
+                                  .call($event.target.options, function(o) {
+                                    return o.selected
+                                  })
+                                  .map(function(o) {
+                                    var val = "_value" in o ? o._value : o.value
+                                    return val
+                                  })
+                                _vm.tipo_documento = $event.target.multiple
+                                  ? $$selectedVal
+                                  : $$selectedVal[0]
+                              }
+                            }
+                          },
+                          [
+                            _c("option", { attrs: { value: "DNI" } }, [
+                              _vm._v("DNI")
+                            ]),
+                            _vm._v(" "),
+                            _c("option", { attrs: { value: "RUC" } }, [
+                              _vm._v("RUC")
+                            ]),
+                            _vm._v(" "),
+                            _c("option", { attrs: { value: "PASS" } }, [
+                              _vm._v("PASS")
+                            ])
+                          ]
+                        )
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "form-group row" }, [
+                      _c(
+                        "label",
+                        {
+                          staticClass: "col-md-3 form-control-label",
+                          attrs: { for: "text-input" }
+                        },
+                        [_vm._v("Número de documento")]
                       ),
                       _vm._v(" "),
                       _c("div", { staticClass: "col-md-9" }, [
@@ -41546,22 +41647,127 @@ var render = function() {
                             {
                               name: "model",
                               rawName: "v-model",
-                              value: _vm.descripcion,
-                              expression: "descripcion"
+                              value: _vm.num_documento,
+                              expression: "num_documento"
                             }
                           ],
                           staticClass: "form-control",
                           attrs: {
-                            type: "email",
-                            placeholder: "Ingrese descripción"
+                            type: "text",
+                            placeholder: "Número de documento"
                           },
-                          domProps: { value: _vm.descripcion },
+                          domProps: { value: _vm.num_documento },
                           on: {
                             input: function($event) {
                               if ($event.target.composing) {
                                 return
                               }
-                              _vm.descripcion = $event.target.value
+                              _vm.num_documento = $event.target.value
+                            }
+                          }
+                        })
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "form-group row" }, [
+                      _c(
+                        "label",
+                        {
+                          staticClass: "col-md-3 form-control-label",
+                          attrs: { for: "text-input" }
+                        },
+                        [_vm._v("Dirección")]
+                      ),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col-md-9" }, [
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.direccion,
+                              expression: "direccion"
+                            }
+                          ],
+                          staticClass: "form-control",
+                          attrs: { type: "text", placeholder: "Dirección" },
+                          domProps: { value: _vm.direccion },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.direccion = $event.target.value
+                            }
+                          }
+                        })
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "form-group row" }, [
+                      _c(
+                        "label",
+                        {
+                          staticClass: "col-md-3 form-control-label",
+                          attrs: { for: "text-input" }
+                        },
+                        [_vm._v("Teléfono")]
+                      ),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col-md-9" }, [
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.telefono,
+                              expression: "telefono"
+                            }
+                          ],
+                          staticClass: "form-control",
+                          attrs: { type: "text", placeholder: "Teléfono" },
+                          domProps: { value: _vm.telefono },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.telefono = $event.target.value
+                            }
+                          }
+                        })
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "form-group row" }, [
+                      _c(
+                        "label",
+                        {
+                          staticClass: "col-md-3 form-control-label",
+                          attrs: { for: "email-input" }
+                        },
+                        [_vm._v("Email")]
+                      ),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col-md-9" }, [
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.email,
+                              expression: "email"
+                            }
+                          ],
+                          staticClass: "form-control",
+                          attrs: { type: "email", placeholder: "Email" },
+                          domProps: { value: _vm.email },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.email = $event.target.value
                             }
                           }
                         })
@@ -41575,8 +41781,8 @@ var render = function() {
                           {
                             name: "show",
                             rawName: "v-show",
-                            value: _vm.errorCategoria,
-                            expression: "errorCategoria"
+                            value: _vm.errorPersona,
+                            expression: "errorPersona"
                           }
                         ],
                         staticClass: "form-group row div-error"
@@ -41585,7 +41791,7 @@ var render = function() {
                         _c(
                           "div",
                           { staticClass: "text-center text-error" },
-                          _vm._l(_vm.errorMostrarMsjCategoria, function(error) {
+                          _vm._l(_vm.errorMostrarMsjPersona, function(error) {
                             return _c("div", {
                               key: error,
                               domProps: { textContent: _vm._s(error) }
@@ -41622,7 +41828,7 @@ var render = function() {
                         attrs: { type: "button" },
                         on: {
                           click: function($event) {
-                            return _vm.registrarCategoria()
+                            return _vm.registrarPersona()
                           }
                         }
                       },
@@ -41638,7 +41844,7 @@ var render = function() {
                         attrs: { type: "button" },
                         on: {
                           click: function($event) {
-                            return _vm.actualizarCategoria()
+                            return _vm.actualizarPersona()
                           }
                         }
                       },

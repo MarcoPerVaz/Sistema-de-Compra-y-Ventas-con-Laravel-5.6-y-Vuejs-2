@@ -211,3 +211,5 @@ Commit - Listado, paginación y búsqueda de personas
   -Edición de la vista contenido/contenido.blade.php
   -Compilar
     -npm run dev
+Commit - Crear y actualizar personas/clientes
+  -Edición de componente components/Cliente.vue
