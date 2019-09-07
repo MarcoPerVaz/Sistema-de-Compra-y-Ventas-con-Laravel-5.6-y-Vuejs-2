@@ -223,3 +223,16 @@ Commit - Modelo para proveedores
   -Creación y edición del modelo Proveedor
     -php artisan make:model Proveedor
   -Edición del modelo Persona
+Commit - Controlador y rutas para proveedores
+  -Creación del controlador ProveedorController
+    -php artisan make:controller ProveedorController
+    -Edición de la función index, store, update
+    Nota: Importar el facade DB
+      -use Illuminate\Support\Facades\DB;
+      -use App\Proveedor;
+      -use App\Persona;
+    -En la función store se hace uso de transacciones
+  -Creación de las rutas para proveedores en routes/web.php
+  Error: Edición del modelo Proveedor
+    -Esto: private $timestamps = false;
+    -Por esto: public $timestamps = false;
