@@ -213,3 +213,9 @@ Commit - Listado, paginación y búsqueda de personas
     -npm run dev
 Commit - Crear y actualizar personas/clientes
   -Edición de componente components/Cliente.vue
+<----------Modulo Proveedor---------->
+Commit - Migraciones para proveedores
+  -Creación y edición de la migración create_proveedores_table
+    -php artisan make:migration create_proveedores_table
+  -Crear la migración en la BD 
+    -php artisan migrate
