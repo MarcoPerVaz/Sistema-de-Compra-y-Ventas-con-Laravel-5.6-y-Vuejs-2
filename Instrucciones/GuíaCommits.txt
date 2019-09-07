@@ -236,3 +236,10 @@ Commit - Controlador y rutas para proveedores
   Error: Edición del modelo Proveedor
     -Esto: private $timestamps = false;
     -Por esto: public $timestamps = false;
+Commit - Listado, paginación y búsqueda de proveedores
+  -Creación y edición del componente components/Proveedor.vue
+  -Edición del archivo resources/assets/js/app.js
+    -Registro del componente components/Proveedor.vue
+  -Edición de la vista contenido/contenido.blade.php
+  -Compilar
+    -npm run dev
