@@ -219,3 +219,7 @@ Commit - Migraciones para proveedores
     -php artisan make:migration create_proveedores_table
   -Crear la migración en la BD 
     -php artisan migrate
+Commit - Modelo para proveedores
+  -Creación y edición del modelo Proveedor
+    -php artisan make:model Proveedor
+  -Edición del modelo Persona

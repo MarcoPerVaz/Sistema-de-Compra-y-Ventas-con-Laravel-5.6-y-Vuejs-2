@@ -14,4 +14,10 @@ class Persona extends Model
         'telefono',
         'email',
     ];
+
+    // Relación tiene un - hasOne - Una persona tiene un proveedor
+    public function proveedor()
+    {
+        return $this->hasOne('App\Proveedor');
+    }
 }
