@@ -258,4 +258,11 @@ Commit - Modelo, controlador y rutas para roles
     -php artisan make:controller RolController
     -Edición de la función index
   -Creación de las rutas para roles en routes/web.php
+Commit - Listado, paginación y búsqueda de roles
+  -Creación y edición del componente components/Rol.vue
+  -Edición del archivo resources/assets/js/app.js
+    -Registro del componente components/Rol.vue
+  -Edición de la vista contenido/contenido.blade.php
+  -Compilar
+    -npm run dev
 
