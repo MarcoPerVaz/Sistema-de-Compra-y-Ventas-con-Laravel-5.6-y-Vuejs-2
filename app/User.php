@@ -15,8 +15,10 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'id', 'usuario', 'password', 'condicion', 'idrol'
     ];
+
+    public $timestamps = false; /* Se le indica a laravel que la tabla proveedores no incluirá los campos created_at y updated_at */
 
     /**
      * The attributes that should be hidden for arrays.
@@ -26,4 +28,20 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    // Relación pertenece a - belongsTo - Un usuario pertenece a un rol
+    public function rol()
+    {
+
+        return $this->belongsTo( 'App\Rol' );
+
+    }
+
+    // Relación pertenece a - belongsTo - Un usuario pertenece a una persona
+    public function persona()
+    {
+
+        return $this->belongsTo( 'App\Persona' );
+
+    }
 }

@@ -273,3 +273,7 @@ Commit - Migraciones para usuarios
   Nota: Se elimina create_users_table de migrations de la BD
   -Se crea la migración
     -php artisan migrate
+Commit - Modelo para usuarios
+  -Edición del modelo User
+  -Edición de modelo Persona
+  -Edición de modelo Rol

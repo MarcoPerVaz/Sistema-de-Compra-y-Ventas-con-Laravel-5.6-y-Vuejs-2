@@ -15,4 +15,12 @@ class Rol extends Model
     ];
 
     public $timestamps = false; /* Se le indica a laravel que la tabla roles no incluirá los campos created_at y updated_at */
+
+    // Relación tiene muchos - hasMany - Un rol tiene muchos usuarios
+    public function users()
+    {
+
+        return $this->hasMany('App\User');
+
+    }
 }

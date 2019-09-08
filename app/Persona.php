@@ -20,4 +20,12 @@ class Persona extends Model
     {
         return $this->hasOne('App\Proveedor');
     }
+
+    // Relación tiene un - hasOne - Una persona tiene un usuario
+    public function user()
+    {
+
+        return $this->hasOne('App\User');
+        
+    }
 }
