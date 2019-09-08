@@ -251,4 +251,11 @@ Commit - Migraciones para roles estáticos
     -php artisan make:migration create_roles_table
   -Crear la migración en la BD 
     -php artisan migrate
+Commit - Modelo, controlador y rutas para roles
+  -Creación y edición del modelo Rol
+    -php artisan make:model Rol
+  -Creación y edición del controlador RolController
+    -php artisan make:controller RolController
+    -Edición de la función index
+  -Creación de las rutas para roles en routes/web.php
 
