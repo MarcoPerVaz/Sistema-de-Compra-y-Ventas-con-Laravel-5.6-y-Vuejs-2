@@ -265,4 +265,11 @@ Commit - Listado, paginación y búsqueda de roles
   -Edición de la vista contenido/contenido.blade.php
   -Compilar
     -npm run dev
-
+<----------Modulo Usuarios---------->
+Commit - Migraciones para usuarios
+  Nota: La migración para usuarios ya existe y como depende de la tabla roles y personas, se le cambió el nombre para ajustar el orden
+  -Edición de la migración create_users_table
+  Nota: Se elimina la tabla users de la BD
+  Nota: Se elimina create_users_table de migrations de la BD
+  -Se crea la migración
+    -php artisan migrate
