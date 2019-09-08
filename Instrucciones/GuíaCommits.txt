@@ -245,3 +245,10 @@ Commit - Listado, paginación y búsqueda de proveedores
     -npm run dev
 Commit - Crear y actualizar proveedores
   -Edición de componente components/Proveedor.vue
+<----------Modulo Role---------->
+Commit - Migraciones para roles estáticos
+  -Creación y edición de la migración create_roles_table
+    -php artisan make:migration create_roles_table
+  -Crear la migración en la BD 
+    -php artisan migrate
+
