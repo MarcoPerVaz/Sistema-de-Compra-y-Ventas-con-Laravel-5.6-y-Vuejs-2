@@ -304,3 +304,5 @@ Commit - Mostrando roles para crear usuarios
   -Edición del componente components/User.vue
 Commit - Crear y actualizar usuarios
   -Edición del componente components/User.vue
+Commit - Habilitar y deshabilitar usarios
+  -Edición del componente components/User.vue
