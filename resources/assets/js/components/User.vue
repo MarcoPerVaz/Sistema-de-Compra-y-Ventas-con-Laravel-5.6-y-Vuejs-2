@@ -154,15 +154,26 @@
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-md-3 form-control-label" for="email-input">Contacto</label>
+                                <label class="col-md-3 form-control-label" for="email-input">Rol (*)</label>
                                 <div class="col-md-9">
-                                    <input type="text" class="form-control" placeholder="Nombre del contacto" v-model="contacto">
+                                    <select name="" id="" class="form-control" v-model="idrol">
+                                        <option value="0">Seleccione un rol</option>
+                                        <option v-for="rol in arrayRol" :key="rol.id" :value="rol.id" v-text="rol.nombre">
+                                            
+                                        </option>
+                                    </select>
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-md-3 form-control-label" for="email-input">Teléfono de contacto</label>
+                                <label class="col-md-3 form-control-label" for="email-input">Usuario (*)</label>
                                 <div class="col-md-9">
-                                    <input type="text" class="form-control" placeholder="Teléfono del contacto" v-model="telefono_contacto">
+                                    <input type="text" class="form-control" placeholder="Nombre de usuario" v-model="usuario">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-md-3 form-control-label" for="email-input">Password (*)</label>
+                                <div class="col-md-9">
+                                    <input type="password" class="form-control" placeholder="Password de acceso" v-model="password">
                                 </div>
                             </div>
                             <!-- Mostrar errores en el modal --> <!-- Visualizar los errores si errorPersona tiene el valor 1 -->
@@ -208,6 +219,7 @@
             password: '',
             idrol: 0,
             arrayPersona: [],
+            arrayRol: [],
             modal: 0, /* Variable para mostrar u ocultar el modal */
             tituloModal: '', /* Variable para definir si se crea o se actualiza la categoría */
             tipoAccion: 0, /* Variable para definir la cadena de texto del botón guardar del modal, dónde 1 es Guardar y 2 Actualizar */
@@ -296,6 +308,27 @@
                 me.arrayPersona = respuesta.personas.data; /* Esto es igual a poner this.arrayPersona = respuesta.personas.data */
 
                 me.pagination = respuesta.pagination; /* Esto es igual a poner this.pagination = respuesta.pagination */
+
+            })
+            .catch(function(error) {
+
+              console.log(error);
+
+            });
+
+          },
+
+          selectRol(  ) {
+
+              let me = this; 
+
+            var url = '/rol/selectRol';
+
+            axios.get( url ).then(function (response){
+
+                var respuesta = response.data;
+                
+                me.arrayRol = respuesta.roles; /* Esto es igual a poner this.arrayRol = respuesta.roles */
 
             })
             .catch(function(error) {
@@ -398,6 +431,8 @@
 
           abrirModal ( modelo, accion, data = [] )  {
 
+              this.selectRol();
+
               switch (modelo) {
                   case "persona":
                   {
@@ -406,14 +441,15 @@
                             {
                                 this.modal = 1;
                                 this.nombre = '';
-                                this.tipo_documento = 'RUC';
+                                this.tipo_documento = 'DNI';
                                 this.num_documento = '';
                                 this.direccion = '';
                                 this.telefono = '';
                                 this.email = '';
-                                this.contacto = '';
-                                this.telefono_contacto = '';
-                                this.tituloModal = 'Registrar proveedor'
+                                this.usuario = '';
+                                this.password = '';
+                                this.idrol = 0;
+                                this.tituloModal = 'Registrar usuario'
                                 this.tipoAccion = 1; 
                                 break;
                             }
@@ -421,7 +457,7 @@
                             {
                                 // console.log(data);
                                 this.modal = 1; /* Para abrir el modal */
-                                this.tituloModal = "Actualizar proveedor"
+                                this.tituloModal = "Actualizar usuario"
                                 this.tipoAccion = 2; /* Para que el modal sepa que es actualizar */
                                 this.persona_id = data['id']; /* data[] son los datos que vienen de la vista pasados por parámetro */
                                 this.nombre = data['nombre']; /* data[] son los datos que vienen de la vista pasados por parámetro */
@@ -430,8 +466,8 @@
                                 this.direccion = data['direccion']; /* data[] son los datos que vienen de la vista pasados por parámetro */
                                 this.telefono = data['telefono']; /* data[] son los datos que vienen de la vista pasados por parámetro */
                                 this.email = data['email']; /* data[] son los datos que vienen de la vista pasados por parámetro */
-                                this.contacto = data['contacto']; /* data[] son los datos que vienen de la vista pasados por parámetro */
-                                this.telefono_contacto = data['telefono_contacto']; /* data[] son los datos que vienen de la vista pasados por parámetro */
+                                this.usuario = data['usuario']; /* data[] son los datos que vienen de la vista pasados por parámetro */
+                                this.password = data['password']; /* data[] son los datos que vienen de la vista pasados por parámetro */
                                 break;
                                 
                             }  
@@ -447,13 +483,14 @@
             this.modal = 0;
             this.tituloModal = '';
             this.nombre = '';
-            this.tipo_documento = 'RUC';
+            this.tipo_documento = 'DNI';
             this.num_documento = '',
             this.direccion = '',
             this.telefono = '',
             this.email = '',
-            this.contacto = '',
-            this.telefono_contacto = '',
+            this.usuario = '',
+            this.password = '',
+            this.idRol = 0,
             this.errorPersona = 0;
 
           },

@@ -297,3 +297,8 @@ Commit - Listado, paginación y búsqueda de usuarios
   -Edición de la vista contenido/contenido.blade.php
   -Compilar
     -npm run dev
+Commit - Mostrando roles para crear usuarios
+  -Edición del controlador RolController
+    -Creación y edición de la función selectRol()
+  -Creación de la ruta rol/selectRol en routes/web.php
+  -Edición del componente components/User.vue
