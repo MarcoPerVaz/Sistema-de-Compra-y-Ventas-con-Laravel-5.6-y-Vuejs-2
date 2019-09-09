@@ -29,12 +29,15 @@
     </template>
     <template v-if = "menu == 6">
 
-        {{-- {{ Componente Cliente.vue }} --}}
+        {{-- Componente Cliente.vue --}}
         <cliente></cliente>
         
     </template>
     <template v-if = "menu == 7">
-        <h1>Contenido del menú 7</h1>
+
+        {{-- Componente Cliente.vue --}}
+        <user></user>
+
     </template>
     <template v-if = "menu == 8">
         {{-- {{ Componente Rol.vue }} --}}

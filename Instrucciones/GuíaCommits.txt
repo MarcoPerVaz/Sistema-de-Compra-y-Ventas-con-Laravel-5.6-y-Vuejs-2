@@ -290,3 +290,10 @@ Commit - Controlador, rutas y encriptar password para usuarios
     -Edición de la función update
       -Esto: $persona = Persona::findOrfail($request->id);
       -Por esto: $persona = Persona::findOrfail($proveedor->id);
+Commit - Listado, paginación y búsqueda de usuarios
+  -Creación y edición del componente components/User.vue
+  -Edición del archivo resources/assets/js/app.js
+    -Registro del componente components/User.vue
+  -Edición de la vista contenido/contenido.blade.php
+  -Compilar
+    -npm run dev
