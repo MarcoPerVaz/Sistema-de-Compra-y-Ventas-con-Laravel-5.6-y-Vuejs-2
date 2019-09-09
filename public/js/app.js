@@ -41065,7 +41065,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             me.pagination.current_page = page;
 
             // Envia la petición para visualizar la data de esa página
-            me.listarPesona(page, buscar, criterio);
+            me.listarPersona(page, buscar, criterio);
         },
         registrarPersona: function registrarPersona() {
 

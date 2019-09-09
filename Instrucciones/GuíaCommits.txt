@@ -306,3 +306,5 @@ Commit - Crear y actualizar usuarios
   -Edición del componente components/User.vue
 Commit - Habilitar y deshabilitar usarios
   -Edición del componente components/User.vue
+Commit - Arreglando errores del modulo usuarios
+  -Edición del componente components/Cliente.vue
