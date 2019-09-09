@@ -3,12 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-// Import
-use Illuminate\Support\Facades\DB;
-use App\Proveedor;
+// Importado
+use App\User;
 use App\Persona;
+use Illuminate\Support\Facades\DB;
 
-class ProveedorController extends Controller
+class UserController extends Controller
 {
      /**
      * Display a listing of the resource.
@@ -25,17 +25,21 @@ class ProveedorController extends Controller
 
         if ( $buscar == '' ) {
 
-            $personas = Proveedor::join( 'personas', 'proveedores.id', '=', 'personas.id' )
+            $personas = User::join( 'personas', 'users.id', '=', 'personas.id' )
+            ->join('roles', 'users.idrol', '=', 'roles.id')
             ->select( 'personas.id', 'personas.nombre', 'personas.tipo_documento', 'personas.num_documento', 'personas.direccion',
-                      'personas.telefono', 'personas.email', 'proveedores.contacto', 'proveedores.telefono_contacto' )
+                      'personas.telefono', 'personas.email', 'users.usuario', 'users.password', 'users.condicion', 'users.idrol',
+                      'roles.nombre as rol' )
             ->orderBy( 'personas.id', 'DESC' )->paginate( 3 ); /* Eloquent para paginar de 3 en 3 */
         
         }
         else {
             /* Filtrar las personas */
-            $personas = Proveedor::join( 'personas', 'proveedores.id', '=', 'personas.id' )
+            $personas = User::join( 'personas', 'users.id', '=', 'personas.id' )
+                ->join('roles', 'users.idrol', '=', 'roles.id')
                 ->select( 'personas.id', 'personas.nombre', 'personas.tipo_documento', 'personas.num_documento', 'personas.direccion',
-                          'personas.telefono', 'personas.email', 'proveedores.contacto', 'proveedores.telefono_contacto' )
+                          'personas.telefono', 'personas.email', 'users.usuario', 'users.password', 'users.condicion', 'users.idrol',
+                          'roles.nombre as rol' )
                 ->where(  'personas.' . $criterio, 'LIKE', '%' . $buscar . '%' )
                 ->orderBy('personas.id', 'DESC')->paginate( 3 ); 
         }
@@ -94,15 +98,17 @@ class ProveedorController extends Controller
 
             /*  */
 
-            /* Modelo Proveedor */
+            /* Modelo User */
 
-                $proveedor = new Proveedor();
+                $user = new User();
 
-                $proveedor->contacto = $request->contacto;
-                $proveedor->telefono_contacto = $request->telefono_contacto;
-                $proveedor->id = $persona->id;
+                $user->usuario = $request->usuario;
+                $user->password = bcrypt($request->password);
+                $user->condicion = '1';
+                $user->idrol = $request->idrol;
+                $user->id = $persona->id;
 
-                $proveedor->save();
+                $user->save();
 
             /*  */
 
@@ -134,9 +140,9 @@ class ProveedorController extends Controller
             */
             DB::beginTransaction();
 
-            $proveedor = Proveedor::findOrfail($request->id);
+            $user = User::findOrfail($request->id);
 
-            $persona = Persona::findOrfail($proveedor->id);
+            $persona = Persona::findOrfail($user->id);
 
             /* Modelo Persona */
 
@@ -154,10 +160,11 @@ class ProveedorController extends Controller
 
             /* Modelo Proveedor */
 
-                $proveedor->contacto = $request->contacto;
-                $proveedor->telefono_contacto = $request->telefono_contacto;
-
-                $proveedor->save();
+                $user->usuario = $request->usuario;
+                $user->password = bcrypt($request->password);
+                $user->condicion = '1';
+                $user->idrol = $request->idrol;
+                $user->save();
 
             /*  */
 
@@ -168,6 +175,38 @@ class ProveedorController extends Controller
             DB::rollBack(); /* Si falla la transacción se regresa todo */
 
         }
+
+    }
+
+    /**
+     * Función para determinar si la categoría está inactiva - Cambia el campo condición de la tabla categorias
+    */
+    public function desactivar(Request $request)
+    {
+
+        if ( !$request->ajax() )  return redirect('/'); /* Condicional para solo aceptar peticiones ajax */
+
+        $user = User::findOrfail($request->id);
+
+        $user->condicion = "0";
+
+        $user->save();
+
+    }
+
+    /**
+     * Función para determinar si la categoría está activa - Cambia el campo condición de la tabla categorias
+    */
+    public function activar(Request $request)
+    {
+
+        if ( !$request->ajax() )  return redirect('/'); /* Condicional para solo aceptar peticiones ajax */
+
+        $user = User::findOrfail($request->id);
+
+        $user->condicion = "1";
+
+        $user->save();
 
     }
 }

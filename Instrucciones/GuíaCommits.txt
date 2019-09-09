@@ -277,3 +277,16 @@ Commit - Modelo para usuarios
   -Edición del modelo User
   -Edición de modelo Persona
   -Edición de modelo Rol
+Commit - Controlador, rutas y encriptar password para usuarios
+  -Creación y edición del controlador UserController
+    -php artisan make:controller UserController
+    -Edición de la función index, store, update, activar y desactivar
+    Nota: Importar el modelo User
+      -use App\User;
+      -use App\Persona;
+      -use Illuminate\Support\Facades\DB;
+  -Creación de las rutas para users en routes/web.php
+  Error: Edición del controlador ProveedorController
+    -Edición de la función update
+      -Esto: $persona = Persona::findOrfail($request->id);
+      -Por esto: $persona = Persona::findOrfail($proveedor->id);

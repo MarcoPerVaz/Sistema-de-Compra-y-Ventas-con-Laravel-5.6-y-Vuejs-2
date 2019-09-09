@@ -42,3 +42,10 @@ Route::put('/proveedor/actualizar', 'ProveedorController@update');
 
 // Ruta /rol
 Route::get('/rol', 'RolController@index');
+
+// Ruta /user
+Route::get('/user', 'UserController@index');
+Route::post('/user/registrar', 'UserController@store');
+Route::put('/user/actualizar', 'UserController@update');
+Route::put('/user/desactivar', 'UserController@desactivar');
+Route::put('/user/activar', 'UserController@activar');
