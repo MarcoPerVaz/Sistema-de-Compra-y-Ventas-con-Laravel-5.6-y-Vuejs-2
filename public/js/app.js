@@ -44275,7 +44275,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
             var me = this;
 
-            axios.post('/proveedor/registrar', {
+            axios.post('/user/registrar', {
 
                 'nombre': this.nombre,
                 'tipo_documento': this.tipo_documento,
@@ -44283,8 +44283,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 'direccion': this.direccion,
                 'telefono': this.telefono,
                 'email': this.email,
-                'contacto': this.contacto,
-                'telefono_contacto': this.telefono_contacto
+                'usuario': this.usuario,
+                'password': this.password,
+                'idrol': this.idrol
 
             }).then(function (response) {
 
@@ -44303,7 +44304,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
             var me = this;
 
-            axios.put('/proveedor/actualizar', {
+            axios.put('/user/actualizar', {
 
                 'nombre': this.nombre,
                 'tipo_documento': this.tipo_documento,
@@ -44311,8 +44312,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 'direccion': this.direccion,
                 'telefono': this.telefono,
                 'email': this.email,
-                'contacto': this.contacto,
-                'telefono_contacto': this.telefono_contacto,
+                'usuario': this.usuario,
+                'password': this.password,
+                'idrol': this.idrol,
                 'id': this.persona_id
 
             }).then(function (response) {
@@ -44330,6 +44332,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             this.errorMostrarMsjPersona = [];
 
             if (!this.nombre) this.errorMostrarMsjPersona.push("El nombre de la persona no puede estar vacío.");
+            if (!this.usuario) this.errorMostrarMsjPersona.push("El nombre de usuario no puede estar vacío.");
+            if (!this.password) this.errorMostrarMsjPersona.push("El password no puede estar vacío.");
+            if (this.idrol == 0) this.errorMostrarMsjPersona.push("Debe seleccionar un rol para el usuario");
 
             if (this.errorMostrarMsjPersona.length) this.errorPersona = 1;
 
@@ -44376,6 +44381,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                                     this.email = data['email']; /* data[] son los datos que vienen de la vista pasados por parámetro */
                                     this.usuario = data['usuario']; /* data[] son los datos que vienen de la vista pasados por parámetro */
                                     this.password = data['password']; /* data[] son los datos que vienen de la vista pasados por parámetro */
+                                    this.idrol = data['idrol']; /* data[] son los datos que vienen de la vista pasados por parámetro */
                                     break;
                                 }
                         }
@@ -44389,7 +44395,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             this.tituloModal = '';
             this.nombre = '';
             this.tipo_documento = 'DNI';
-            this.num_documento = '', this.direccion = '', this.telefono = '', this.email = '', this.usuario = '', this.password = '', this.idRol = 0, this.errorPersona = 0;
+            this.num_documento = '', this.direccion = '', this.telefono = '', this.email = '', this.usuario = '', this.password = '', this.idrol = 0, this.errorPersona = 0;
         }
     },
 

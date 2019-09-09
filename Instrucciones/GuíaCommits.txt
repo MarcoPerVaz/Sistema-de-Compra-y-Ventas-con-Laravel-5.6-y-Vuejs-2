@@ -302,3 +302,5 @@ Commit - Mostrando roles para crear usuarios
     -Creación y edición de la función selectRol()
   -Creación de la ruta rol/selectRol en routes/web.php
   -Edición del componente components/User.vue
+Commit - Crear y actualizar usuarios
+  -Edición del componente components/User.vue
