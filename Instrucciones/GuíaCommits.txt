@@ -308,3 +308,12 @@ Commit - Habilitar y deshabilitar usarios
   -Edición del componente components/User.vue
 Commit - Arreglando errores del modulo usuarios
   -Edición del componente components/Cliente.vue
+<----------Modulo Acceso y autorización de usuarios---------->
+Commit - Vistas y rutas para autenticación
+  -Creación del scaffolding para la autenticación
+    -php artisan make:auth
+    Nota: El comando crea lo necesario para implementar un login y registro
+    -Eliminación de la carpeta resources/views/auth/passwords
+    -Eliminación de la vista resources/views/auth/register.blade.php
+    -Creación y edición de la vista auth/contenido.blade.php
+    -Edición de la vista auth/login.blade.php
