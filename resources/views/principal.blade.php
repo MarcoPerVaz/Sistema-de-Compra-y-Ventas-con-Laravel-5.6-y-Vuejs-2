@@ -71,9 +71,25 @@
     
         <div class="app-body">
             
-            {{-- Menú principal --}}
-                @include('plantilla.sidebar')
-            {{-- Fin Menú principal --}}
+            @if ( Auth::check() ) {{-- Si el usuario está registrado --}}
+
+                @if ( Auth::user()-> idrol == 1 ) {{-- Rol Administrador --}}
+
+                    @include('plantilla.sidebaradministrador')
+
+                @elseif ( Auth::user()-> idrol == 2 ) {{-- Rol Vendedor --}}
+
+                    @include('plantilla.sidebarvendedor')
+
+                @elseif ( Auth::user()-> idrol == 3 ) {{-- Rol Almacenero --}}
+
+                    @include('plantilla.sidebaralmacenero')
+                
+                @else {{-- Ningún sidebar --}}
+
+                @endif
+
+            @endif
     
             <!-- Contenido Principal -->
                 @yield('contenido')

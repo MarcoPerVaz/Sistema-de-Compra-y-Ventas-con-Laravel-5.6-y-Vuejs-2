@@ -335,3 +335,24 @@ Commit - Controlador para validar acceso al sistema
       Nota: La ruta por defecto ahora será la vista para iniciar sesión
   -Edición de la vista auth/login.blade.php
   -Edición de archivo resources/lang/auth.php
+Commit - Middleware, autorización según roles
+  -Creación y edición del middleware Administrador
+    -php artisan make:middleware Administrador
+  -Creación y edición del middleware Almacenero
+    -php artisan make:middleware Almacenero
+  -Creación y edición del middleware Vendedor
+    -php artisan make:middleware Vendedor
+  Edición del archivo app/Http/kernel.php
+  -Se registran los 3 middlewares, Administrador, Almacenero y Vendedor
+  -Edición del archivo routes/web.php
+    -Edición de las rutas para agruparlas según el middleware 
+      -Se crea el grupo guest que permitirá el acceso si no está registrado
+      -Se crea el grupo auth que permitirá el acceso si está registrado
+        -Se crea el subgrupo de rutas para el rol Almacenero
+        -Se crea el subgrupo de rutas para el rol Vendedor
+        -Se crea el subgrupo de rutas para el rol Administrador
+  -Edición de la vista principal.blade.php
+  -Edición del nombre de la vista plantilla/sidebar.blade.php por plantilla/sidebaradministrador.blade.php
+  -Creación y edición de la vista plantilla/sidebarvendedor
+  -Creación y edición de la vista plantilla/sidebaralmacenero
+  -Edición de la vista contenido/contenido.blade.php
