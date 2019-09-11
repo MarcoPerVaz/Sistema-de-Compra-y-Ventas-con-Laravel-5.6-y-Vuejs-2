@@ -317,3 +317,21 @@ Commit - Vistas y rutas para autenticación
     -Eliminación de la vista resources/views/auth/register.blade.php
     -Creación y edición de la vista auth/contenido.blade.php
     -Edición de la vista auth/login.blade.php
+Commit - Controlador para validar acceso al sistema
+  -Edición del controlador LoginController
+    -Creación de la función showLoginForm()
+    Nota: Importar 
+      -use Illuminate\Http\Request;
+      -use Illuminate\Support\Facades\Auth;
+    Nota: Eliminación
+      -use Illuminate\Foundation\Auth\AuthenticatesUsers;
+  -Edición del archivo routes/web.php
+    -Eliminación de las rutas que laravel implementa para el login
+    -Creación de la ruta personalizada para el login
+    -Edición de la ruta por defecto
+      -Esto: '/'
+      -Por esto: '/main'
+      -Se le asigna un name a la ruta
+      Nota: La ruta por defecto ahora será la vista para iniciar sesión
+  -Edición de la vista auth/login.blade.php
+  -Edición de archivo resources/lang/auth.php

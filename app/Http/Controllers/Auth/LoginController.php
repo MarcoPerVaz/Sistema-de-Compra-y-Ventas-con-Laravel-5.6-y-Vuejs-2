@@ -3,37 +3,53 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Foundation\Auth\AuthenticatesUsers;
+
+// Importado
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
-    /*
-    |--------------------------------------------------------------------------
-    | Login Controller
-    |--------------------------------------------------------------------------
-    |
-    | This controller handles authenticating users for the application and
-    | redirecting them to your home screen. The controller uses a trait
-    | to conveniently provide its functionality to your applications.
-    |
+    /** 
+    * Función para mostrar el Login 
     */
-
-    use AuthenticatesUsers;
-
-    /**
-     * Where to redirect users after login.
-     *
-     * @var string
-     */
-    protected $redirectTo = '/home';
-
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
+    public function showLoginForm()
     {
-        $this->middleware('guest')->except('logout');
+        return view('auth.login');
     }
+
+    /**
+     * Validación de campos,
+     * Condicional para comparar datos para el login
+    */
+    public function login(Request $request)
+    {
+
+       $this->validateLogin( $request ); /* Instancia de la función para validar los campos */
+
+        if ( Auth::attempt( [ 'usuario' => $request->usuario, 'password' => $request->password, 'condicion' => 1 ] ) ) 
+        {
+
+            return redirect()->route( 'main' );
+
+        }
+
+        return back()->withErrors( [ 'usuario' => trans( 'auth.failed' ) ] )
+        -> withInput( request ( [ 'usuario' ] ) );
+
+    }
+    /**
+        *Función para validar los campos 
+    */
+    protected function validateLogin( Request $request)
+    {
+        
+        $this->validate( $request, [
+
+            'usuario' => 'required|string',
+            'password' => 'required|string',
+
+        ] );
+    }
+
 }
