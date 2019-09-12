@@ -22,7 +22,7 @@ Route::group( [ 'middleware' => [ 'guest' ] ], function () {
 } );
 
 // Usuarios autenticados (Registrados)
-Route::group( [ 'middleware' => [ 'guest' ] ], function () {
+Route::group( [ 'middleware' => [ 'auth' ] ], function () {
 
     // Ruta principal del menú de administración
     Route::get('/main', function () {
@@ -104,6 +104,9 @@ Route::group( [ 'middleware' => [ 'guest' ] ], function () {
         Route::put('/user/activar', 'UserController@activar');
 
     } );
+
+    // Ruta para Logout
+    Route::post( '/logout', 'Auth\LoginController@logout' )->name( 'logout' );
 
 } );
 

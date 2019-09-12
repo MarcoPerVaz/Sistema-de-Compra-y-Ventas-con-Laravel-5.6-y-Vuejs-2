@@ -35,7 +35,7 @@ class LoginController extends Controller
         }
 
         return back()->withErrors( [ 'usuario' => trans( 'auth.failed' ) ] )
-        -> withInput( request ( [ 'usuario' ] ) );
+        ->withInput( request ( [ 'usuario' ] ) ); 
 
     }
     /**
@@ -50,6 +50,19 @@ class LoginController extends Controller
             'password' => 'required|string',
 
         ] );
+    }
+
+    /**
+     *Función para cerrar sesión 
+    */
+    public function logout(Request $request)
+    {
+
+        Auth::logout();
+
+        $request->session()->invalidate();
+
+        return redirect( '/' );
     }
 
 }

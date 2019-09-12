@@ -356,3 +356,13 @@ Commit - Middleware, autorización según roles
   -Creación y edición de la vista plantilla/sidebarvendedor
   -Creación y edición de la vista plantilla/sidebaralmacenero
   -Edición de la vista contenido/contenido.blade.php
+Commit - Logout - cerrar sesión
+  -Edición del controlador Auth/LoginController
+    -Creación y edición de la función logout
+  -Edición del archivo routes/web.php
+    -Creación de la ruta logout
+  -Edición de la vista principal.blade.php
+  -Edición del middleware app/Http/Middleware/RedirectIfAuthenticated.php
+    -Se cambia la ruta de redirección de /home a /main
+  Error: Edición del archivo routes/web.php
+    -El grupo de rutas de auth estaba incorrecto ya que tenía guest en lugar de auth
