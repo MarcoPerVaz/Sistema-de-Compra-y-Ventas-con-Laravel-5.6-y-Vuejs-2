@@ -372,3 +372,6 @@ Commit - Migraciones para ingresos
   -Creación y edición  de la migración create_detalle_ingresos_table
   -Crear las migraciones
     -php artisan migrate
+Commit - Modelos para ingresos
+  -Creación y edición del modelo Ingreso
+  -Creación y edición del modelo DetalleIngreso
