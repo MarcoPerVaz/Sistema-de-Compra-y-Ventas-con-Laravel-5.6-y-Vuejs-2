@@ -366,3 +366,9 @@ Commit - Logout - cerrar sesión
     -Se cambia la ruta de redirección de /home a /main
   Error: Edición del archivo routes/web.php
     -El grupo de rutas de auth estaba incorrecto ya que tenía guest en lugar de auth
+<----------Compras---------->
+Commit - Migraciones para ingresos
+  -Creación y edición  de la migración create_ingresos_table
+  -Creación y edición  de la migración create_detalle_ingresos_table
+  -Crear las migraciones
+    -php artisan migrate
