@@ -23,7 +23,10 @@
 
             </template>
             <template v-if = "menu == 3">
-                <h1>Ingresos</h1>
+
+                {{-- Componente Ingreso.vue --}}
+                <ingreso></ingreso>
+                
             </template>
             <template v-if = "menu == 4">
 
@@ -101,7 +104,10 @@
 
             </template>
             <template v-if = "menu == 3">
-                <h1>Ingresos</h1>
+
+                {{-- Componente Ingreso.vue --}}
+                <ingreso></ingreso>
+                
             </template>
             <template v-if = "menu == 4">
 

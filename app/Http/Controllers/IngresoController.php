@@ -34,8 +34,8 @@ class IngresoController extends Controller
         
         }
         else {
-            /* Filtrar las personas */
-            $ingresos = Ingreso::join( 'personas', 'users.id', '=', 'personas.id' )
+            /* Filtrar los ingresos */
+            $ingresos = Ingreso::join( 'personas', 'ingresos.idproveedor', '=', 'personas.id' )
                 ->join('users', 'ingresos.idusuario', '=', 'users.id')
                 ->select( 'ingresos.id', 'ingresos.tipo_comprobante', 'ingresos.serie_comprobante', 'ingresos.num_comprobante',
                           'ingresos.fecha_hora', 'ingresos.impuesto', 'ingresos.total', 'ingresos.estado',
