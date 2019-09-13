@@ -366,7 +366,7 @@ Commit - Logout - cerrar sesión
     -Se cambia la ruta de redirección de /home a /main
   Error: Edición del archivo routes/web.php
     -El grupo de rutas de auth estaba incorrecto ya que tenía guest en lugar de auth
-<----------Compras---------->
+<----------Modulo Compras---------->
 Commit - Migraciones para ingresos
   -Creación y edición  de la migración create_ingresos_table
   -Creación y edición  de la migración create_detalle_ingresos_table
@@ -375,3 +375,11 @@ Commit - Migraciones para ingresos
 Commit - Modelos para ingresos
   -Creación y edición del modelo Ingreso
   -Creación y edición del modelo DetalleIngreso
+Commit - Controlador y rutas para ingresos
+  -Creación y edición del controlador IngresoController
+    -php artisan make:controller IngresoController
+    Nota: Importar el modelo Ingreso
+      -use App\Ingreso;
+    Nota: Sitio web para obtener la zona horaria
+      -https://www.php.net/manual/es/timezones.america.php
+  -Creación de las rutas para ingresos en routes/web.php dentro de almacenero, administrador

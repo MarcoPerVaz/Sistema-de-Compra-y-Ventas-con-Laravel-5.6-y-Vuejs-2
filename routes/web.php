@@ -51,6 +51,11 @@ Route::group( [ 'middleware' => [ 'auth' ] ], function () {
         Route::get('/proveedor', 'ProveedorController@index');
         Route::post('/proveedor/registrar', 'ProveedorController@store');
         Route::put('/proveedor/actualizar', 'ProveedorController@update');
+
+        // Ruta /ingreso
+        Route::get('/ingreso', 'IngresoController@index');
+        Route::post('/ingreso/registrar', 'IngresoController@store');
+        Route::put('/ingreso/desactivar', 'IngresoController@desactivar');
     
     } );
 
@@ -102,6 +107,11 @@ Route::group( [ 'middleware' => [ 'auth' ] ], function () {
         Route::put('/user/actualizar', 'UserController@update');
         Route::put('/user/desactivar', 'UserController@desactivar');
         Route::put('/user/activar', 'UserController@activar');
+
+        // Ruta /ingreso
+        Route::get('/ingreso', 'IngresoController@index');
+        Route::post('/ingreso/registrar', 'IngresoController@store');
+        Route::put('/ingreso/desactivar', 'IngresoController@desactivar');
 
     } );
 
