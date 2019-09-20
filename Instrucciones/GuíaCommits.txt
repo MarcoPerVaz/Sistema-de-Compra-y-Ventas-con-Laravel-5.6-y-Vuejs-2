@@ -394,3 +394,5 @@ Commit - Listado, paginación y búsqueda de ingresos
     -En el área de filtrar las personas, se cambió por los ingresos y se arregló el join
       -Esto: $ingresos = Ingreso::join( 'personas', 'users.id', '=', 'personas.id' )
       -Por esto: $ingresos = Ingreso::join( 'personas', 'ingresos.idproveedor', '=', 'personas.id' )
+Commit - Crear vista para ingresos
+  -Edición del componente components/Ingreso.vue
