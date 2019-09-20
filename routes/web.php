@@ -51,6 +51,7 @@ Route::group( [ 'middleware' => [ 'auth' ] ], function () {
         Route::get('/proveedor', 'ProveedorController@index');
         Route::post('/proveedor/registrar', 'ProveedorController@store');
         Route::put('/proveedor/actualizar', 'ProveedorController@update');
+        Route::get('/proveedor/selectProveedor', 'ProveedorController@selectProveedor');
 
         // Ruta /ingreso
         Route::get('/ingreso', 'IngresoController@index');
@@ -91,6 +92,7 @@ Route::group( [ 'middleware' => [ 'auth' ] ], function () {
         Route::get('/proveedor', 'ProveedorController@index');
         Route::post('/proveedor/registrar', 'ProveedorController@store');
         Route::put('/proveedor/actualizar', 'ProveedorController@update');
+        Route::get('/proveedor/selectProveedor', 'ProveedorController@selectProveedor');
 
         // Ruta /cliente
         Route::get('/cliente', 'ClienteController@index');

@@ -120,9 +120,14 @@
                                 <div class="col-md-9">
                                     <div class="form-group">
                                         <label for="">Proveedor(*)</label>
-                                        <select name="" id="" class="form-control">
 
-                                        </select>
+                                        <!-- Componente vue-select -->
+                                            <v-select :on-search="selectProveedor" 
+                                                    label="nombre" 
+                                                    :options="arrayProveedor"
+                                                    placeholder="Buscar Proveedores..."
+                                                    :onChange="getDatosProveedor"></v-select>
+
                                     </div>
                                 </div>
                                 <div class="col-md-3">
@@ -291,6 +296,9 @@
 </template>
 
 <script>
+
+    import vSelect from 'vue-select';
+
     export default {
         data() {
 
@@ -305,6 +313,7 @@
             impuesto: 0.16,
             total: 0.0,
             arrayIngreso: [],
+            arrayProveedor: [],
             arrayDetalle: [],
             listado: 1,
             modal: 0, /* Variable para mostrar u ocultar el modal */
@@ -327,6 +336,12 @@
             buscar: '',
 
           }
+
+        },
+
+        components: {
+
+            vSelect
 
         },
 
@@ -405,17 +420,22 @@
 
           },
 
-          selectRol(  ) {
+          selectProveedor( search, loading ) {
 
               let me = this; 
+              loading( true )
 
-            var url = '/rol/selectRol';
+            var url = '/proveedor/selectProveedor?filtro=' + search ;
 
             axios.get( url ).then(function (response){
 
                 var respuesta = response.data;
+
+                q:search
                 
-                me.arrayRol = respuesta.roles; /* Esto es igual a poner this.arrayRol = respuesta.roles */
+                me.arrayProveedor = respuesta.proveedores /* Esto es igual a poner this.arrayProveedor = respuesta.proveedores */
+
+                loading( false )
 
             })
             .catch(function(error) {
@@ -423,6 +443,14 @@
               console.log(error);
 
             });
+
+          },
+
+          getDatosProveedor( val1 ){
+
+              let me= this;
+              me.loading = true;
+              me.idproveedor = val1.id;
 
           },
 
@@ -680,6 +708,7 @@
               this.listado = 0;
 
           },
+
           ocultarDetalle() {
 
               this.listado = 1;
