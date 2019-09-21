@@ -161,7 +161,7 @@
                             <div class="form-group row border">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>Artículo</label>
+                                        <label>Artículo <span style="color:red;" v-show="idarticulo == 0">(*Seleccione)</span></label>
                                         <div class="form-inline">
                                             <input type="text" 
                                                    class="form-control" 
@@ -175,13 +175,13 @@
                                 </div>
                                 <div class="col-md-2">
                                     <div class="form-group">
-                                        <label>Precio</label>
+                                        <label>Precio <span style="color:red;" v-show="precio == 0">(*Ingrese)</span></label>
                                         <input type="number" step="any" class="form-control" value="0" v-model="precio">
                                     </div>
                                 </div>
                                 <div class="col-md-2">
                                     <div class="form-group">
-                                        <label>Cantidad</label>
+                                        <label>Cantidad <span style="color:red;" v-show="cantidad == 0">(*Ingrese)</span></label>
                                         <input type="number" class="form-control" value="0" v-model="cantidad">
                                     </div>
                                 </div>
@@ -504,19 +504,64 @@
             me.listarIngreso( page, buscar, criterio );
 
           },
+  
+        /**
+         * Función para comprobar si ya existe el artículo en la lista de detalle
+         */
+          encuentra ( id ){
+
+              var sw = 0;
+
+              for ( var i = 0; i < this.arrayDetalle.length; i++ ) {
+
+                  if ( this.arrayDetalle[ i ].idarticulo == id ) {
+                      
+                      sw = true;
+
+                  }
+                  
+              }
+
+              return sw;
+          },
 
           agregarDetalle () {
 
               let me = this;
 
-              me.arrayDetalle.push( {
+              if ( me.idarticulo == 0 || me.cantidad == 0 || me.precio == 0 ) {
+                  
+              }
+              else {
+                  
+                  if ( me.encuentra( me.idarticulo ) ) {
+                    swal( {
+                        type: 'error',
+                        title: 'Error...',
+                        text: 'Ese artículo ya se encuentra agregado',
+                    })    
+                  }
+                  else {
 
-                  idarticulo: me.idarticulo,
-                  articulo: me.articulo,
-                  cantidad: me.cantidad,
-                  precio: me.precio,
+                      me.arrayDetalle.push( {
+        
+                          idarticulo: me.idarticulo,
+                          articulo: me.articulo,
+                          cantidad: me.cantidad,
+                          precio: me.precio,
+        
+                      } );
+    
+                      me.codigo = '';
+                      me.idarticulo = 0;
+                      me.articulo = '';
+                      me.cantidad = 0;
+                      me.precio = 0;
 
-              } );
+                  }
+
+              }
+
           },
 
           registrarPersona () {

@@ -419,3 +419,6 @@ Commit - Buscar artículos por código de barras
 Commit - Agregar artículos a la lista de detalles
   Nota: La lista de detalles es la lista de los artícuos agregados a la compra
   -Edición del componente components/Ingreso.vue
+Commit - Validaciones para ingresos
+  Nota: valida que los campos no estén vacips y que no se puedan agregar 2 artículos iguales
+  -Edición del componente components/Ingreso.vue
