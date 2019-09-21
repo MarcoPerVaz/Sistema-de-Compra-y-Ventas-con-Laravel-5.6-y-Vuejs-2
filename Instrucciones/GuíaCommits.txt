@@ -410,3 +410,9 @@ Commit - Seleccionar proveedor
   -Edición del componente components/Ingreso.vue
     Nota: Importar la librería vue-select
       -import vSelect from 'vue-select';
+Commit - Buscar artículos por código de barras
+  -Edición del componente components/Ingreso.vue
+  -Edición del controlador ArticuloController
+    -Creación y edición de la función buscarArticulo()
+  -Edición del archivo routes/web.php
+    -Creación de la ruta /articulo/buscarArticulo en el grupo de rutas administrador y almacenero

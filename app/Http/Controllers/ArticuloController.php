@@ -64,6 +64,27 @@ class ArticuloController extends Controller
     }
 
     /**
+     * Función para buscar un artículo por código de barras
+     */
+    public function buscarArticulo( Request $request )
+    {
+
+        if ( !$request->ajax() )  return redirect('/'); /* Condicional para solo aceptar peticiones ajax */
+        
+        $filtro = $request->filtro;
+
+        $articulos = Articulo::where( 'codigo', '=', $filtro )
+                    ->select( 'id', 'nombre' )->orderBy( 'nombre', 'asc' )->take(1)->get();
+
+        return [
+
+            'articulos' => $articulos
+
+        ];
+
+    }
+
+    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request

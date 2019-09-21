@@ -163,8 +163,13 @@
                                     <div class="form-group">
                                         <label>Artículo</label>
                                         <div class="form-inline">
-                                            <input type="text" class="form-control" placeholder="Ingrese artículo" v-model="idarticulo">
+                                            <input type="text" 
+                                                   class="form-control" 
+                                                   placeholder="Ingrese artículo" 
+                                                   v-model="codigo"
+                                                   @keyup.enter="buscarArticulo()">
                                             <button class="btn btn-primary">...</button>
+                                            <input type="text" readonly class="form-control" v-model="articulo">
                                         </div>
                                     </div>
                                 </div>
@@ -334,6 +339,12 @@
             offset: 3,
             criterio: 'num_comprobante',
             buscar: '',
+            arrayArticulo: [],
+            idarticulo: 0,
+            codigo: '',
+            articulo: '',
+            precio: 0,
+            cantidad: 0,
 
           }
 
@@ -452,6 +463,37 @@
               me.loading = true;
               me.idproveedor = val1.id;
 
+          },
+
+          buscarArticulo() {
+
+              let me = this;
+              var url = '/articulo/buscarArticulo?filtro=' + me.codigo;
+
+              axios.get( url ).then( function ( response ) {
+
+                var respuesta = response.data;
+                me.arrayArticulo = respuesta.articulos;
+
+                if ( me.arrayArticulo.length ) {
+                    
+                    me.articulo = me.arrayArticulo[ 0 ][ 'nombre' ];
+                    me.idarticulo = me.arrayArticulo[ 0 ][ 'id' ];
+
+                }
+                else {
+
+                    me.articulo = 'No existe artículo';
+                    me.idarticulo = 0;
+
+                }
+
+              } )
+              .catch( function ( error ) {
+
+                  console.log(error);
+                  
+              });
           },
 
           cambiarPagina( page, buscar, criterio ) {
