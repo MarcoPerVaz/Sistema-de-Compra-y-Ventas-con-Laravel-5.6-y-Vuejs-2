@@ -422,3 +422,5 @@ Commit - Agregar artículos a la lista de detalles
 Commit - Validaciones para ingresos
   Nota: valida que los campos no estén vacips y que no se puedan agregar 2 artículos iguales
   -Edición del componente components/Ingreso.vue
+Commit - Eliminar artículos de la lista de detalles
+  -Edición del componente components/Ingreso.vue

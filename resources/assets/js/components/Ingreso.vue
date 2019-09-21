@@ -206,9 +206,9 @@
                                             </tr>
                                         </thead>
                                         <tbody v-if="arrayDetalle.length">
-                                            <tr v-for="detalle in arrayDetalle" :key="detalle.id">
+                                            <tr v-for="( detalle, index ) in arrayDetalle" :key="detalle.id">
                                                 <td>
-                                                    <button type="button" class="btn btn-danger btn-sm">
+                                                    <button type="button" class="btn btn-danger btn-sm" @click="eliminarDetalle( index )">
                                                         <i class="icon-close"></i>
                                                     </button>
                                                 </td>
@@ -562,6 +562,16 @@
 
               }
 
+          },
+
+          /**
+           * Función para eliminar artículo de la lista de detalles
+           */
+          eliminarDetalle ( index ) {
+
+              let me = this;
+
+              me.arrayDetalle.splice( index, 1 );
           },
 
           registrarPersona () {
