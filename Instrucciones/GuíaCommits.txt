@@ -416,3 +416,6 @@ Commit - Buscar artículos por código de barras
     -Creación y edición de la función buscarArticulo()
   -Edición del archivo routes/web.php
     -Creación de la ruta /articulo/buscarArticulo en el grupo de rutas administrador y almacenero
+Commit - Agregar artículos a la lista de detalles
+  Nota: La lista de detalles es la lista de los artícuos agregados a la compra
+  -Edición del componente components/Ingreso.vue
