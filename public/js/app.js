@@ -45864,6 +45864,17 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -46178,48 +46189,58 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
             me.arrayDetalle.splice(index, 1);
         },
-        registrarPersona: function registrarPersona() {
+        registrarIngreso: function registrarIngreso() {
 
-            if (this.validarPersona()) {
+            if (this.validarIngreso()) {
                 return;
             }
 
             var me = this;
 
-            axios.post('/user/registrar', {
+            axios.post('/ingreso/registrar', {
 
-                'nombre': this.nombre,
-                'tipo_documento': this.tipo_documento,
-                'num_documento': this.num_documento,
-                'direccion': this.direccion,
-                'telefono': this.telefono,
-                'email': this.email,
-                'usuario': this.usuario,
-                'password': this.password,
-                'idrol': this.idrol
+                'idproveedor': this.idproveedor,
+                'tipo_comprobante': this.tipo_comprobante,
+                'serie_comprobante': this.serie_comprobante,
+                'num_comprobante': this.num_comprobante,
+                'impuesto': this.impuesto,
+                'total': this.total,
+                'data': this.arrayDetalle
 
             }).then(function (response) {
 
-                me.cerrarModal(); /* Esto es igual a poner this.cerrarModal(); */
-                me.listarPersona(1, '', 'nombre'); /* Esto es igual a poner this.listarCategoria( 1, '', 'nombre' ); */
+                me.listado = 1;
+                me.listarIngreso(1, '', 'num_comprobante'); /* Esto es igual a poner this.listarIngreso( 1, '', 'num_comprobante' ); */
+                me.idproveedor = 0;
+                me.tipo_comprobante = 'BOLETA';
+                me.serie_comprobante = '';
+                me.num_comprobante = '';
+                me.impuesto = 0.16;
+                me.total = 0.0;
+                me.idarticulo = 0.0;
+                me.articulo = '';
+                me.cantidad = 0;
+                me.precio = 0;
+                me.arrayDetalle = [];
             }).catch(function (error) {
 
                 console.log(error);
             });
         },
-        validarPersona: function validarPersona() {
+        validarIngreso: function validarIngreso() {
 
-            this.errorPersona = 0;
-            this.errorMostrarMsjPersona = [];
+            this.errorIngreso = 0;
+            this.errorMostrarMsjIngreso = [];
 
-            if (!this.nombre) this.errorMostrarMsjPersona.push("El nombre de la persona no puede estar vacío.");
-            if (!this.usuario) this.errorMostrarMsjPersona.push("El nombre de usuario no puede estar vacío.");
-            if (!this.password) this.errorMostrarMsjPersona.push("El password no puede estar vacío.");
-            if (this.idrol == 0) this.errorMostrarMsjPersona.push("Debe seleccionar un rol para el usuario");
+            if (this.idproveedor == 0) this.errorMostrarMsjIngreso.push("Seleccione un Proveedor");
+            if (this.tipo_comprobante == 0) this.errorMostrarMsjIngreso.push("Seleccione el comprobante");
+            if (!this.num_comprobante) this.errorMostrarMsjIngreso.push("Seleccione el número del comprobante");
+            if (!this.impuesto) this.errorMostrarMsjIngreso.push("Seleccione el impuesto de compra");
+            if (this.arrayDetalle.length <= 0) this.errorMostrarMsjIngreso.push("Ingrese detalles");
 
-            if (this.errorMostrarMsjPersona.length) this.errorPersona = 1;
+            if (this.errorMostrarMsjIngreso.length) this.errorIngreso = 1;
 
-            return this.errorPersona;
+            return this.errorIngreso;
         },
         abrirModal: function abrirModal() {
 
@@ -46308,7 +46329,21 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         },
         mostrarDetalle: function mostrarDetalle() {
 
+            var me = this;
+
             this.listado = 0;
+
+            me.idproveedor = 0;
+            me.tipo_comprobante = 'BOLETA';
+            me.serie_comprobante = '';
+            me.num_comprobante = '';
+            me.impuesto = 0.16;
+            me.total = 0.0;
+            me.idarticulo = 0.0;
+            me.articulo = '';
+            me.cantidad = 0;
+            me.precio = 0;
+            me.arrayDetalle = [];
         },
         ocultarDetalle: function ocultarDetalle() {
 
@@ -46875,6 +46910,36 @@ var render = function() {
                           }
                         })
                       ])
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "col-md-12" }, [
+                      _c(
+                        "div",
+                        {
+                          directives: [
+                            {
+                              name: "show",
+                              rawName: "v-show",
+                              value: _vm.errorIngreso,
+                              expression: "errorIngreso"
+                            }
+                          ],
+                          staticClass: "form-group row div-error"
+                        },
+                        [
+                          _c(
+                            "div",
+                            { staticClass: "text-center text-error" },
+                            _vm._l(_vm.errorMostrarMsjIngreso, function(error) {
+                              return _c("div", {
+                                key: error,
+                                domProps: { textContent: _vm._s(error) }
+                              })
+                            }),
+                            0
+                          )
+                        ]
+                      )
                     ])
                   ]),
                   _vm._v(" "),

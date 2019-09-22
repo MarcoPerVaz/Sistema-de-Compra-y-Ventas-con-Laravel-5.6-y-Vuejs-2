@@ -85,7 +85,7 @@ class IngresoController extends Controller
 
                 $ingreso = new Ingreso();
 
-                $ingreso->idproveedor = $request->idpriveedor;
+                $ingreso->idproveedor = $request->idproveedor;
                 $ingreso->idusuario = \Auth::user()->id;
                 $ingreso->tipo_comprobante = $request->tipo_comprobante;
                 $ingreso->serie_comprobante = $request->serie_comprobante;
@@ -93,7 +93,7 @@ class IngresoController extends Controller
                 $ingreso->fecha_hora = $mytime->toDateString(); /* Convierte la variable mytime en formato de fecha y hora aceptable */
                 $ingreso->impuesto = $request->impuesto;
                 $ingreso->total = $request->total;
-                $ingreso->impuesto = 'Registrado';
+                $ingreso->estado = 'Registrado';
 
                 $ingreso->save();
 
@@ -108,7 +108,7 @@ class IngresoController extends Controller
                     
                     $detalle = new DetalleIngreso();
 
-                    $detalle->idingreso = $ingreo->id;
+                    $detalle->idingreso = $ingreso->id;
                     $detalle->idarticulo = $det['idarticulo'];
                     $detalle->cantidad = $det['cantidad'];
                     $detalle->precio = $det['precio'];

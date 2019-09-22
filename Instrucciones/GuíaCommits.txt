@@ -434,3 +434,14 @@ Commit - Seleccionar artículos desde modal
     -Creación y edición de la función listarArticulo
   -Edición del archivo routes/web.php
     -Creación de la ruta /articulo/listarArticulo dentro del grupo de rutas almacenero y administrador
+Commit - Registro y validación para ingresos
+  -Edición del componente components/Ingreso.vue
+  -Edición del controlador IngresoController
+    -Edición de la función store
+      Error: 
+        -Esto: $ingreso->impuesto = 'Registrado';
+        -Por esto: $ingreso->estado = 'Registrado';
+        -Esto: $detalle->idingreso = $ingreo->id;
+        -Por esto: $detalle->idingreso = $ingreso->id;
+        -Esto: $ingreso->idproveedor = $request->idpriveedor;
+        -Por esto: $ingreso->idproveedor = $request->idproveedor;
