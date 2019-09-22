@@ -168,7 +168,7 @@
                                                    placeholder="Ingrese artículo" 
                                                    v-model="codigo"
                                                    @keyup.enter="buscarArticulo()">
-                                            <button class="btn btn-primary">...</button>
+                                            <button class="btn btn-primary" @click="abrirModal()">...</button>
                                             <input type="text" readonly class="form-control" v-model="articulo">
                                         </div>
                                     </div>
@@ -281,7 +281,79 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        
+                        <div class="form-group row">
+                            <div class="col-md-6">
+                                <div class="input-group">
+                                    <select class="form-control col-md-3" v-model="criterioA">
+                                        <option value="nombre">Nombre</option>
+                                        <option value="descripcion">Descripción</option>
+                                        <option value="codigo">Código</option>
+                                    </select>
+                                    <input type="text" class="form-control" placeholder="Texto a buscar" 
+                                        v-model="buscarA" @keyup.enter="listarArticulo( buscarA, criterioA )">
+                                    <button type="submit" class="btn btn-primary" @click="listarArticulo( buscarA, criterioA )">
+                                        <i class="fa fa-search"></i> 
+                                        Buscar
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-striped table-sm">
+                                <thead>
+                                    <tr>
+                                        <th>Opciones</th>
+                                        <th>Código de barras</th>
+                                        <th>Nombre</th>
+                                        <th>Categoría</th>
+                                        <th>Precio Venta</th>
+                                        <th>Stock</th>
+                                        <th>Estado</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+                                    <!-- Renderizando el array arrayArticulo -->
+                                    <tr v-for="articulo in arrayArticulo" :key="articulo.id">
+
+                                        <td>
+                                            <button type="button" 
+                                                    class="btn btn-success btn-sm" 
+                                                    @click="agregarDetalleModal( articulo )">
+                                            <i class="icon-check"></i>
+                                            </button>
+                                        </td>
+
+                                        <!-- Mostrando información de la BD -->
+                                            <td v-text="articulo.codigo"></td>
+                                            <td v-text="articulo.nombre"></td>
+                                            <td v-text="articulo.nombre_categoria"></td>
+                                            <td v-text="articulo.precio_venta"></td>
+                                            <td v-text="articulo.stock"></td>
+                                            <td>
+                                            <!-- Condicional para mostrar si la categoría está activa o inactiva -->
+                                                <div v-if="articulo.condicion == 1">
+
+                                                <span class="badge badge-success">Activo</span>
+
+                                                </div>
+
+                                                <div v-else>
+
+                                                <span class="badge badge-danger">Desactivado</span>
+
+                                                </div>
+
+                                            <!-- Fin Condicional para mostrar si la categoría está activa o inactiva -->
+                                            </td>
+                                        <!-- Fin Mostrando información de la BD -->
+
+                                    </tr>
+                                    <!-- Fin Renderizando el array arrayCategoria -->
+                                    
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" @click="cerrarModal()">Cerrar</button>
@@ -338,6 +410,8 @@
             offset: 3,
             criterio: 'num_comprobante',
             buscar: '',
+            criterioA: 'nombre',
+            buscarA: '',
             arrayArticulo: [],
             idarticulo: 0,
             codigo: '',
@@ -583,6 +657,59 @@
           },
 
           /**
+           * Funci+on para agregar un artículo al detalle desde el modal
+           */
+          agregarDetalleModal ( data = [ ] ) {
+
+            let me = this;
+
+            if ( me.encuentra( data[ 'id' ] ) ) {
+                    swal( {
+                        type: 'error',
+                        title: 'Error...',
+                        text: 'Ese artículo ya se encuentra agregado',
+                    })    
+                  }
+            else {
+
+                me.arrayDetalle.push( {
+
+                    idarticulo: data[ 'id' ],
+                    articulo: data[ 'nombre' ],
+                    cantidad: 1,
+                    precio: 1,
+
+                } );
+
+            }
+
+          },
+
+          /**
+           * Función para listar los artículos en el modal
+           */
+          listarArticulo( buscar, criterio ) {
+
+            let me = this; 
+
+            var url = '/articulo/listarArticulo?buscar=' + buscar + '&criterio=' + criterio;
+
+            axios.get( url ).then(function (response){
+
+                var respuesta = response.data;
+                
+                me.arrayArticulo = respuesta.articulos.data; /* Esto es igual a poner this.arrayCategoria = respuesta.categorias.data */
+
+            })
+            .catch(function(error) {
+
+              console.log(error);
+
+            });
+
+          },
+
+          /**
            * Función para eliminar artículo de la lista de detalles
            */
           eliminarDetalle ( index ) {
@@ -625,41 +752,6 @@
 
           },
 
-          actualizarPersona () {
-
-              if ( this.validarPersona() ) {
-                  return;
-              }
-
-              let me = this;
-
-              axios.put('/user/actualizar', {
-
-                  'nombre': this.nombre,
-                  'tipo_documento': this.tipo_documento,
-                  'num_documento': this.num_documento,
-                  'direccion': this.direccion,
-                  'telefono': this.telefono,
-                  'email': this.email,
-                  'usuario': this.usuario,
-                  'password': this.password,
-                  'idrol': this.idrol,
-                  'id': this.persona_id,
-
-              }).then(function(response) {
-
-                  me.cerrarModal(); /* Esto es igual a poner this.cerrarModal(); */
-                  me.listarPersona( 1, '', 'nombre' ); /* Esto es igual a poner this.listarCategoria( 1, '', 'nombre' ); */
-
-              }).catch(function (error) {
-
-                  console.log(error);
-                  
-              });
-              
-
-          },
-
           validarPersona () {
 
               this.errorPersona = 0;
@@ -676,53 +768,11 @@
 
           },
 
-          abrirModal ( modelo, accion, data = [] )  {
+          abrirModal ()  {
 
-              this.selectRol();
-
-              switch (modelo) {
-                  case "persona":
-                  {
-                      switch (accion) {
-                          case "registrar":
-                            {
-                                this.modal = 1;
-                                this.nombre = '';
-                                this.tipo_documento = 'DNI';
-                                this.num_documento = '';
-                                this.direccion = '';
-                                this.telefono = '';
-                                this.email = '';
-                                this.usuario = '';
-                                this.password = '';
-                                this.idrol = 0;
-                                this.tituloModal = 'Registrar usuario'
-                                this.tipoAccion = 1; 
-                                break;
-                            }
-                          case "actualizar":
-                            {
-                                // console.log(data);
-                                this.modal = 1; /* Para abrir el modal */
-                                this.tituloModal = "Actualizar usuario"
-                                this.tipoAccion = 2; /* Para que el modal sepa que es actualizar */
-                                this.persona_id = data['id']; /* data[] son los datos que vienen de la vista pasados por parámetro */
-                                this.nombre = data['nombre']; /* data[] son los datos que vienen de la vista pasados por parámetro */
-                                this.tipo_documento = data['tipo_documento']; /*data[] son los datos que vienen de la vista pasados por parámetro*/
-                                this.num_documento = data['num_documento']; /*data[] son los datos que vienen de la vista pasados por parámetro*/
-                                this.direccion = data['direccion']; /* data[] son los datos que vienen de la vista pasados por parámetro */
-                                this.telefono = data['telefono']; /* data[] son los datos que vienen de la vista pasados por parámetro */
-                                this.email = data['email']; /* data[] son los datos que vienen de la vista pasados por parámetro */
-                                this.usuario = data['usuario']; /* data[] son los datos que vienen de la vista pasados por parámetro */
-                                this.password = data['password']; /* data[] son los datos que vienen de la vista pasados por parámetro */
-                                this.idrol = data['idrol']; /* data[] son los datos que vienen de la vista pasados por parámetro */
-                                break;
-                                
-                            }  
-                      }
-                  }    
-                    
-              }
+            this.arrayArticulo = [];
+            this.modal = 1;
+            this.tituloModal = 'Seleccione uno o varios artículos'  
 
           },
 
@@ -730,16 +780,6 @@
 
             this.modal = 0;
             this.tituloModal = '';
-            this.nombre = '';
-            this.tipo_documento = 'DNI';
-            this.num_documento = '',
-            this.direccion = '',
-            this.telefono = '',
-            this.email = '',
-            this.usuario = '',
-            this.password = '',
-            this.idrol = 0,
-            this.errorPersona = 0;
 
           },
 

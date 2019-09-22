@@ -64,6 +64,48 @@ class ArticuloController extends Controller
     }
 
     /**
+     * Función para ver los artículos en el modal
+     */
+    public function listarArticulo(Request $request)
+    {
+
+        if ( !$request->ajax() )  return redirect('/'); /* Condicional para solo aceptar peticiones ajax */
+
+        $buscar     = $request->buscar;
+        $criterio   = $request->criterio;
+
+        if ( $buscar == '' ) {
+
+            // Consulta para obtener campos de las tablas categorias y articulos usando query builder
+            $articulos = Articulo::join('categorias', 'articulos.idcategoria', '=', 'categorias.id')
+                ->select('articulos.id', 'articulos.idcategoria', 'articulos.codigo', 'articulos.nombre',
+                    'categorias.nombre as nombre_categoria', 'articulos.precio_venta', 'articulos.stock', 'articulos.descripcion',
+                    'articulos.condicion')
+                ->orderBy( 'articulos.id', 'DESC' )->paginate( 10 ); /* Eloquent para paginar de 10 en 10 */
+        
+        }
+        else {
+
+            // Consulta para obtener campos de las tablas categorias y articulos usando query builder
+            $articulos = Articulo::join('categorias', 'articulos.idcategoria', '=', 'categorias.id')
+                ->select('articulos.id', 'articulos.idcategoria', 'articulos.codigo', 'articulos.nombre',
+                    'categorias.nombre as nombre_categoria', 'articulos.precio_venta', 'articulos.stock', 'articulos.descripcion',
+                    'articulos.condicion')
+                ->where( 'articulos.' . $criterio, 'LIKE', '%' . $buscar . '%' ) /* Filtrar las artículos */
+                ->orderBy( 'articulos.id', 'DESC' )->paginate( 10 ); /* Eloquent para paginar de 10 en 10 */
+
+        }
+
+
+        return [
+
+            'articulos' => $articulos
+
+        ];
+
+    }
+
+    /**
      * Función para buscar un artículo por código de barras
      */
     public function buscarArticulo( Request $request )

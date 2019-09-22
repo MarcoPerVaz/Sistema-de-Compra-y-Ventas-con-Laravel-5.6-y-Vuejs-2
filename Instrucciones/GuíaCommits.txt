@@ -428,3 +428,9 @@ Commit - Calcular totales
   Nota: Total parcial, total impuesto y total neto
   -Edición del componente components/Ingreso.vue
     Nota: Se cambió la operación para obtener el totalImpuesto ya que en el curso daba diferente
+Commit - Seleccionar artículos desde modal
+  -Edición del componente components/Ingreso.vue
+  -Edición del controlador ArticuloController
+    -Creación y edición de la función listarArticulo
+  -Edición del archivo routes/web.php
+    -Creación de la ruta /articulo/listarArticulo dentro del grupo de rutas almacenero y administrador
