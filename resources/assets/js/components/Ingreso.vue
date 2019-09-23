@@ -804,10 +804,10 @@
 
           },
 
-          desactivarUsuario ( id ) { /* Borrado lógico de usuarios */
+          desactivarIngreso ( id ) { /* Borrado lógico de ingresos */
             
             swal({
-                title: '¿Estás seguro de desactivar este usuario?',
+                title: '¿Estás seguro de anular este ingreso?',
                 type: 'warning',
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',
@@ -820,60 +820,17 @@
 
                         let me = this;
 
-                        axios.put('/user/desactivar', {
+                        axios.put('/ingreso/desactivar', {
 
                             'id': id,
 
                         }).then(function(response) {
 
-                            me.listarPersona( 1, '', 'nombre' ); /* Esto es igual a poner this.listarPersona( 1, '', 'nombre' ); */
+                            me.listarIngreso( 1, '', 'num_comprobante' ); /*Esto es igual a poner this.listarIngreso( 1,'','num_comprobante'); */
 
                             swal(
-                                'Desactivado!',
-                                'El usuario ha sido desactivado con éxito.',
-                                'success'
-                            )
-
-                        }).catch(function (error) {
-
-                            console.log(error);
-                            
-                        });
-                        
-                    } else if (result.dismiss === swal.DismissReason.cancel) {
-                        /* No se muestra nada si se da en cancelar */
-                    }
-                })
-
-          },
-
-          activarUsuario (id) { /* Borrado lógico de usuarios */
-            
-            swal({
-                title: '¿Estás seguro de activar este usuario?',
-                type: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                confirmButtonText: 'Aceptar',
-                cancelButtonText: 'Cancelar'
-                }).then((result) => {
-
-                    if (result.value) {
-
-                        let me = this;
-
-                        axios.put('/user/activar', {
-
-                            'id': id,
-
-                        }).then(function(response) {
-
-                            me.listarPersona( 1, '', 'nombre' ); /* Esto es igual a poner this.listarPersona( 1, '', 'nombre' ); */
-
-                            swal(
-                                'Activado!',
-                                'El usuario ha sido activado con éxito.',
+                                'Anulado!',
+                                'El ingreso ha sido anulado con éxito.',
                                 'success'
                             )
 
