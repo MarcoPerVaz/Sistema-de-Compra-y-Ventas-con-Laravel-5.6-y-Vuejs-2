@@ -459,3 +459,10 @@ Commit - Anular ingreso usando trigger
     -El trigger se encuentra en el archivo Instrucciones/triggerAnularIngresos.txt
     -Seleccionar la base de datos en MariaDB, se entra en la opción SQL y se pega el trigger, luego en continuar
       Nota:Para ver el trigger desde MariaDB se selecciona la Base de Datos y luego en disparadores (En el menú)
+Commit - Mostrar ingreso y sus detalles
+  -Edición del controlador IngresoController
+    -Creación y edición de las funciones obteternCabecera() y obtenerDetalles()
+  -Edición del archivo routes/web.php
+    -Creación de las rutas /ingreso/obtenerCabecera y /ingreso/obtenerDetalles dentro del grupo de rutas almacenero y administrador
+  -Edición del componente components/Ingreso.vue
+  
