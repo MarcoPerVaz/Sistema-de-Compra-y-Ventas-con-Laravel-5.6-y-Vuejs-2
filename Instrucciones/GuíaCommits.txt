@@ -445,3 +445,9 @@ Commit - Registro y validación para ingresos
         -Por esto: $detalle->idingreso = $ingreso->id;
         -Esto: $ingreso->idproveedor = $request->idpriveedor;
         -Por esto: $ingreso->idproveedor = $request->idproveedor;
+Commit - Crear trigger para ingresos
+  Nota: Trigger para actualizar el stock al registrar una compra (Ingresos)
+  -Creación y edición del archivo Instrucciones/triggerIngresos.txt
+    -El trigger se encuentra en el archivo Instrucciones/triggerIngresos.txt
+    -Seleccionar la base de datos en MariaDB, se entra en la opción SQL y se pega el trigger, luego en continuar
+      Nota:Para ver el trigger desde MariaDB se selecciona la Base de Datos y luego en disparadores (En el menú)
