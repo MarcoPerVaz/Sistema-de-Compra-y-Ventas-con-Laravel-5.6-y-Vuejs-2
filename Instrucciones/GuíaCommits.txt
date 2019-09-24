@@ -473,3 +473,8 @@ Commit - Migraciones para ventas
     -php artisan make:migration create_detalle_ventas_table
   -Crear las migraciones
     -php artisan migrate
+Commit - Modelos para ventas
+  -Creación y edición del modelo Venta
+    -php artisan make:model Venta
+  -Creación y edición del modelo DetalleVenta
+    -php artisan make:model DetalleVenta
