@@ -488,3 +488,10 @@ Commit - Controlador y rutas para ventas
       -use App\Detalle/Ingreso;
   -Edición del archivo routes/web.php
     -Creación de las rutas para ventas dentro de vendedor y administrador
+Commit - Listado, paginación y búsqueda de ventas
+  -Creación y edición del componente components/Venta.vue
+  -Edición del archivo resources/assets/js/app.js
+    -Registro del componente components/Venta.vue
+  -Edición de la vista contenido/contenido.blade.php
+  -Compilar
+    -npm run dev

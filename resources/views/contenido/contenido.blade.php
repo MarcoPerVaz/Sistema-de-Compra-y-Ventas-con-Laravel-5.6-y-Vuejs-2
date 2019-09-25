@@ -35,7 +35,10 @@
 
             </template>
             <template v-if = "menu == 5">
-                <h1>Ventas</h1>
+
+                {{-- Componente Venta.vue --}}
+                <venta></venta>
+                
             </template>
             <template v-if = "menu == 6">
 
@@ -71,7 +74,10 @@
         @elseif ( Auth::user()-> idrol == 2 ) {{-- Rol Vendedor --}}
 
             <template v-if = "menu == 5">
-                <h1>Ventas</h1>
+                
+                {{-- Componente Venta.vue --}}
+                <venta></venta>
+                
             </template>
             <template v-if = "menu == 6">
 
