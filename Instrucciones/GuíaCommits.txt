@@ -478,3 +478,13 @@ Commit - Modelos para ventas
     -php artisan make:model Venta
   -Creación y edición del modelo DetalleVenta
     -php artisan make:model DetalleVenta
+Commit - Controlador y rutas para ventas
+  -Creación y edición del controlador VentaController
+    -php artisan make:controller VentaController
+    Nota: Importar el modelo Ingreso
+      -use App\Ingreso;
+      -use Illuminate\Support\Facades\DB;
+      -use Carbon\Carbon;
+      -use App\Detalle/Ingreso;
+  -Edición del archivo routes/web.php
+    -Creación de las rutas para ventas dentro de vendedor y administrador
