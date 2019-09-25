@@ -495,3 +495,5 @@ Commit - Listado, paginación y búsqueda de ventas
   -Edición de la vista contenido/contenido.blade.php
   -Compilar
     -npm run dev
+Commit - Crear vista para ventas
+  -Edición del componente components/Venta.vue

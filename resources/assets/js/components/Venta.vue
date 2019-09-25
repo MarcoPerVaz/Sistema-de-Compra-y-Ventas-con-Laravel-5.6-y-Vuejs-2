@@ -120,14 +120,14 @@
                             <div class="form-group row border">
                                 <div class="col-md-9">
                                     <div class="form-group">
-                                        <label for="">Proveedor(*)</label>
+                                        <label for="">Cliente(*)</label>
 
                                         <!-- Componente vue-select -->
-                                            <v-select :on-search="selectProveedor" 
+                                            <v-select :on-search="selectCliente" 
                                                     label="nombre" 
-                                                    :options="arrayProveedor"
-                                                    placeholder="Buscar Proveedores..."
-                                                    :onChange="getDatosProveedor"></v-select>
+                                                    :options="arrayCliente"
+                                                    placeholder="Buscar Clientes..."
+                                                    :onChange="getDatosCliente"></v-select>
 
                                     </div>
                                 </div>
@@ -159,10 +159,10 @@
                                     </div>
                                 </div>
                                 <div class="col-md-12">
-                                    <!-- Mostrar errores en el modal --> <!-- Visualizar los errores si errorIngreso tiene el valor 1 -->
-                                        <div class="form-group row div-error" v-show="errorIngreso">
+                                    <!-- Mostrar errores en el modal --> <!-- Visualizar los errores si errorVenta tiene el valor 1 -->
+                                        <div class="form-group row div-error" v-show="errorVenta">
                                             <div class="text-center text-error">
-                                                <div v-for="error in errorMostrarMsjIngreso" :key="error" v-text="error">
+                                                <div v-for="error in errorMostrarMsjVenta" :key="error" v-text="error">
 
                                                 </div>
                                             </div>
@@ -171,7 +171,7 @@
                                 </div>
                             </div>
                             <div class="form-group row border">
-                                <div class="col-md-6">
+                                <div class="col-md-4">
                                     <div class="form-group">
                                         <label>Artículo <span style="color:red;" v-show="idarticulo == 0">(*Seleccione)</span></label>
                                         <div class="form-inline">
@@ -199,6 +199,12 @@
                                 </div>
                                 <div class="col-md-2">
                                     <div class="form-group">
+                                        <label>Descuento</label>
+                                        <input type="number" class="form-control" value="0" v-model="descuento">
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="form-group">
                                         <button class="btn btn-success form-control btnagregar" @click="agregarDetalle()">
                                             <i class="icon-plus"></i>
                                         </button>
@@ -214,6 +220,7 @@
                                                 <th>Artículo</th>
                                                 <th>Precio</th>
                                                 <th>Cantidad</th>
+                                                <th>Descuento</th>
                                                 <th>Subtotal</th>
                                             </tr>
                                         </thead>
@@ -232,12 +239,17 @@
 
                                                 <!-- Precio artículo -->
                                                 <td>
-                                                    <input type="number" class="form-control" value="3" v-model="detalle.precio">
+                                                    <input type="number" class="form-control" v-model="detalle.precio">
                                                 </td>
 
                                                 <!-- cantidad de artículos -->
                                                 <td>
-                                                    <input type="number" class="form-control" value="2" v-model="detalle.cantidad">
+                                                    <input type="number" class="form-control" v-model="detalle.cantidad">
+                                                </td>
+
+                                                <!-- descuento de artículos -->
+                                                <td>
+                                                    <input type="number" class="form-control" v-model="detalle.descuento">
                                                 </td>
 
                                                 <!-- Precio total del artículo -->
@@ -246,22 +258,22 @@
                                                 </td>
                                             </tr>
                                             <tr style="background-color: #CEECF5;">
-                                                <td colspan="4" align="right"><strong>Total Parcial:</strong> </td>
+                                                <td colspan="5" align="right"><strong>Total Parcial:</strong> </td>
                                                 <td>$ {{ totalParcial = (  total - totalImpuesto ).toFixed( 2 ) }}</td>
                                             </tr>
                                             <tr style="background-color: #CEECF5;">
-                                                <td colspan="4" align="right"><strong>Total Impuesto:</strong> </td>
+                                                <td colspan="5" align="right"><strong>Total Impuesto:</strong> </td>
                                                 <td>$ {{ totalImpuesto =  ( total * impuesto ).toFixed( 2 ) }}</td>
                                             </tr>
                                             <tr style="background-color: #CEECF5;">
-                                                <td colspan="4" align="right"><strong>Total Neto:</strong> </td>
+                                                <td colspan="5" align="right"><strong>Total Neto:</strong> </td>
                                                 <td>$ {{ total = calcularTotal }}</td> <!-- Dónde calcularTotal es la propiedad computada -->
                                             </tr>
                                         </tbody>
 
                                         <tbody v-else>
                                             <tr>
-                                                <td colspan="5">
+                                                <td colspan="6">
                                                     NO hay artículos agregados
                                                 </td>
                                             </tr>
@@ -272,7 +284,7 @@
                             <div class="form-group row">
                                 <div class="col-md-12">
                                     <button type="button" class="btn btn-secondary" @click="ocultarDetalle()">Cerrar</button>
-                                    <button type="button" class="btn btn-primary" @click="registrarIngreso()">Registrar Compra</button>
+                                    <button type="button" class="btn btn-primary" @click="registrarVenta()">Registrar Venta</button>
                                 </div>
                             </div>
                         </div>
@@ -530,6 +542,7 @@
             articulo: '',
             precio: 0,
             cantidad: 0,
+            descuento: 0,
 
           }
 
