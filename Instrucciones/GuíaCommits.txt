@@ -522,3 +522,11 @@ Commit - Seleccionar artículos
 Commit - Agregar y validar artículos a la lista de detalles
   Nota: La lista de detalles es la lista de los artículos agregados a la compra
   -Edición del componente components/Venta.vue
+Commit - Registrar, validar y trigger para ventas
+  Nota: Se registran ventas, se validan los campos y se usa un trigger para actualizar el stock al registrar una venta
+  -Edición del componente components/Venta.vue
+  Nota: Trigger para actualizar el stock al registrar una venta (Ventas)
+  -Creación y edición del archivo Instrucciones/triggerVentas.txt
+    -El trigger se encuentra en el archivo Instrucciones/triggerVentas.txt
+    -Seleccionar la base de datos en MariaDB, se entra en la opción SQL y se pega el trigger, luego en continuar
+      Nota:Para ver el trigger desde MariaDB se selecciona la Base de Datos y luego en disparadores (En el menú)

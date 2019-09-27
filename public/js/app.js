@@ -49095,17 +49095,17 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
             me.arrayDetalle.splice(index, 1);
         },
-        registrarIngreso: function registrarIngreso() {
+        registrarVenta: function registrarVenta() {
 
-            if (this.validarIngreso()) {
+            if (this.validarVenta()) {
                 return;
             }
 
             var me = this;
 
-            axios.post('/ingreso/registrar', {
+            axios.post('/venta/registrar', {
 
-                'idproveedor': this.idproveedor,
+                'idcliente': this.idcliente,
                 'tipo_comprobante': this.tipo_comprobante,
                 'serie_comprobante': this.serie_comprobante,
                 'num_comprobante': this.num_comprobante,
@@ -49116,8 +49116,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             }).then(function (response) {
 
                 me.listado = 1;
-                me.listarIngreso(1, '', 'num_comprobante'); /* Esto es igual a poner this.listarIngreso( 1, '', 'num_comprobante' ); */
-                me.idproveedor = 0;
+                me.listarVenta(1, '', 'num_comprobante'); /* Esto es igual a poner this.listarVenta( 1, '', 'num_comprobante' ); */
+                me.idcliente = 0;
                 me.tipo_comprobante = 'BOLETA';
                 me.serie_comprobante = '';
                 me.num_comprobante = '';
@@ -49128,25 +49128,42 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 me.cantidad = 0;
                 me.precio = 0;
                 me.arrayDetalle = [];
+                me.stock = 0;
+                me.codigo = 0;
+                me.descuento = 0;
             }).catch(function (error) {
 
                 console.log(error);
             });
         },
-        validarIngreso: function validarIngreso() {
+        validarVenta: function validarVenta() {
 
-            this.errorIngreso = 0;
-            this.errorMostrarMsjIngreso = [];
+            var me = this;
 
-            if (this.idproveedor == 0) this.errorMostrarMsjIngreso.push("Seleccione un Proveedor");
-            if (this.tipo_comprobante == 0) this.errorMostrarMsjIngreso.push("Seleccione el comprobante");
-            if (!this.num_comprobante) this.errorMostrarMsjIngreso.push("Seleccione el número del comprobante");
-            if (!this.impuesto) this.errorMostrarMsjIngreso.push("Seleccione el impuesto de compra");
-            if (this.arrayDetalle.length <= 0) this.errorMostrarMsjIngreso.push("Ingrese detalles");
+            me.errorVenta = 0;
+            me.errorMostrarMsjVenta = [];
 
-            if (this.errorMostrarMsjIngreso.length) this.errorIngreso = 1;
+            var art;
 
-            return this.errorIngreso;
+            /* Código para validar y mostrar que artículo supera el stock al momento de registrar */
+            me.arrayDetalle.map(function (x) {
+
+                if (x.cantidad > x.stock) {
+
+                    art = x.articulo + " con stock insuficiente";
+                    me.errorMostrarMsjVenta.push(art);
+                }
+            });
+
+            if (me.idcliente == 0) me.errorMostrarMsjVenta.push("Seleccione un Cliente");
+            if (me.tipo_comprobante == 0) me.errorMostrarMsjVenta.push("Seleccione el comprobante");
+            if (!me.num_comprobante) me.errorMostrarMsjVenta.push("Seleccione el número del comprobante");
+            if (!me.impuesto) me.errorMostrarMsjVenta.push("Seleccione el impuesto de compra");
+            if (me.arrayDetalle.length <= 0) me.errorMostrarMsjVenta.push("Ingrese detalles");
+
+            if (me.errorMostrarMsjVenta.length) me.errorVenta = 1;
+
+            return me.errorVenta;
         },
         abrirModal: function abrirModal() {
 
