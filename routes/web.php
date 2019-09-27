@@ -71,6 +71,7 @@ Route::group( [ 'middleware' => [ 'auth' ] ], function () {
         Route::get('/cliente', 'ClienteController@index');
         Route::post('/cliente/registrar', 'ClienteController@store');
         Route::put('/cliente/actualizar', 'ClienteController@update');
+        Route::get('/cliente/selectCliente', 'ClienteController@selectCliente');
 
         // Ruta /venta
         Route::get('/venta', 'VentaController@index');
@@ -111,6 +112,7 @@ Route::group( [ 'middleware' => [ 'auth' ] ], function () {
         Route::get('/cliente', 'ClienteController@index');
         Route::post('/cliente/registrar', 'ClienteController@store');
         Route::put('/cliente/actualizar', 'ClienteController@update');
+        Route::get('/cliente/selectCliente', 'ClienteController@selectCliente');
 
         // Ruta /rol
         Route::get('/rol', 'RolController@index');

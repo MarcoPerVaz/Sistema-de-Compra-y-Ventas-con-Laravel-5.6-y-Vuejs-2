@@ -645,12 +645,12 @@
 
           },
 
-          selectProveedor( search, loading ) {
+          selectCliente( search, loading ) {
 
               let me = this; 
               loading( true )
 
-            var url = '/proveedor/selectProveedor?filtro=' + search ;
+            var url = '/cliente/selectCliente?filtro=' + search ;
 
             axios.get( url ).then(function (response){
 
@@ -658,7 +658,7 @@
 
                 q:search
                 
-                me.arrayProveedor = respuesta.proveedores /* Esto es igual a poner this.arrayProveedor = respuesta.proveedores */
+                me.arrayCliente = respuesta.clientes /* Esto es igual a poner this.arrayCliente = respuesta.clientes */
 
                 loading( false )
 
@@ -671,11 +671,11 @@
 
           },
 
-          getDatosProveedor( val1 ){
+          getDatosCliente( val1 ){
 
               let me= this;
               me.loading = true;
-              me.idproveedor = val1.id;
+              me.idcliente = val1.id;
 
           },
 

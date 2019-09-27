@@ -497,3 +497,17 @@ Commit - Listado, paginación y búsqueda de ventas
     -npm run dev
 Commit - Crear vista para ventas
   -Edición del componente components/Venta.vue
+Commit - Seleccionar cliente
+  -Nota: Para seleccionar proveedor se usa la librería vue-select en su versión 2.4.0
+  -Edición del controlador ClienteController
+    -Creación y edición de la función selectCliente()
+  -Edición del archivo routes/web.php
+    -Creación de la ruta /cliente/selectCliente dentro del grupo de rutas vendedor y admin
+  -Implementación de la librería vue-select (en caso de no tener vue-select)
+    -Para instalar vue-select desde el sitio web
+      -https://github.com/sagalbot/vue-select
+      -Instalar la librería usando el comando
+        -npm install vue-select@2.4.0
+  -Edición del componente components/Venta.vue
+    Nota: Importar la librería vue-select
+      -import vSelect from 'vue-select';
