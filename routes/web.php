@@ -80,6 +80,10 @@ Route::group( [ 'middleware' => [ 'auth' ] ], function () {
         Route::get('/venta/obtenerCabecera', 'VentaController@obtenerCabecera');
         Route::get('/venta/obtenerDetalles', 'VentaController@obtenerDetalles');
 
+        // Ruta /articulo
+        Route::get('/articulo/buscarArticuloVenta', 'ArticuloController@buscarArticuloVenta');
+        Route::get('/articulo/listarArticuloVenta', 'ArticuloController@listarArticuloVenta');
+
     } );
 
     // Grupo Administrador (Usuarios registrados con el rol Administrador)
@@ -101,6 +105,8 @@ Route::group( [ 'middleware' => [ 'auth' ] ], function () {
         Route::put('/articulo/activar', 'ArticuloController@activar');
         Route::get('/articulo/buscarArticulo', 'ArticuloController@buscarArticulo');
         Route::get('/articulo/listarArticulo', 'ArticuloController@listarArticulo');
+        Route::get('/articulo/buscarArticuloVenta', 'ArticuloController@buscarArticuloVenta');
+        Route::get('/articulo/listarArticuloVenta', 'ArticuloController@listarArticuloVenta');
 
         // Ruta /proveedor
         Route::get('/proveedor', 'ProveedorController@index');

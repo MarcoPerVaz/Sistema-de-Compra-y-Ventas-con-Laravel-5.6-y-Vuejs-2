@@ -511,3 +511,11 @@ Commit - Seleccionar cliente
   -Edición del componente components/Venta.vue
     Nota: Importar la librería vue-select
       -import vSelect from 'vue-select';
+Commit - Seleccionar artículos
+  Nota: Desde listado con código de barras o seleccionando desde modal
+  -Edición del controlador ArticuloController
+    -Creación y edición de la función buscarArticuloVenta
+    -Creación y edición de la función listarArticuloVenta
+  -Edición del archivo routes/web.php
+    -Creación de la ruta /articulo/buscarArticuloVenta en el grupo de rutas administrador y vendedor
+    -Creación de la ruta /articulo/listarArticuloVenta en el grupo de rutas administrador y vendedor

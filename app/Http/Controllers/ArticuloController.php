@@ -104,6 +104,49 @@ class ArticuloController extends Controller
         ];
 
     }
+    /**
+     * Función para ver los artículos en el modal
+     */
+    public function listarArticuloVenta(Request $request)
+    {
+
+        if ( !$request->ajax() )  return redirect('/'); /* Condicional para solo aceptar peticiones ajax */
+
+        $buscar     = $request->buscar;
+        $criterio   = $request->criterio;
+
+        if ( $buscar == '' ) {
+
+            // Consulta para obtener campos de las tablas categorias y articulos usando query builder
+            $articulos = Articulo::join('categorias', 'articulos.idcategoria', '=', 'categorias.id')
+                ->select('articulos.id', 'articulos.idcategoria', 'articulos.codigo', 'articulos.nombre',
+                    'categorias.nombre as nombre_categoria', 'articulos.precio_venta', 'articulos.stock', 'articulos.descripcion',
+                    'articulos.condicion')
+                ->where( 'articulos.stock', '>', '0' ) /* Filtrar que stock sea mayor a cero */
+                ->orderBy( 'articulos.id', 'DESC' )->paginate( 10 ); /* Eloquent para paginar de 10 en 10 */
+        
+        }
+        else {
+
+            // Consulta para obtener campos de las tablas categorias y articulos usando query builder
+            $articulos = Articulo::join('categorias', 'articulos.idcategoria', '=', 'categorias.id')
+                ->select('articulos.id', 'articulos.idcategoria', 'articulos.codigo', 'articulos.nombre',
+                    'categorias.nombre as nombre_categoria', 'articulos.precio_venta', 'articulos.stock', 'articulos.descripcion',
+                    'articulos.condicion')
+                ->where( 'articulos.' . $criterio, 'LIKE', '%' . $buscar . '%' ) /* Filtrar las artículos */
+                ->where( 'articulos.stock', '>', '0' ) /* Filtrar que stock sea mayor a cero */
+                ->orderBy( 'articulos.id', 'DESC' )->paginate( 10 ); /* Eloquent para paginar de 10 en 10 */
+
+        }
+
+
+        return [
+
+            'articulos' => $articulos
+
+        ];
+
+    }
 
     /**
      * Función para buscar un artículo por código de barras
@@ -117,6 +160,30 @@ class ArticuloController extends Controller
 
         $articulos = Articulo::where( 'codigo', '=', $filtro )
                     ->select( 'id', 'nombre' )->orderBy( 'nombre', 'asc' )->take(1)->get();
+
+        return [
+
+            'articulos' => $articulos
+
+        ];
+
+    }
+    /**
+     * Función para buscar un artículo para ventas
+     * Con código de barras o desde listado con modal
+     */
+    public function buscarArticuloVenta( Request $request )
+    {
+
+        if ( !$request->ajax() )  return redirect('/'); /* Condicional para solo aceptar peticiones ajax */
+        
+        $filtro = $request->filtro;
+
+        $articulos = Articulo::where( 'codigo', '=', $filtro )
+                    ->select( 'id', 'nombre', 'stock', 'precio_venta' )
+                    ->where( 'stock', '>', '0' )
+                    ->orderBy( 'nombre', 'asc' )
+                    ->take(1)->get();
 
         return [
 
