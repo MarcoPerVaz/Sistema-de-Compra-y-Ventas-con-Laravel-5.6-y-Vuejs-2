@@ -519,3 +519,6 @@ Commit - Seleccionar artículos
   -Edición del archivo routes/web.php
     -Creación de la ruta /articulo/buscarArticuloVenta en el grupo de rutas administrador y vendedor
     -Creación de la ruta /articulo/listarArticuloVenta en el grupo de rutas administrador y vendedor
+Commit - Agregar y validar artículos a la lista de detalles
+  Nota: La lista de detalles es la lista de los artículos agregados a la compra
+  -Edición del componente components/Venta.vue

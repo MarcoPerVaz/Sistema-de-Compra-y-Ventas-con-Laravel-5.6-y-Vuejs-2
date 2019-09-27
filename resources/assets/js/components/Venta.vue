@@ -244,17 +244,23 @@
 
                                                 <!-- cantidad de artículos -->
                                                 <td>
+                                                    <span style="color: red;" 
+                                                          v-show="detalle.cantidad > detalle.stock">Stock:: {{ detalle.stock }}</span>
                                                     <input type="number" class="form-control" v-model="detalle.cantidad">
                                                 </td>
 
                                                 <!-- descuento de artículos -->
                                                 <td>
+                                                    <span style="color: red;" 
+                                                          v-show="detalle.descuento > (detalle.precio * detalle.cantidad)">
+                                                            Descuento superior
+                                                    </span>
                                                     <input type="number" class="form-control" v-model="detalle.descuento">
                                                 </td>
 
                                                 <!-- Precio total del artículo -->
                                                 <td>
-                                                    {{ detalle.precio * detalle.cantidad }}
+                                                    {{ detalle.precio * detalle.cantidad - detalle.descuento }}
                                                 </td>
                                             </tr>
                                             <tr style="background-color: #CEECF5;">
@@ -612,7 +618,8 @@
 
                 for ( var i = 0; i < this.arrayDetalle.length; i++ ) {
                     
-                    resultado = resultado + ( this.arrayDetalle[ i ].precio * this.arrayDetalle[ i ].cantidad )
+                    resultado = resultado + ( this.arrayDetalle[ i ].precio * this.arrayDetalle[ i ].cantidad 
+                        - this.arrayDetalle[ i ].descuento )
                     
                 }
 
@@ -763,21 +770,38 @@
                   }
                   else {
 
-                      me.arrayDetalle.push( {
-        
-                          idarticulo: me.idarticulo,
-                          articulo: me.articulo,
-                          cantidad: me.cantidad,
-                          precio: me.precio,
-        
-                      } );
-    
-                      me.codigo = '';
-                      me.idarticulo = 0;
-                      me.articulo = '';
-                      me.cantidad = 0;
-                      me.precio = 0;
+                      if ( me.cantidad > me.stock ) {
+                          
+                        swal( {
+                            type: 'error',
+                            title: 'Error...',
+                            text: 'NO hay stock disponible',
+                        } )    
 
+                      }
+                      else {
+
+                        me.arrayDetalle.push( {
+        
+                            idarticulo: me.idarticulo,
+                            articulo: me.articulo,
+                            cantidad: me.cantidad,
+                            precio: me.precio,
+                            descuento: me.descuento,
+                            stock: me.stock,
+    
+                        } );
+            
+                        me.codigo = '';
+                        me.idarticulo = 0;
+                        me.articulo = '';
+                        me.cantidad = 0;
+                        me.precio = 0;
+                        me.descuento = 0;
+                        me.stock = 0;
+
+                      }
+                    
                   }
 
               }
@@ -805,7 +829,9 @@
                     idarticulo: data[ 'id' ],
                     articulo: data[ 'nombre' ],
                     cantidad: 1,
-                    precio: 1,
+                    precio: data[ 'precio_venta' ],
+                    descuento: 0,
+                    stock: data[ 'stock' ],
 
                 } );
 
