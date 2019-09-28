@@ -540,4 +540,27 @@ Commit - Anular venta usando trigger
     -El trigger se encuentra en el archivo Instrucciones/triggerAnularVentas.txt
     -Seleccionar la base de datos en MariaDB, se entra en la opción SQL y se pega el trigger, luego en continuar
       Nota:Para ver el trigger desde MariaDB se selecciona la Base de Datos y luego en disparadores (En el menú)
+<----------Reportes con DOMPDF---------->
+Commit - Reporte de artículos con DOMPDF
+  -Implementación de la librería DOMPDF
+    -Sitio web
+      -https://github.com/barryvdh/laravel-dompdf
+    -Instalación de la librería
+      -composer require barryvdh/laravel-dompdf
+    -Edición del archivo config/app.php
+      -En providers
+        -Barryvdh\DomPDF\ServiceProvider::class,
+      -En aliases
+        -'PDF' => Barryvdh\DomPDF\Facade::class,
+  -Edición del controlador ArticuloController
+    -Creación de la función listarPdf()
+  -Edición del archivo routes/web.php
+    -Creación de la ruta /articulo/listarPdf en el grupo de rutas administrador y almacenero
+  -Creación de la carpeta pdf en resources/views/
+    -Creación y edición de la vista articulospdf.blade.php dentro de la carpeta pdf
+  -Edición del componente components/Articulo.vue
+  -Edición del archivo config/app.php
+    -'timezone' => 'America/Mexico_City',
+    Nota: Sitio web para las zonas horarias
+      -https://www.php.net/manual/es/timezones.america.php
   

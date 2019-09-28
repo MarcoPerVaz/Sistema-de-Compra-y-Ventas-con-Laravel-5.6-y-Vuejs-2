@@ -12,6 +12,9 @@
                     <button type="button" class="btn btn-secondary" @click="abrirModal('articulo', 'registrar')">
                         <i class="icon-plus"></i>&nbsp;Nuevo
                     </button>
+                    <button type="button" class="btn btn-info" @click="cargarPdf()">
+                        <i class="icon-doc"></i>&nbsp;Reporte
+                    </button>
                 </div>
                 <div class="card-body">
                     <div class="form-group row">
@@ -590,6 +593,12 @@
             this.stock = 0;
             this.descripcion = '';
             this.errorArticulo = 0;
+
+          },
+
+          cargarPdf () {
+
+              window.open( 'http://localhost:8000/articulo/listarPdf', '_blank' ); /* Abrir el pdf en una pestaña nueva */
 
           },
 

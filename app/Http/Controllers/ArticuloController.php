@@ -274,4 +274,32 @@ class ArticuloController extends Controller
         $articulo->save();
 
     }
+
+    /**
+     * Función para listar el PDF
+     */
+    public function listarPdf ()
+    {
+
+        $articulos = Articulo::join('categorias', 'articulos.idcategoria', '=', 'categorias.id')
+                ->select('articulos.id', 'articulos.idcategoria', 'articulos.codigo', 'articulos.nombre',
+                    'categorias.nombre as nombre_categoria', 'articulos.precio_venta', 'articulos.stock', 'articulos.descripcion',
+                    'articulos.condicion')
+                ->orderBy( 'articulos.nombre', 'DESC' )->get(); /* Eloquent para obtener todos los artículos */
+
+        $cont = Articulo::count();
+
+        /* Carga la vista para el pdf enviando los arrays con la información */
+        $pdf = \PDF::loadView( 'pdf.articulospdf', [ 
+
+            'articulos' => $articulos, 
+            'cont' => $cont 
+
+        ] );
+        
+        /* Retorna la posibilidad de descargar la vista con el pdf */
+        return $pdf->download( 'articulos.pdf' );
+
+    }
+
 }

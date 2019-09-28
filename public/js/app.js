@@ -36915,6 +36915,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
 
 
  /* Código de barras Vue-Barcode */
@@ -37252,6 +37255,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             this.stock = 0;
             this.descripcion = '';
             this.errorArticulo = 0;
+        },
+        cargarPdf: function cargarPdf() {
+
+            window.open('http://localhost:8000/articulo/listarPdf', '_blank'); /* Abrir el pdf en una pestaña nueva */
         }
     },
 
@@ -39927,6 +39934,23 @@ var render = function() {
             [
               _c("i", { staticClass: "icon-plus" }),
               _vm._v(" Nuevo\n                ")
+            ]
+          ),
+          _vm._v(" "),
+          _c(
+            "button",
+            {
+              staticClass: "btn btn-info",
+              attrs: { type: "button" },
+              on: {
+                click: function($event) {
+                  return _vm.cargarPdf()
+                }
+              }
+            },
+            [
+              _c("i", { staticClass: "icon-doc" }),
+              _vm._v(" Reporte\n                ")
             ]
           )
         ]),
