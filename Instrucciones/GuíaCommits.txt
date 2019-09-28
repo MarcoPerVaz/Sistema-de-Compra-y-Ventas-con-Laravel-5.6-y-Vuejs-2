@@ -530,3 +530,6 @@ Commit - Registrar, validar y trigger para ventas
     -El trigger se encuentra en el archivo Instrucciones/triggerVentas.txt
     -Seleccionar la base de datos en MariaDB, se entra en la opción SQL y se pega el trigger, luego en continuar
       Nota:Para ver el trigger desde MariaDB se selecciona la Base de Datos y luego en disparadores (En el menú)
+Commit - Mostrar venta y sus detalles
+  -Edición del componente components/Venta.vue
+  

@@ -303,8 +303,8 @@
                             <div class="form-group row border">
                                 <div class="col-md-9">
                                     <div class="form-group">
-                                        <label for="">Proveedor</label>
-                                        <p v-text="proveedor"></p>
+                                        <label for="">Cliente</label>
+                                        <p v-text="cliente"></p>
                                     </div>
                                 </div>
                                 <div class="col-md-3">
@@ -338,6 +338,7 @@
                                                 <th>Artículo</th>
                                                 <th>Precio</th>
                                                 <th>Cantidad</th>
+                                                <th>Descuento</th>
                                                 <th>Subtotal</th>
                                             </tr>
                                         </thead>
@@ -354,33 +355,38 @@
 
                                                 </td>
 
-                                                <!-- cantidad de artículos -->
+                                                <!-- Cantidad de artículos -->
                                                 <td v-text="detalle.cantidad">
+                                                    
+                                                </td>
+
+                                                <!-- Descuento de artículos -->
+                                                <td v-text="detalle.descuento">
                                                     
                                                 </td>
 
                                                 <!-- Precio total del artículo -->
                                                 <td>
-                                                    {{ detalle.precio * detalle.cantidad }}
+                                                    {{ detalle.precio * detalle.cantidad - descuento }}
                                                 </td>
                                             </tr>
                                             <tr style="background-color: #CEECF5;">
-                                                <td colspan="3" align="right"><strong>Total Parcial:</strong> </td>
+                                                <td colspan="4" align="right"><strong>Total Parcial:</strong> </td>
                                                 <td>$ {{ totalParcial = (  total - totalImpuesto ).toFixed( 2 ) }}</td>
                                             </tr>
                                             <tr style="background-color: #CEECF5;">
-                                                <td colspan="3" align="right"><strong>Total Impuesto:</strong> </td>
+                                                <td colspan="4" align="right"><strong>Total Impuesto:</strong> </td>
                                                 <td>$ {{ totalImpuesto =  ( total * impuesto ).toFixed( 2 ) }}</td>
                                             </tr>
                                             <tr style="background-color: #CEECF5;">
-                                                <td colspan="3" align="right"><strong>Total Neto:</strong> </td>
+                                                <td colspan="4" align="right"><strong>Total Neto:</strong> </td>
                                                 <td>$ {{ total }}</td> <!-- Dónde calcularTotal es la propiedad computada -->
                                             </tr>
                                         </tbody>
 
                                         <tbody v-else>
                                             <tr>
-                                                <td colspan="4">
+                                                <td colspan="5">
                                                     NO hay artículos agregados
                                                 </td>
                                             </tr>
@@ -1038,28 +1044,28 @@
           /**
            * Función para ver los detalles del ingreso registrado
            */
-          verIngreso ( id ) {
+          verVenta ( id ) {
 
             let me = this;
             me.listado = 2;
 
-            var arrayIngresoT = [];
+            var arrayVentaT = [];
 
             // Obtener Los datos del ingreso
-            var url = '/ingreso/obtenerCabecera?id=' + id;
+            var url = '/venta/obtenerCabecera?id=' + id;
 
             axios.get( url ).then(function (response){
 
                 var respuesta = response.data;
                 
-                arrayIngresoT = respuesta.ingreso; 
+                arrayVentaT = respuesta.venta; 
 
-                me.proveedor = arrayIngresoT[ 0 ][ 'nombre' ];
-                me.tipo_comprobante = arrayIngresoT[ 0 ][ 'tipo_comprobante' ];
-                me.serie_comprobante = arrayIngresoT[ 0 ][ 'serie_comprobante' ];
-                me.num_comprobante = arrayIngresoT[ 0 ][ 'num_comprobante' ];
-                me.impuesto = arrayIngresoT[ 0 ][ 'impuesto' ];
-                me.total = arrayIngresoT[ 0 ][ 'total' ];
+                me.cliente = arrayVentaT[ 0 ][ 'nombre' ];
+                me.tipo_comprobante = arrayVentaT[ 0 ][ 'tipo_comprobante' ];
+                me.serie_comprobante = arrayVentaT[ 0 ][ 'serie_comprobante' ];
+                me.num_comprobante = arrayVentaT[ 0 ][ 'num_comprobante' ];
+                me.impuesto = arrayVentaT[ 0 ][ 'impuesto' ];
+                me.total = arrayVentaT[ 0 ][ 'total' ];
 
             })
             .catch(function(error) {
@@ -1069,7 +1075,7 @@
             });
 
             // Obtener los datos de los detalles
-            var urld = '/ingreso/obtenerDetalles?id=' + id;
+            var urld = '/venta/obtenerDetalles?id=' + id;
 
             axios.get( urld ).then(function (response){
 
@@ -1096,7 +1102,7 @@
     }
 </script>
 
-<style>
+ <style>
 
     .modal-content {
 
