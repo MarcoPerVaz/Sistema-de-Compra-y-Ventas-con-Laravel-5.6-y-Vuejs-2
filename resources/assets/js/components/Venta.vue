@@ -114,7 +114,7 @@
                         </div>
                     </template>
                 <!-- Fin Listado -->
-                <!-- Detalle de Ingreso -->
+                <!-- Detalle de Venta -->
                     <template v-else-if="listado == 0">
                         <div class="card-body">
                             <div class="form-group row border">
@@ -295,9 +295,9 @@
                             </div>
                         </div>
                     </template>
-                <!-- Fin Detalle de Ingreso -->
+                <!-- Fin Detalle de Venta -->
 
-                <!-- Ver Ingreso -->
+                <!-- Ver Venta -->
                     <template v-else-if="listado == 2">
                         <div class="card-body">
                             <div class="form-group row border">
@@ -401,7 +401,7 @@
                             </div>
                         </div>
                     </template>
-                <!-- Fin Ver Ingreso -->
+                <!-- Fin Ver Venta -->
             </div>
             <!-- Fin Listado -->
         </div>
@@ -972,10 +972,10 @@
 
           },
 
-          desactivarIngreso ( id ) { /* Borrado lógico de ingresos */
+          desactivarVenta ( id ) { /* Borrado lógico de ventas */
             
             swal({
-                title: '¿Estás seguro de anular este ingreso?',
+                title: '¿Estás seguro de anular esta venta?',
                 type: 'warning',
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',
@@ -988,17 +988,17 @@
 
                         let me = this;
 
-                        axios.put('/ingreso/desactivar', {
+                        axios.put('/venta/desactivar', {
 
                             'id': id,
 
                         }).then(function(response) {
 
-                            me.listarIngreso( 1, '', 'num_comprobante' ); /*Esto es igual a poner this.listarIngreso( 1,'','num_comprobante'); */
+                            me.listarVenta( 1, '', 'num_comprobante' ); /*Esto es igual a poner this.listarVenta( 1,'','num_comprobante'); */
 
                             swal(
                                 'Anulado!',
-                                'El ingreso ha sido anulado con éxito.',
+                                'La venta ha sido anulada con éxito.',
                                 'success'
                             )
 

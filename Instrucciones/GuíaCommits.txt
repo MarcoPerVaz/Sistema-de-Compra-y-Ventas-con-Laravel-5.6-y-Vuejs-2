@@ -532,4 +532,12 @@ Commit - Registrar, validar y trigger para ventas
       Nota:Para ver el trigger desde MariaDB se selecciona la Base de Datos y luego en disparadores (En el menú)
 Commit - Mostrar venta y sus detalles
   -Edición del componente components/Venta.vue
+Commit - Anular venta usando trigger
+  -Edición del componente components/Venta.vue
+  -Crear trigger para actualizar ventas anulados
+  Nota: Trigger para actualizar el stock al anular una venta (Ventas)
+  -Creación y edición del archivo Instrucciones/triggerAnularVentas.txt
+    -El trigger se encuentra en el archivo Instrucciones/triggerAnularVentas.txt
+    -Seleccionar la base de datos en MariaDB, se entra en la opción SQL y se pega el trigger, luego en continuar
+      Nota:Para ver el trigger desde MariaDB se selecciona la Base de Datos y luego en disparadores (En el menú)
   

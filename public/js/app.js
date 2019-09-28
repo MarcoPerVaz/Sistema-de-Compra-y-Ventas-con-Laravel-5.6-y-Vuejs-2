@@ -49182,13 +49182,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             this.modal = 0;
             this.tituloModal = '';
         },
-        desactivarIngreso: function desactivarIngreso(id) {
+        desactivarVenta: function desactivarVenta(id) {
             var _this = this;
 
-            /* Borrado lógico de ingresos */
+            /* Borrado lógico de ventas */
 
             swal({
-                title: '¿Estás seguro de anular este ingreso?',
+                title: '¿Estás seguro de anular esta venta?',
                 type: 'warning',
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',
@@ -49201,15 +49201,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
                     var me = _this;
 
-                    axios.put('/ingreso/desactivar', {
+                    axios.put('/venta/desactivar', {
 
                         'id': id
 
                     }).then(function (response) {
 
-                        me.listarIngreso(1, '', 'num_comprobante'); /*Esto es igual a poner this.listarIngreso( 1,'','num_comprobante'); */
+                        me.listarVenta(1, '', 'num_comprobante'); /*Esto es igual a poner this.listarVenta( 1,'','num_comprobante'); */
 
-                        swal('Anulado!', 'El ingreso ha sido anulado con éxito.', 'success');
+                        swal('Anulado!', 'La venta ha sido anulada con éxito.', 'success');
                     }).catch(function (error) {
 
                         console.log(error);
