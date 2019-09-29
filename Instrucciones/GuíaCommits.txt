@@ -563,4 +563,15 @@ Commit - Reporte de artículos con DOMPDF
     -'timezone' => 'America/Mexico_City',
     Nota: Sitio web para las zonas horarias
       -https://www.php.net/manual/es/timezones.america.php
-  
+Commit - Reporte de ventas con DOMPDF
+  -Edición del controlador VentaController
+    -Creación y edición de la función pdf()
+  -Edición del archivo routes/web.php
+    -Creación de la ruta /venta/pdf/{id} en el grupo de rutas vendedor y administrador
+  -Creación y edición de la vista venta.blade.php dentro de la carpeta resources/views/pdf/
+  -Edición del componente components/Venta.vue
+  Error: No se mostraba el reporte pdf de la lista de artículos 
+    -Edición del componente components/Articulo.vue
+      Nota: En la función cargarPdf se cambió la ruta 
+        -De: localhost:8000
+        -A: 127.0.0.1:8000

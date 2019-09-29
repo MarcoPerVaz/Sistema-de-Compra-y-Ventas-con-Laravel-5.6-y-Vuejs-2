@@ -598,7 +598,7 @@
 
           cargarPdf () {
 
-              window.open( 'http://localhost:8000/articulo/listarPdf', '_blank' ); /* Abrir el pdf en una pestaña nueva */
+              window.open( 'http://127.0.0.1:8000/articulo/listarPdf', '_blank' ); /* Abrir el pdf en una pestaña nueva */
 
           },
 

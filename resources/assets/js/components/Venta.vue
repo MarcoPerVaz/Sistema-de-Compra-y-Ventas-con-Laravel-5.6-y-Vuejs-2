@@ -60,6 +60,11 @@
                                                         @click="verVenta( venta.id )">
                                                 <i class="icon-eye"></i>
                                                 </button> &nbsp;
+                                                <button type="button" 
+                                                        class="btn btn-info btn-sm" 
+                                                        @click="pdfVenta( venta.id )">
+                                                <i class="icon-doc"></i>
+                                                </button> &nbsp;
             
                                                 <!-- Borrado lógico - activado/desactivado -->
                                                     <template v-if="venta.estado == 'Registrado'">
@@ -907,7 +912,7 @@
                   me.num_comprobante = '';
                   me.impuesto = 0.16;
                   me.total = 0.0;
-                  me.idarticulo = 0.0;
+                  me.idarticulo = 0;
                   me.articulo = '';
                   me.cantidad = 0;
                   me.precio = 0;
@@ -915,6 +920,7 @@
                   me.stock = 0;
                   me.codigo = 0;
                   me.descuento = 0;
+                  window.open( 'http://127.0.0.1:8000/venta/pdf/' + response.data.id + ',' + '_blank' );/* Abrir el pdf de la venta */
 
               }).catch(function (error) {
 
@@ -1089,6 +1095,15 @@
                 console.log(error);
 
             });
+
+          },
+          
+          /**
+           *
+           */
+          pdfVenta ( id ) {
+
+              window.open( 'http://127.0.0.1:8000/venta/pdf/' + id + ',' + '_blank' );
 
           },
 
