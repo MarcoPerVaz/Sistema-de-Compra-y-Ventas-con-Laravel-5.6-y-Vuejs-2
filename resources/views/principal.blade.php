@@ -13,6 +13,8 @@
     <title>Sistema Compra y Ventas</title>
     <!-- Estilos Compilados -->
     <link href="css/plantilla.css" rel="stylesheet">
+    {{-- Chart.js --}}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js">
 </head>
 
 <body class="app header-fixed sidebar-fixed aside-menu-fixed aside-menu-hidden">

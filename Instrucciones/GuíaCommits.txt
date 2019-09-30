@@ -575,3 +575,20 @@ Commit - Reporte de ventas con DOMPDF
       Nota: En la función cargarPdf se cambió la ruta 
         -De: localhost:8000
         -A: 127.0.0.1:8000
+<----------Gráficas con Chart.js---------->
+Commit - Gráfica para ingresos
+  Nota: Implementación de la librería Chart.js en su versión 2.7.2
+    -Desde el sitio 
+      -https://cdnjs.com/libraries/Chart.js/2.7.2
+      -Se copia
+        -https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js
+  -Edición de la vista principal.blade.php
+    -Se agrega el cdn de la librería Chart.js
+  -Creación y edición del componente components/Dashboard.vue
+  -Creación y edición del controlador DashboardController
+    -php artisan make:controller DashboardController
+  -Edición del archivo routes/web.php
+    -Creación de la ruta /dashboard dentro del grupo de rutas auth, ya que los 3 roles podrán ver las gráficas
+  -Edición del archivo resources/assets/js/app.js
+    -Se registra el componente Dashboard.vue
+  -Edición de la vista contenido/contenido.blade.php

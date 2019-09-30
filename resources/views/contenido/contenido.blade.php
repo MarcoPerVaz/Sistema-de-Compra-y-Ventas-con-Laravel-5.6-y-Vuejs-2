@@ -8,7 +8,10 @@
         @if ( Auth::user()-> idrol == 1 ) {{-- Rol Administrador --}}
 
            <template v-if = "menu == 0">
-                <h1>Escritorio</h1>
+
+                {{-- Componente Dashboard.vue --}}
+                <dashboard></dashboard>
+
             </template>
             <template v-if = "menu == 1">
 
@@ -73,6 +76,12 @@
 
         @elseif ( Auth::user()-> idrol == 2 ) {{-- Rol Vendedor --}}
 
+            <template v-if = "menu == 0">
+
+                {{-- Componente Dashboard.vue --}}
+                <dashboard></dashboard>
+                
+            </template>
             <template v-if = "menu == 5">
                 
                 {{-- Componente Venta.vue --}}
@@ -96,6 +105,13 @@
             </template>
 
         @elseif ( Auth::user()-> idrol == 3 ) {{-- Rol Almacenero --}}
+
+            <template v-if = "menu == 0">
+
+                {{-- Componente Dashboard.vue --}}
+                <dashboard></dashboard>
+                
+            </template>
 
             <template v-if = "menu == 1">
 
