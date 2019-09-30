@@ -592,3 +592,6 @@ Commit - Gráfica para ingresos
   -Edición del archivo resources/assets/js/app.js
     -Se registra el componente Dashboard.vue
   -Edición de la vista contenido/contenido.blade.php
+Commit - Gráfica para ventas
+  -Edición del controlador DashboardController
+  -Edición del componente components/Dashboard.vue
