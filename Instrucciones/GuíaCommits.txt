@@ -595,3 +595,9 @@ Commit - Gráfica para ingresos
 Commit - Gráfica para ventas
   -Edición del controlador DashboardController
   -Edición del componente components/Dashboard.vue
+<----------Módulo Reportes Ingresos/Ventas---------->
+Commit - Reporte para ingresos
+  -Creación y edición del componente components/ConsultaIngreso.vue
+  -Edición del archivo resources/assets/js/app.js
+    -Registro del componente ConsultaIngreso.vue
+  -Edición de la vista contenido/contenido.blade.php

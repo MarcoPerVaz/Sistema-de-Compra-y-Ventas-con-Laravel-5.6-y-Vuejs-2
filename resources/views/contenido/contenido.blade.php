@@ -62,7 +62,10 @@
 
             </template>
             <template v-if = "menu == 9">
-                <h1>Reporte ingresos</h1>
+                
+                {{-- Componente ConsultaIngreso.vue --}}
+                <consultaingreso></consultaingreso>
+                
             </template>
             <template v-if = "menu == 10">
                 <h1>Reporte ventas</h1>
@@ -138,7 +141,10 @@
 
             </template>
             <template v-if = "menu == 9">
-                <h1>Reporte ingresos</h1>
+
+                {{-- Componente ConsultaIngreso.vue --}}
+                <consultaingreso></consultaingreso>
+                
             </template>
             <template v-if = "menu == 11">
                 <h1>Ayuda</h1>
