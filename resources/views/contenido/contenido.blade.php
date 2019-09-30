@@ -68,7 +68,10 @@
                 
             </template>
             <template v-if = "menu == 10">
-                <h1>Reporte ventas</h1>
+                
+                {{-- Componente ConsultaVenta.vue --}}
+                <consultaventa></consultaventa>
+
             </template>
             <template v-if = "menu == 11">
                 <h1>Ayuda</h1>
@@ -98,7 +101,10 @@
                 
             </template>
             <template v-if = "menu == 10">
-                <h1>Reporte ventas</h1>
+                
+                {{-- Componente ConsultaVenta.vue --}}
+                <consultaventa></consultaventa>
+                
             </template>
             <template v-if = "menu == 11">
                 <h1>Ayuda</h1>

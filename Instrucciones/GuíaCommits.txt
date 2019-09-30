@@ -601,3 +601,8 @@ Commit - Reporte para ingresos
   -Edición del archivo resources/assets/js/app.js
     -Registro del componente ConsultaIngreso.vue
   -Edición de la vista contenido/contenido.blade.php
+Commit - Reporte para ventas
+  -Creación y edición del componente components/ConsultaVenta.vue
+  -Edición del archivo resources/assets/js/app.js
+    -Registro del componente ConsultaVenta.vue
+  -Edición de la vista contenido/contenido.blade.php
