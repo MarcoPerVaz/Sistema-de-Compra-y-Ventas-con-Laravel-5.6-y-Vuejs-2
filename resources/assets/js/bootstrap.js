@@ -44,13 +44,22 @@ if (token) {
  * allows your team to easily build robust real-time web applications.
  */
 
-// import Echo from 'laravel-echo'
+import Echo from 'laravel-echo'
 
-// window.Pusher = require('pusher-js');
+window.Pusher = require('pusher-js');
 
-// window.Echo = new Echo({
-//     broadcaster: 'pusher',
-//     key: process.env.MIX_PUSHER_APP_KEY,
-//     cluster: process.env.MIX_PUSHER_APP_CLUSTER,
-//     encrypted: true
-// });
+/* Original apuntando al archivo .env */
+    // window.Echo = new Echo({
+    //     broadcaster: 'pusher',
+    //     key: process.env.MIX_PUSHER_APP_KEY,
+    //     cluster: process.env.MIX_PUSHER_APP_CLUSTER,
+    //     encrypted: true
+    // });
+
+/* Modificado para colocar las credenciales en este archivo */
+window.Echo = new Echo({
+    broadcaster: 'pusher',
+    key: '011183ad2655f2c5b2ec',
+    cluster: 'us2',
+    encrypted: true
+});
