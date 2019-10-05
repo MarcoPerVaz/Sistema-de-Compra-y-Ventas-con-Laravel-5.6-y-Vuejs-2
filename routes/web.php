@@ -157,6 +157,9 @@ Route::group( [ 'middleware' => [ 'auth' ] ], function () {
     // Ruta para el Dashboard - Gráficas de Ingresos/Ventas
     Route::get('/dashboard', 'DashboardController'); /* Sólo hace referencia a la función __invoke */
 
+    // Ruta para las notificaciones
+    Route::post('/notification/get', 'NotificationController@get');
+
 } );
 
 

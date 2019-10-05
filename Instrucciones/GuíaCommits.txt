@@ -649,3 +649,25 @@ Commit - Notificaciones en tiempo real - parte 1
     -Edición de la función __construct()
     -Creación de la variable global 
       -public $GlobalDatos;
+Commit - Notificaciones en tiempo real - parte 2
+  Nota:Se almacenan las notificaciones al crear un ingreso
+  -Edición del controlador IngresoController
+    -Edición de la función store()
+      Nota: Importar el modelo User y la clase notifyAdmin (creada para el proyecto)
+        -use App\User;
+        -use App\Notifications\NotifyAdmin;
+  -Edición de la vista principal.blade.php
+    -Se corta la parte de las notificaciones para agregarse al componente Notification.vue
+  -Creación y edición del componente components/Notification.vue
+  -Edición del archivo resources/assets/js/app.js
+    -Se registra el componente Notification.vue
+    -Edición de la instancia de vue
+  -Edición del archivo routes/web.php
+    -Creación de la ruta /notification/get dentro del grupo de rutas auth
+  -Creación y edición del controlador NotificationController
+    -php artisan make:controller NotificationController
+    -Creación y edición de la función get ()
+      Nota:Importar el modelo Notification
+        -use App\Notification;
+  Error: Se muestra un error en consola, pero funciona igual al curso aunque en el curso no se muestra la consola
+    -[Vue warn]: Duplicate keys detected: '0'. This may cause an update error.
