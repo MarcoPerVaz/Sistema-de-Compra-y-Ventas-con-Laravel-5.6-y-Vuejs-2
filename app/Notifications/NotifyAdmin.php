@@ -32,7 +32,7 @@ class NotifyAdmin extends Notification
      */
     public function via($notifiable)
     {
-        return ['database'];
+        return ['database', 'broadcast'];
     }
 
     public function toDatabase( $notifiable )
@@ -41,6 +41,22 @@ class NotifyAdmin extends Notification
         return [
 
             'datos' => $this->GlobalDatos
+            
+        ];
+
+    }
+
+    public function toBroadcast( $notifiable )
+    {
+
+        return [
+
+            'data' => [
+
+                'datos' => $this->GlobalDatos
+
+            ]
+
         ];
 
     }

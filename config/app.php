@@ -160,7 +160,8 @@ return [
          */
         App\Providers\AppServiceProvider::class,
         App\Providers\AuthServiceProvider::class,
-        // App\Providers\BroadcastServiceProvider::class,
+        
+        App\Providers\BroadcastServiceProvider::class, /* Por defecto esta línea viene entre comentarios */
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 

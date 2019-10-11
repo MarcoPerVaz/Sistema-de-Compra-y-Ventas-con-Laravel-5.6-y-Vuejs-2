@@ -671,3 +671,18 @@ Commit - Notificaciones en tiempo real - parte 2
         -use App\Notification;
   Error: Se muestra un error en consola, pero funciona igual al curso aunque en el curso no se muestra la consola
     -[Vue warn]: Duplicate keys detected: '0'. This may cause an update error.
+Commit - Notificaciones en tiempo real - parte 3
+  Nota: A partir de este commit cambié la alienware por la HP porque no funcionaba aunque estaba bien
+  -Edición del componente components/Notification.vue
+  -Edición del controlador NotificationController
+    -Edición de la función get()
+  -Edición del archivo .env
+    -Esto: BROADCAST_DRIVER=log
+    -Por esto: BROADCAST_DRIVER=pusher
+  -Edición del archivo Notifications/NotifyAdmin.php
+    -Edición de la función via()
+    -Creación de la función toBroadcast()
+  -Edición del archivo resources/assets/js/app.js
+  -Edición de la vista principal.blade.php
+  -Edición del archivo config/app.php
+    -Por defecto el provider para broadcastin viene entre comentarios, solo se descomento

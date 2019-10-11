@@ -59,7 +59,7 @@ window.Pusher = require('pusher-js');
 /* Modificado para colocar las credenciales en este archivo */
 window.Echo = new Echo({
     broadcaster: 'pusher',
-    key: '011183ad2655f2c5b2ec',
+    key: '412530bfafe16ee866a5',
     cluster: 'us2',
     encrypted: true
 });

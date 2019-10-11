@@ -7,6 +7,8 @@
 
 require('./bootstrap');
 
+window.$ = window.jQuery = require('jquery'); /* Referencia a Jquery  */
+
 window.Vue = require('vue');
 
 /**
@@ -43,6 +45,7 @@ const app = new Vue({
         axios.post( 'notification/get' ).then( function ( response ) {
 
             // console.log( response.data );
+            
             me.notifications = response.data;
 
         } ).catch( function ( error ) {
@@ -50,5 +53,18 @@ const app = new Vue({
             console.log( error );
             
         } );
+
+        /* Canal de comunicación del lado del cliente */
+        var userId = $( 'meta[name="userId"]' ).attr( 'content' );
+
+        Echo.private( 'App.User.' + userId ).notification( ( notification ) => {
+
+            // console.log( notification );
+
+            me.notifications.unshift( notification );
+            
+
+        } );
+
     }
 });

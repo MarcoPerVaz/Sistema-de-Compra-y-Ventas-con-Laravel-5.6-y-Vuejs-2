@@ -10,6 +10,8 @@
     {{-- Csrf-Token --}}
         <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="shortcut icon" href="img/favicon.png">
+    {{-- ID para obtener el canal de la notificación --}}
+        <meta name="userId" content="{{ Auth::check() ? Auth::user()->id : '' }}">
     <title>Sistema Compra y Ventas</title>
     <!-- Estilos Compilados -->
     <link href="css/plantilla.css" rel="stylesheet">
