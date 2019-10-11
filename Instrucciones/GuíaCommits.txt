@@ -686,3 +686,10 @@ Commit - Notificaciones en tiempo real - parte 3
   -Edición de la vista principal.blade.php
   -Edición del archivo config/app.php
     -Por defecto el provider para broadcastin viene entre comentarios, solo se descomento
+Commit - Notificaciones en tiempo real - parte 4
+  -Edición del componente components/Notification.vue
+  -Edición del controlador VentaController
+    Nota: Importar el modelo y la notificación
+      -use App\User;
+      -use App\Notifications\NotifyAdmin;
+    -Edición de la función store()

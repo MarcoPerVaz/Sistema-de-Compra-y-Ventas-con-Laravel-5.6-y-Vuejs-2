@@ -8,6 +8,8 @@ use App\Venta;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
 use App\DetalleVenta;
+use App\User;
+use App\Notifications\NotifyAdmin;
 
 class VentaController extends Controller
 {
@@ -163,6 +165,41 @@ class VentaController extends Controller
 
                     $detalle->save();
                 }
+
+                /*  */
+                    $fechaActual = date( 'Y-m-d' ); /* Obtener la fecha formateada */
+                    $numVentas = DB::table( 'ventas' )->whereDate( 'created_at', $fechaActual )->count(); /* Conteo de ventas */
+                    $numIngresos = DB::table( 'ingresos' )->whereDate( 'created_at', $fechaActual )->count(); /* Conteo de ingresos */
+
+                    $arregloDatos = [
+
+                        'ventas' => [
+
+                            'numero' => $numVentas,
+                            'msj' => 'Ventas'
+
+                        ],
+
+                        'ingresos' => [
+
+                            'numero' => $numIngresos,
+                            'msj' => 'Ingresos'
+
+                        ]
+                    ];
+
+                    $allUsers = User::all();/* Obtener todos los usuarios */
+
+                    /* Recorrer a todos los usuarios  */
+                    foreach ( $allUsers as $notificar ) {
+                        
+                        /* Consulta para saber a que usuario se notifica */
+                        User::findOrFail( $notificar->id )->notify( new NotifyAdmin( $arregloDatos ) );
+                        
+                    }
+
+
+                /*  */
 
             /*  */
 

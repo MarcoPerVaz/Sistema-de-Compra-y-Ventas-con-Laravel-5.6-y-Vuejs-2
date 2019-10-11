@@ -74754,6 +74754,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
 
@@ -74761,7 +74766,47 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     data: function data() {
 
-        return {};
+        return {
+
+            arrayNotifications: []
+
+        };
+    },
+
+
+    computed: {
+
+        listar: function listar() {
+
+            /* Retorna el arreglo de la variable notifications usada por props */
+            // return this.notifications[ 0 ];  
+
+            /* Retorna el contenido de la variable notifications de props y lo guarda en la variable
+               arrayNotifications 
+            */
+            this.arrayNotifications = Object.values(this.notifications[0]);
+
+            if (this.notifications == '') {
+
+                return this.arrayNotifications = [];
+            } else {
+
+                // Capturo la última notificación agregada
+                this.arrayNotifications = Object.values(this.notifications[0]);
+
+                // Validación por índice fuera de rango
+                if (this.arrayNotifications.length > 3) {
+
+                    // Si el tamaño es > 3 es cuando las notificaciones son obtenidas desde el
+                    return Object.values(this.arrayNotifications[4]);
+                } else {
+
+                    // Si el tamaño es < 3 Es cuando las notificaciones son obtenidas desde el 
+                    return Object.values(this.arrayNotifications[0]);
+                }
+            }
+        }
+
     }
 });
 
@@ -74795,7 +74840,7 @@ var render = function() {
       _vm.notifications.length
         ? _c(
             "div",
-            _vm._l(_vm.notifications, function(item) {
+            _vm._l(_vm.listar, function(item) {
               return _c("li", { key: item.id }, [
                 _c(
                   "a",
@@ -74803,12 +74848,11 @@ var render = function() {
                   [
                     _c("i", { staticClass: "fa fa-envelope-o" }),
                     _vm._v(
-                      " " +
-                        _vm._s(item.data.datos.ingresos.msj) +
-                        "\n                    "
+                      " " + _vm._s(item.ingresos.msj) + "\n                    "
                     ),
+                    _vm._v(" "),
                     _c("span", { staticClass: "badge badge-success" }, [
-                      _vm._v(_vm._s(item.data.datos.ingresos.numero))
+                      _vm._v(_vm._s(item.ingresos.numero))
                     ])
                   ]
                 ),
@@ -74819,12 +74863,11 @@ var render = function() {
                   [
                     _c("i", { staticClass: "fa fa-tasks" }),
                     _vm._v(
-                      " " +
-                        _vm._s(item.data.datos.ventas.msj) +
-                        "\n                    "
+                      " " + _vm._s(item.ventas.msj) + "\n                    "
                     ),
+                    _vm._v(" "),
                     _c("span", { staticClass: "badge badge-danger" }, [
-                      _vm._v(_vm._s(item.data.datos.ventas.numero))
+                      _vm._v(_vm._s(item.ventas.numero))
                     ])
                   ]
                 )
