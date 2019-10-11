@@ -693,3 +693,65 @@ Commit - Notificaciones en tiempo real - parte 4
       -use App\User;
       -use App\Notifications\NotifyAdmin;
     -Edición de la función store()
+<----------Módulo de Implementación del Proyecto en Entorno de Producción---------->
+Nota: A partir de este módulo se volvió a usar la alienware pero el error del módulo anterior continua 
+Commit - Implementación a Hosting Compartido en Internet
+  Nota: Se necesita un dominio en Internet
+  -Exportación de la Base de Datos localizada en MariaDB local
+    -Seleccionar la Base de datos
+    -Click en Exportar localizado en el menú superior
+    -Click en Continuar localizado en la parte inferior
+  -Desde CPanel de tu Hosting Compartido en Internet
+    -En la opción Base de Datos
+      -Se crea la base de datos
+        -Se copia el nombre de la base de datos y se pega en el archivo .env
+          -DB_CONNECTION=nombreBD_GeneradaDesdeCPanel
+      -Se crea un usuario en la base de datos y se pega en el archivo .env
+        -DB_USERNAME=nombreUsuario_GeneradoDesdeCPanel
+      -Se crea la contraseña segura y se copia para ser pegada en el archivo .env
+        -DB_PASSWORD=contraseñaSegura_GeneradaDesdeCPanel
+    -Se añade el usuario recien creado a la Base de datos recien creada
+      -Se le otorgan todos los privilegios(solo en este caso)
+    -Ir a phpMyAdmin desde las opciones raíz de CPanel
+      -Click en la base de datos creada desde CPanel
+      -Importar la base de datos localizada en MariaDB local
+      -Click en continuar
+  -Edición del archivo .env
+      -APP_ENV=local por APP_ENV=production
+      -APP_DEBUG=true por APP_DEBUG=false
+      -APP_URL=http://localhost por -APP_URL=dominioHostingCompartido
+  -Compilar vue en modo de Producción
+    -npm run prod
+  -Subir el proyecto local a cPanel del hosting compartido
+    -En el proyecto local SistemaCompraVentasLaravel56
+      -Renombrar la carpeta public por public_html
+      -Edición del archivo app/Providers/AppServiceProvider.php
+        -Edición de la función register()
+          public function register () 
+          {
+
+            $this->app->bind( 'path.public', function() {
+              return base_path() . '/public_html';
+            } );
+
+          }
+  -Comprimir en formato .zip la carpeta c:/xampp/htdocs/SistemaCompraVentasLaravel56
+  -Ir a Administración de archivos en cPanel y darle click en Cargar
+    -Seleccionar el archivo SistemaCompraVentasLaravel56.zip
+      -Click derecho sobre el archivo SistemaCompraVentasLaravel56.zip después de haberse subido
+        -Extraer en la carpeta raíz
+        -Dentro de la carpeta public_html del proyecto descomprimido
+          -Ir a configuración
+            -Seleccionar la casilla Mostar archivos ocultos
+        -Seleccionar todos los archivos dentro de public_html
+          -Click derecho y mover
+            -Se mueven a la carpeta public_html pero de cPanel
+          -Se elimina la carpeta public_html del proyecto descomprimido en cPanel
+        -Seleccionar todos los archivos del proyecto descomprimido (ya sin public_html)
+          -Click derecho y mover
+            -Se mueven al directorio raíz de cPanel
+        -Se eliminan las carpetas SistemaCompraVentasLaravel56 y SistemaCompraVentasLaravel56.zip
+  -Probar que funcione desde el dominio del hosting compartido
+
+
+
