@@ -515,6 +515,9 @@
     import vSelect from 'vue-select';
 
     export default {
+
+        props: [ 'ruta' ],
+
         data() {
 
           return {
@@ -645,7 +648,7 @@
 
             let me = this; 
 
-            var url = '/venta?page=' + page + '&buscar=' + buscar + '&criterio=' + criterio;
+            var url = this.ruta + '/venta?page=' + page + '&buscar=' + buscar + '&criterio=' + criterio;
 
             axios.get( url ).then(function (response){
 
@@ -669,7 +672,7 @@
               let me = this; 
               loading( true )
 
-            var url = '/cliente/selectCliente?filtro=' + search ;
+            var url = this.ruta + '/cliente/selectCliente?filtro=' + search ;
 
             axios.get( url ).then(function (response){
 
@@ -701,7 +704,7 @@
           buscarArticulo() {
 
               let me = this;
-              var url = '/articulo/buscarArticuloVenta?filtro=' + me.codigo;
+              var url = this.ruta + '/articulo/buscarArticuloVenta?filtro=' + me.codigo;
 
               axios.get( url ).then( function ( response ) {
 
@@ -857,7 +860,7 @@
 
             let me = this; 
 
-            var url = '/articulo/listarArticuloVenta?buscar=' + buscar + '&criterio=' + criterio;
+            var url = this.ruta + '/articulo/listarArticuloVenta?buscar=' + buscar + '&criterio=' + criterio;
 
             axios.get( url ).then(function (response){
 
@@ -892,7 +895,7 @@
 
               let me = this;
 
-              axios.post('/venta/registrar', {
+              axios.post( this.ruta + '/venta/registrar', {
 
                   'idcliente': this.idcliente,
                   'tipo_comprobante': this.tipo_comprobante,
@@ -994,7 +997,7 @@
 
                         let me = this;
 
-                        axios.put('/venta/desactivar', {
+                        axios.put( this.ruta + '/venta/desactivar', {
 
                             'id': id,
 
@@ -1058,7 +1061,7 @@
             var arrayVentaT = [];
 
             // Obtener Los datos del ingreso
-            var url = '/venta/obtenerCabecera?id=' + id;
+            var url = this.ruta + '/venta/obtenerCabecera?id=' + id;
 
             axios.get( url ).then(function (response){
 
@@ -1081,7 +1084,7 @@
             });
 
             // Obtener los datos de los detalles
-            var urld = '/venta/obtenerDetalles?id=' + id;
+            var urld = this.ruta + '/venta/obtenerDetalles?id=' + id;
 
             axios.get( urld ).then(function (response){
 
@@ -1103,7 +1106,7 @@
            */
           pdfVenta ( id ) {
 
-              window.open( 'http://127.0.0.1:8000/venta/pdf/' + id + ',' + '_blank' );
+              window.open( this.ruta + '/venta/pdf/' + id + ',' + '_blank' );
 
           },
 

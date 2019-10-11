@@ -10,67 +10,67 @@
            <template v-if = "menu == 0">
 
                 {{-- Componente Dashboard.vue --}}
-                <dashboard></dashboard>
+                <dashboard :ruta="ruta"></dashboard>
 
             </template>
             <template v-if = "menu == 1">
 
                 {{-- Componente Categoria.vue --}}
-                <categoria></categoria>
+                <categoria :ruta="ruta"></categoria>
 
             </template>
             <template v-if = "menu == 2">
                 
                 {{-- Componente Articulo.vue --}}
-                <articulo></articulo>
+                <articulo :ruta="ruta"></articulo>
 
             </template>
             <template v-if = "menu == 3">
 
                 {{-- Componente Ingreso.vue --}}
-                <ingreso></ingreso>
+                <ingreso :ruta="ruta"></ingreso>
                 
             </template>
             <template v-if = "menu == 4">
 
                 {{-- Componente Proveedor.vue --}}
-                <proveedor></proveedor>
+                <proveedor :ruta="ruta"></proveedor>
 
             </template>
             <template v-if = "menu == 5">
 
                 {{-- Componente Venta.vue --}}
-                <venta></venta>
+                <venta :ruta="ruta"></venta>
                 
             </template>
             <template v-if = "menu == 6">
 
                 {{-- Componente Cliente.vue --}}
-                <cliente></cliente>
+                <cliente :ruta="ruta"></cliente>
                 
             </template>
             <template v-if = "menu == 7">
 
                 {{-- Componente User.vue --}}
-                <user></user>
+                <user :ruta="ruta"></user>
 
             </template>
             <template v-if = "menu == 8">
 
                 {{-- {{ Componente Rol.vue }} --}}
-                <rol></rol>
+                <rol :ruta="ruta"></rol>
 
             </template>
             <template v-if = "menu == 9">
                 
                 {{-- Componente ConsultaIngreso.vue --}}
-                <consultaingreso></consultaingreso>
+                <consultaingreso :ruta="ruta"></consultaingreso>
                 
             </template>
             <template v-if = "menu == 10">
                 
                 {{-- Componente ConsultaVenta.vue --}}
-                <consultaventa></consultaventa>
+                <consultaventa :ruta="ruta"></consultaventa>
 
             </template>
             <template v-if = "menu == 11">
@@ -85,25 +85,25 @@
             <template v-if = "menu == 0">
 
                 {{-- Componente Dashboard.vue --}}
-                <dashboard></dashboard>
+                <dashboard :ruta="ruta"></dashboard>
                 
             </template>
             <template v-if = "menu == 5">
                 
                 {{-- Componente Venta.vue --}}
-                <venta></venta>
+                <venta :ruta="ruta"></venta>
                 
             </template>
             <template v-if = "menu == 6">
 
                 {{-- Componente Cliente.vue --}}
-                <cliente></cliente>
+                <cliente :ruta="ruta"></cliente>
                 
             </template>
             <template v-if = "menu == 10">
                 
                 {{-- Componente ConsultaVenta.vue --}}
-                <consultaventa></consultaventa>
+                <consultaventa :ruta="ruta"></consultaventa>
                 
             </template>
             <template v-if = "menu == 11">
@@ -118,38 +118,38 @@
             <template v-if = "menu == 0">
 
                 {{-- Componente Dashboard.vue --}}
-                <dashboard></dashboard>
+                <dashboard :ruta="ruta"></dashboard>
                 
             </template>
 
             <template v-if = "menu == 1">
 
                 {{-- Componente Categoria.vue --}}
-                <categoria></categoria>
+                <categoria :ruta="ruta"></categoria>
 
             </template>
             <template v-if = "menu == 2">
                 
                 {{-- Componente Articulo.vue --}}
-                <articulo></articulo>
+                <articulo :ruta="ruta"></articulo>
 
             </template>
             <template v-if = "menu == 3">
 
                 {{-- Componente Ingreso.vue --}}
-                <ingreso></ingreso>
+                <ingreso :ruta="ruta"></ingreso>
                 
             </template>
             <template v-if = "menu == 4">
 
                 {{-- Componente Proveedor.vue --}}
-                <proveedor></proveedor>
+                <proveedor :ruta="ruta"></proveedor>
 
             </template>
             <template v-if = "menu == 9">
 
                 {{-- Componente ConsultaIngreso.vue --}}
-                <consultaingreso></consultaingreso>
+                <consultaingreso :ruta="ruta"></consultaingreso>
                 
             </template>
             <template v-if = "menu == 11">

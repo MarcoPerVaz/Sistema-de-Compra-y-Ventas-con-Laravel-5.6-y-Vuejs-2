@@ -35,14 +35,15 @@ const app = new Vue({
     el: '#app',
     data: {
         menu: 0,
-        notifications: []
+        notifications: [],
+        ruta: 'http://localhost/SistemaCompraVentasLaravel56/public',
     },
 
     created() {
 
         let me = this;
 
-        axios.post( 'notification/get' ).then( function ( response ) {
+        axios.post( this.ruta + '/notification/get' ).then( function ( response ) {
 
             // console.log( response.data );
             

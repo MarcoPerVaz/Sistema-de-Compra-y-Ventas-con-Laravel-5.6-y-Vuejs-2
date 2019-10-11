@@ -752,6 +752,35 @@ Commit - Implementación a Hosting Compartido en Internet
             -Se mueven al directorio raíz de cPanel
         -Se eliminan las carpetas SistemaCompraVentasLaravel56 y SistemaCompraVentasLaravel56.zip
   -Probar que funcione desde el dominio del hosting compartido
-
+Commit - Implementación a local o red local
+  Nota: Debe estar corriendo el servidor (Xampp, Wamp, Mamp, Laragon.)
+  Nota: La base de datos debe existir en el entorno adecuado para el servidor
+  Nota: En el caso de Xampp, el proyecto debe estar en c:/xampp/htdocs/
+  Nota: En el caso de laragon, el proyecto debe estar en c:/laragon/www/
+  -Creación y edición del archivo index.php
+  -Edición del archivo resources/assets/js/app.js
+  -Edición de la vista contenido/contenido.blade.php
+  -Edición del componente components/Dashboard.vue
+  -Edición del componente components/Categoria.vue
+  -Edición del componente components/Articulo.vue
+  -Edición del componente components/Cliente.vue
+  -Edición del componente components/ConsultaIngreso.vue
+  -Edición del componente components/ConsultaVenta.vue
+  -Edición del componente components/Ingreso.vue
+  -Edición del componente components/Proveedor.vue
+  -Edición del componente components/Rol.vue
+  -Edición del componente components/User.vue
+  -Edición del componente components/Venta.vue
+  Nota: Se creó una variable props en app.js para ser usada en las rutas de los componentes editados.
+  -Edición del archivo .env
+      -APP_ENV=local por APP_ENV=production
+      -APP_DEBUG=true por APP_DEBUG=false
+  -Usar el comando npm run prod para pasar los archivos compilados con laravel mix a producción
+ Nota: Para ver el proyecto en la red local se debe poner una Ip estática a la PC y cambiar localhost por la ip estática
+<----------Fi Del Proyecto---------->
+Nota: Las notificaciones tienen problemas de compatibilidad (a mi me pasó ya que en la laptop hp si funcionaban y en la alienware no)
+  Nota:Se recomienda quitar las notificaciones
+  Nota:La aplicación fue probada con éxito en la laptop HP
+  Nota:Al probar la aplicación se debe considerar la ruta url en el archivo resources/assets/js/app.js
 
 

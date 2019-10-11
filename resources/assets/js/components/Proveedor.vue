@@ -191,6 +191,9 @@
 
 <script>
     export default {
+
+        props: [ 'ruta' ],
+
         data() {
 
           return {
@@ -284,7 +287,7 @@
 
             let me = this; 
 
-            var url = '/proveedor?page=' + page + '&buscar=' + buscar + '&criterio=' + criterio;
+            var url = this.ruta + '/proveedor?page=' + page + '&buscar=' + buscar + '&criterio=' + criterio;
 
             axios.get( url ).then(function (response){
 
@@ -323,7 +326,7 @@
 
               let me = this;
 
-              axios.post('/proveedor/registrar', {
+              axios.post( this.ruta + '/proveedor/registrar', {
 
                   'nombre': this.nombre,
                   'tipo_documento': this.tipo_documento,
@@ -355,7 +358,7 @@
 
               let me = this;
 
-              axios.put('/proveedor/actualizar', {
+              axios.put( this.ruta + '/proveedor/actualizar', {
 
                   'nombre': this.nombre,
                   'tipo_documento': this.tipo_documento,

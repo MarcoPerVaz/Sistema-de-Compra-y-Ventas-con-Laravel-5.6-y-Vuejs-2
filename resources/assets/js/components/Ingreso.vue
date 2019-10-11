@@ -485,6 +485,9 @@
     import vSelect from 'vue-select';
 
     export default {
+
+        props: [ 'ruta' ],
+
         data() {
 
           return {
@@ -613,7 +616,7 @@
 
             let me = this; 
 
-            var url = '/ingreso?page=' + page + '&buscar=' + buscar + '&criterio=' + criterio;
+            var url = this.ruta + '/ingreso?page=' + page + '&buscar=' + buscar + '&criterio=' + criterio;
 
             axios.get( url ).then(function (response){
 
@@ -637,7 +640,7 @@
               let me = this; 
               loading( true )
 
-            var url = '/proveedor/selectProveedor?filtro=' + search ;
+            var url = this.ruta + '/proveedor/selectProveedor?filtro=' + search ;
 
             axios.get( url ).then(function (response){
 
@@ -669,7 +672,7 @@
           buscarArticulo() {
 
               let me = this;
-              var url = '/articulo/buscarArticulo?filtro=' + me.codigo;
+              var url = this.ruta + '/articulo/buscarArticulo?filtro=' + me.codigo;
 
               axios.get( url ).then( function ( response ) {
 
@@ -804,7 +807,7 @@
 
             let me = this; 
 
-            var url = '/articulo/listarArticulo?buscar=' + buscar + '&criterio=' + criterio;
+            var url = this.ruta + '/articulo/listarArticulo?buscar=' + buscar + '&criterio=' + criterio;
 
             axios.get( url ).then(function (response){
 
@@ -839,7 +842,7 @@
 
               let me = this;
 
-              axios.post('/ingreso/registrar', {
+              axios.post( this.ruta + '/ingreso/registrar', {
 
                   'idproveedor': this.idproveedor,
                   'tipo_comprobante': this.tipo_comprobante,
@@ -985,7 +988,7 @@
             var arrayIngresoT = [];
 
             // Obtener Los datos del ingreso
-            var url = '/ingreso/obtenerCabecera?id=' + id;
+            var url = this.ruta + '/ingreso/obtenerCabecera?id=' + id;
 
             axios.get( url ).then(function (response){
 
@@ -1008,7 +1011,7 @@
             });
 
             // Obtener los datos de los detalles
-            var urld = '/ingreso/obtenerDetalles?id=' + id;
+            var urld = this.ruta + '/ingreso/obtenerDetalles?id=' + id;
 
             axios.get( urld ).then(function (response){
 

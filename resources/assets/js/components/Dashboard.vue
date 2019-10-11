@@ -50,6 +50,8 @@
 
 <script>
 export default {
+
+  props: [ 'ruta' ],
   
   data (){
 
@@ -77,7 +79,7 @@ export default {
 
       let me = this;
 
-      var url = '/dashboard';
+      var url = this.ruta + '/dashboard';
 
       axios.get( url ).then( function ( response ) {
 
@@ -138,7 +140,7 @@ export default {
 
       let me = this;
 
-      var url = '/dashboard';
+      var url = this.ruta + '/dashboard';
 
       axios.get( url ).then( function ( response ) {
 

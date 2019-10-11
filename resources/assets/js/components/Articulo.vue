@@ -223,6 +223,9 @@
     import VueBarcode from 'vue-barcode'; /* Código de barras Vue-Barcode */
 
     export default {
+
+        props: [ 'ruta' ],
+
         data() {
 
           return {
@@ -320,7 +323,7 @@
 
             let me = this; 
 
-            var url = '/articulo?page=' + page + '&buscar=' + buscar + '&criterio=' + criterio;
+            var url = this.ruta + '/articulo?page=' + page + '&buscar=' + buscar + '&criterio=' + criterio;
 
             axios.get( url ).then(function (response){
 
@@ -343,7 +346,7 @@
 
              let me = this; 
 
-            var url = '/categoria/selectCategoria';
+            var url = this.ruta + '/categoria/selectCategoria';
 
             axios.get( url ).then(function (response){
               
@@ -382,7 +385,7 @@
 
               let me = this;
 
-              axios.post('/articulo/registrar', {
+              axios.post( this.ruta + '/articulo/registrar', {
 
                   'idcategoria': this.idcategoria,
                   'codigo': this.codigo,
@@ -412,7 +415,7 @@
 
               let me = this;
 
-              axios.put('/articulo/actualizar', {
+              axios.put( this.ruta + '/articulo/actualizar', {
 
                   'idcategoria': this.idcategoria,
                   'codigo': this.codigo,
@@ -451,7 +454,7 @@
 
                         let me = this;
 
-                        axios.put('/articulo/desactivar', {
+                        axios.put( this.ruta + '/articulo/desactivar', {
 
                             'id': id,
 
@@ -494,7 +497,7 @@
 
                         let me = this;
 
-                        axios.put('/articulo/activar', {
+                        axios.put( this.ruta + '/articulo/activar', {
 
                             'id': id,
 
@@ -598,7 +601,7 @@
 
           cargarPdf () {
 
-              window.open( 'http://127.0.0.1:8000/articulo/listarPdf', '_blank' ); /* Abrir el pdf en una pestaña nueva */
+              window.open( this.ruta + '/articulo/listarPdf', '_blank' ); /* Abrir el pdf en una pestaña nueva */
 
           },
 

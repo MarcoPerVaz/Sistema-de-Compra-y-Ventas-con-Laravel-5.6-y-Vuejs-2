@@ -219,6 +219,9 @@
 
 <script>
     export default {
+
+        props: [ 'ruta' ],
+
         data() {
 
           return {
@@ -314,7 +317,7 @@
 
             let me = this; 
 
-            var url = '/user?page=' + page + '&buscar=' + buscar + '&criterio=' + criterio;
+            var url = this.ruta + '/user?page=' + page + '&buscar=' + buscar + '&criterio=' + criterio;
 
             axios.get( url ).then(function (response){
 
@@ -337,7 +340,7 @@
 
               let me = this; 
 
-            var url = '/rol/selectRol';
+            var url = this.ruta + '/rol/selectRol';
 
             axios.get( url ).then(function (response){
 
@@ -374,7 +377,7 @@
 
               let me = this;
 
-              axios.post('/user/registrar', {
+              axios.post( this.ruta + '/user/registrar', {
 
                   'nombre': this.nombre,
                   'tipo_documento': this.tipo_documento,
@@ -407,7 +410,7 @@
 
               let me = this;
 
-              axios.put('/user/actualizar', {
+              axios.put( this.ruta + '/user/actualizar', {
 
                   'nombre': this.nombre,
                   'tipo_documento': this.tipo_documento,
@@ -533,7 +536,7 @@
 
                         let me = this;
 
-                        axios.put('/user/desactivar', {
+                        axios.put( this.ruta + '/user/desactivar', {
 
                             'id': id,
 
@@ -576,7 +579,7 @@
 
                         let me = this;
 
-                        axios.put('/user/activar', {
+                        axios.put( this.ruta + '/user/activar', {
 
                             'id': id,
 
